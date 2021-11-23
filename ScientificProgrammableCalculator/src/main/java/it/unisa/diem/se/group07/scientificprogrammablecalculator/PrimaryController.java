@@ -1,17 +1,13 @@
 package it.unisa.diem.se.group07.scientificprogrammablecalculator;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 public class PrimaryController {
 
     @FXML
-    private Button primaryButton;
+    private Label display;
 
-    @FXML
-    private void switchToSecondary(ActionEvent event) {
-    }
 
     
 }
