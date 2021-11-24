@@ -25,19 +25,22 @@ public class Calculator {
      * Constructs the string to pass to the calculator
      *
      * @param s String to pass to the calculator
-     * @return "" if the string format is correct
-     * @return "Syntax Error" if the string format is incorrect
+     * @return "" if the string format is correct otherwise "Syntax Error" if the string format is incorrect
      */
     public String checkOperations(String s) {
-        ComplexNumbers num = null;
+        ComplexNumbers num = new ComplexNumbers(0.0, 0.0);
         num = num.StringToComplex(s);
-
+ 
         if (num != null) {
             memory.push(num.getReal(), num.getImg());
             return "";
         } else {
             return "Syntax Error";
         }
+    }
+    
+    public String[] lastTwelveNumbers(){
+        return memory.getLastTwelve();
     }
 
 }

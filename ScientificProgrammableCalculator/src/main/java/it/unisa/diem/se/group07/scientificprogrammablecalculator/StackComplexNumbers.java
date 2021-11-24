@@ -25,8 +25,8 @@ public class StackComplexNumbers {
     }
     
     /**
-    This method check if the stack is empty
-        @return boolean that specifies if the stack is empty
+     * This method check if the stack is empty 
+     *  @return boolean that specifies if the stack is empty
     */
     public boolean isEmpty() {
         if (top == -1) {
@@ -37,8 +37,8 @@ public class StackComplexNumbers {
     }
     
     /**
-    This method check if the stack is full
-        @return boolean that specifies if the stack is full
+     * This method check if the stack is full 
+     *  @return boolean that specifies if the stack is full
     */
     public boolean isFull() {
         if (capacity == top + 1) {
@@ -49,7 +49,7 @@ public class StackComplexNumbers {
     }
     
     /**
-    This method doubles the size of the array
+     * This method doubles the size of the array
     */
     public void expandArray() {
         int i = 0;
@@ -63,7 +63,7 @@ public class StackComplexNumbers {
     }
     
     /**
-    This method reduces the size of the array
+     * This method reduces the size of the array
     */
     public void reduceSize() {
         int curr_length = top + 1;
@@ -76,10 +76,10 @@ public class StackComplexNumbers {
     }
     
     /**
-    This method puts the complex number on the stack;
-    expands the stack if it is full and then inserts the number
-        @param real Real part
-        @param img Imaginary part
+     * This method puts the complex number on the stack; 
+     * expands the stack if it is full and then inserts the number 
+     * @param real Real part 
+     * @param img Imaginary part
     */
     public void push(double real, double img) {
         if (isFull()) {
@@ -88,9 +88,9 @@ public class StackComplexNumbers {
         array[++top] = createComplex(real, img);
     }
     
-    /**
-    This method deletes the last element inserted on the stack 
-        @return last element in the stack that is deleted
+    /** 
+     * This method deletes the last element inserted on the stack 
+     *  @return last element in the stack that is deleted
     */
     public ComplexNumbers pop() {
         if (isEmpty()) {
@@ -103,8 +103,8 @@ public class StackComplexNumbers {
     }
     
     /**
-    This method returns the last item inserted on the stack
-        @return last item inserted on the stack
+     * This method returns the last item inserted on the stack 
+     *  @return last item inserted on the stack
     */
     public ComplexNumbers top() {
         if (isEmpty()) {
@@ -116,10 +116,10 @@ public class StackComplexNumbers {
     }
     
     /**
-    This method creates a complex number
-        @param real Real part
-        @param img Imaginary part
-        @return a complex number
+     * This method creates a complex number 
+     *  @param real Real part  
+     *  @param img Imaginary part  
+     *  @return a complex number
     */
     private ComplexNumbers createComplex(double real, double img) {
         return new ComplexNumbers(real, img);
@@ -143,7 +143,6 @@ public class StackComplexNumbers {
             int index = top;
             for (int i = 0; i < n; i++) {
                 lastTwelve[i] = array[index].toString();
-                System.out.println(array[index].toString());
                 index--;
             }
             return lastTwelve;
@@ -151,7 +150,8 @@ public class StackComplexNumbers {
     }
     
     /**
-    This method  sum thsumLastTwoNumbers()e last two stored complex numbers and save the result
+     * This method  sum thsumLastTwoNumbers()e last two stored complex numbers 
+     * and save the result
     */
     public void sumLastTwoNumbers(){
         ComplexNumbers num1 = this.pop();

@@ -88,7 +88,6 @@ public class StackComplexNumbersTest {
         String[] array1;
         array1 = stack1.getLastTwelve();
         assertEquals(12, array1.length);
-        System.out.println(array1.length);
 
         for (i = 0; i < 12; i++) {
             assertEquals(String.valueOf(dim1 - 1 - i) + ".0" + "+" + String.valueOf(dim1 - 1 - i) + ".0" + "i", array1[i]);
