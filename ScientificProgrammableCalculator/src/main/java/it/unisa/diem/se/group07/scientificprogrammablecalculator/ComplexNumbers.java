@@ -43,4 +43,14 @@ public class ComplexNumbers {
     public double getImg() {
         return img;
     }
+
+    /**
+        Addition of ComplexNumbers (doesn't change this Complex number).
+        <br>(x+i*y) + (s+i*t) = (x+s)+i*(y+t).
+        @param w is the number to add.
+        @return z+w where z is this Complex number.
+    */
+    public ComplexNumbers sum(ComplexNumbers w) {
+        return new ComplexNumbers(real+w.getReal(),img+w.getImg());
+    }
 }
