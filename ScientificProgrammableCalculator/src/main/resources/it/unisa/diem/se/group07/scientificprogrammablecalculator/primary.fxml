@@ -26,7 +26,7 @@
                   </Label>
                   <HBox prefHeight="80.0" prefWidth="400.0" style="-fx-background-color: #111111;">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #3E3E3E;" text="7" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#pressedKey" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #3E3E3E;" text="7" textFill="WHITE">
                            <font>
                               <Font size="28.0" />
                            </font>
@@ -34,7 +34,7 @@
                               <Insets left="46.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #3E3E3E;" text="8" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#pressedKey" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #3E3E3E;" text="8" textFill="WHITE">
                            <font>
                               <Font size="28.0" />
                            </font>
@@ -42,7 +42,7 @@
                               <Insets left="46.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #3E3E3E;" text="9" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#pressedKey" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #3E3E3E;" text="9" textFill="WHITE">
                            <font>
                               <Font size="28.0" />
                            </font>
@@ -50,7 +50,7 @@
                               <Insets left="46.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #ACACAC;" text="DEL">
+                        <Button mnemonicParsing="false" onAction="#deleteNumber" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #ACACAC;" text="DEL">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
@@ -58,7 +58,7 @@
                               <Insets left="46.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #ACACAC;" text="AC">
+                        <Button mnemonicParsing="false" onAction="#clearDisplay" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #ACACAC;" text="AC">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
@@ -73,7 +73,7 @@
                   </HBox>
                   <HBox prefHeight="80.0" prefWidth="400.0" style="-fx-background-color: #111111;">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #3E3E3E;" text="4" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#pressedKey" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #3E3E3E;" text="4" textFill="WHITE">
                            <font>
                               <Font size="28.0" />
                            </font>
@@ -81,7 +81,7 @@
                               <Insets left="46.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #3E3E3E;" text="5" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#pressedKey" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #3E3E3E;" text="5" textFill="WHITE">
                            <font>
                               <Font size="28.0" />
                            </font>
@@ -89,7 +89,7 @@
                               <Insets left="46.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #3E3E3E;" text="6" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#pressedKey" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #3E3E3E;" text="6" textFill="WHITE">
                            <font>
                               <Font size="28.0" />
                            </font>
@@ -97,7 +97,7 @@
                               <Insets left="46.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #F29611;" text="*" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#pressedKey" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #F29611;" text="*" textFill="WHITE">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -105,54 +105,7 @@
                               <Insets left="46.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #F29611;" text="/" textFill="WHITE">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="46.0" />
-                           </HBox.margin>
-                        </Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox prefHeight="80.0" prefWidth="400.0" style="-fx-background-color: #111111;">
-                     <children>
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #3E3E3E;" text="1" textFill="WHITE">
-                           <font>
-                              <Font size="28.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="46.0" />
-                           </HBox.margin>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #3E3E3E;" text="2" textFill="WHITE">
-                           <font>
-                              <Font size="28.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="46.0" />
-                           </HBox.margin>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #3E3E3E;" text="3" textFill="WHITE">
-                           <font>
-                              <Font size="28.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="46.0" />
-                           </HBox.margin>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #F29611;" text="+" textFill="WHITE">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="46.0" />
-                           </HBox.margin>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #F29611;" text="-" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#pressedKey" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #F29611;" text="/" textFill="WHITE">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -167,7 +120,7 @@
                   </HBox>
                   <HBox prefHeight="80.0" prefWidth="400.0" style="-fx-background-color: #111111;">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #3E3E3E;" text="0" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#pressedKey" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #3E3E3E;" text="1" textFill="WHITE">
                            <font>
                               <Font size="28.0" />
                            </font>
@@ -175,7 +128,7 @@
                               <Insets left="46.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #3E3E3E;" text="." textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#pressedKey" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #3E3E3E;" text="2" textFill="WHITE">
                            <font>
                               <Font size="28.0" />
                            </font>
@@ -183,7 +136,7 @@
                               <Insets left="46.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #3E3E3E;" text="i" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#pressedKey" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #3E3E3E;" text="3" textFill="WHITE">
                            <font>
                               <Font size="28.0" />
                            </font>
@@ -191,15 +144,54 @@
                               <Insets left="46.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #ACACAC;" text="INS">
+                        <Button mnemonicParsing="false" onAction="#pressedKey" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #F29611;" text="+" textFill="WHITE">
                            <font>
-                              <Font name="System Bold" size="18.0" />
+                              <Font size="24.0" />
                            </font>
                            <HBox.margin>
                               <Insets left="46.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #F29611;" text="=" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#pressedKey" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #F29611;" text="-" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="46.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="80.0" prefWidth="400.0" style="-fx-background-color: #111111;">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#pressedKey" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #3E3E3E;" text="0" textFill="WHITE">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="46.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#pressedKey" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #3E3E3E;" text="." textFill="WHITE">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="46.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#pressedKey" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 40; -fx-background-color: #3E3E3E;" text="i" textFill="WHITE">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="46.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="171.0" style="-fx-background-radius: 40; -fx-background-color: #F29611;" text="=" textFill="WHITE">
                            <font>
                               <Font size="24.0" />
                            </font>
