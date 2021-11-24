@@ -5,7 +5,8 @@
 package it.unisa.diem.se.group07.scientificprogrammablecalculator;
 
 /**
- * StackComplexNumbers implements a dynamic Stack data structures with LIFO logic 
+ * StackComplexNumbers implements a dynamic Stack data structures 
+ * with LIFO(Last In First Out) logic 
  * to do calculator operations.
  * @author DELL
  */
@@ -26,6 +27,7 @@ public class StackComplexNumbers {
     
     /*
     This method check if the stack is empty
+        @return boolean that specifies if the stack is empty
     */
     public boolean isEmpty() {
         if (top == -1) {
@@ -37,6 +39,7 @@ public class StackComplexNumbers {
     
     /*
     This method check if the stack is full
+        @return boolean that specifies if the stack is full
     */
     public boolean isFull() {
         if (capacity == top + 1) {
@@ -75,15 +78,15 @@ public class StackComplexNumbers {
     
     /*
     This method puts the complex number on the stack;
-    before inserting if the stack is full it expands it
+    expands the stack if it is full and then inserts the number
         @param real Real part
         @param img Imaginary part
     */
-    public void push(double a, double b) {
+    public void push(double real, double img) {
         if (isFull()) {
             expandArray();
         }
-        array[++top] = createComplex(a, b);
+        array[++top] = createComplex(real, img);
     }
     
     /*
@@ -102,6 +105,7 @@ public class StackComplexNumbers {
     
     /*
     This method returns the last item inserted on the stack
+        @return last item inserted on the stack
     */
     public ComplexNumbers top() {
         return array[top];
@@ -113,8 +117,8 @@ public class StackComplexNumbers {
         @param img Imaginary part
         @return a complex number
     */
-    private ComplexNumbers createComplex(double a, double b) {
-        return new ComplexNumbers(a, b);
+    private ComplexNumbers createComplex(double real, double img) {
+        return new ComplexNumbers(real, img);
     }
 
     /**
