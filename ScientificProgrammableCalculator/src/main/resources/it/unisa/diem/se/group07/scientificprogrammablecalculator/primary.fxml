@@ -182,7 +182,7 @@
                               <Font size="28.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="150.0" style="-fx-background-radius: 30; -fx-background-color: #F29611;" text="=" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#makeOperations" prefHeight="60.0" prefWidth="150.0" style="-fx-background-radius: 30; -fx-background-color: #F29611;" text="=" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="15.0" right="15.0" />
                            </HBox.margin>
