@@ -39,6 +39,28 @@ public class ComplexNumbersTest {
         assertEquals(6.70, num1.getImg());
         assertEquals(0.0, num2.getImg());
     }
+    
+    /**
+     * Test of StringToComplex method, of class ComplexNumbers.
+     */
+    @Test
+    public void testStringToComplex() {
+       num1 = num1.StringToComplex("25+37i");
+       assertEquals(25.0, num1.getReal());
+       assertEquals(37.0, num1.getImg());
+       
+       num1 = num1.StringToComplex("25.56");
+       assertEquals(25.56, num1.getReal());
+       assertEquals(0.0, num1.getImg());
+       
+       num1 = num1.StringToComplex("37.43i");
+       assertEquals(0.0, num1.getReal());
+       assertEquals(37.43, num1.getImg());
+         
+       num1 = num1.StringToComplex("-14.56-18.21i");
+       assertEquals(-14.56, num1.getReal());
+       assertEquals(-18.21, num1.getImg());
+    }
 
     /**
      * Test of sum method, of class ComplexNumbers.
