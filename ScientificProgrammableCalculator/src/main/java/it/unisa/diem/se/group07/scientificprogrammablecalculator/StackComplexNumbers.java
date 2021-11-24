@@ -148,5 +148,13 @@ public class StackComplexNumbers {
             return lastTwelve;
         }
     }
-
+    
+    /**
+    This method  sum thsumLastTwoNumbers()e last two stored complex numbers and save the result
+    */
+    public void sumLastTwoNumbers(){
+        ComplexNumbers num1 = this.pop();
+        ComplexNumbers num2 = this.pop();
+        this.push(num1.sum(num2).getReal(), num1.sum(num2).getImg());
+    }
 }

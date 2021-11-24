@@ -59,6 +59,16 @@ public class StackComplexNumbersTest {
         assertEquals(3.5, num.getImg());
 
     }
+    
+    /**
+     * Test of push method, of class StackComplexNumbers.
+     */
+    @Test
+    public void testPush() {
+        stack.push(14.8, 37.1);
+        assertEquals(14.8, stack.top().getReal());
+        assertEquals(37.1, stack.top().getImg());
+    }
    
 
     /**
@@ -97,6 +107,38 @@ public class StackComplexNumbersTest {
             assertEquals(Double.valueOf(dim2-1-i), array2[i].getReal());
             assertEquals(Double.valueOf(dim2-1-i), array2[i].getImg());
         }
+
+    }
+    
+    /**
+     * Test of sumLastTwoNumbers method, of class StackComplexNumbers.
+     */
+    @Test
+    public void testSumLastTwoNumbers() {
+        stack.push(21.5, 13.1);
+        stack.push(3.5, 2.4);
+        stack.sumLastTwoNumbers();
+        assertEquals(25.0, stack.top().getReal());
+        assertEquals(15.5, stack.top().getImg());
+
+        stack.push(14.2, -19.7);
+        stack.push(0.0, 6.6);
+        stack.sumLastTwoNumbers();
+        assertEquals(14.2, stack.top().getReal());
+        assertEquals(-13.1, stack.top().getImg());
+        
+        stack.push(0, -16);
+        stack.push(-1.36, 1);
+        stack.sumLastTwoNumbers();
+        assertEquals(-1.36, stack.top().getReal());
+        assertEquals(-15.0, stack.top().getImg());
+        
+        stack.push(17.1, 2.345);
+        stack.push(12.25, 1.871);
+        stack.sumLastTwoNumbers();
+        assertEquals(29.35, stack.top().getReal());
+        assertEquals(4.216, stack.top().getImg());
+        
 
     }
 
