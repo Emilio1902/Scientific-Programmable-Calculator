@@ -26,18 +26,32 @@ public class StackComplexNumbersTest {
      */
     @Test
     public void testPop() {
+        //test for empty stack
+        StackComplexNumbers stackP = new StackComplexNumbers();
+        ComplexNumbers n = stackP.pop();
+        assertEquals(null, n);
+        
+        
+        //test for stack with inserted numbers
         stack.push(2.6, 7.1);
         stack.push(8.3, 3.5);
         ComplexNumbers num = stack.pop();
         assertEquals(8.3, num.getReal());
         assertEquals(3.5, num.getImg());
     }
+    
 
     /**
      * Test of top method, of class StackComplexNumbers.
      */
     @Test
     public void testTop() {
+        //test for empty stack
+        StackComplexNumbers stackT = new StackComplexNumbers();
+        ComplexNumbers n = stackT.top();
+        assertEquals(null, n);
+        
+        //test for stack with inserted numbers
         stack.push(2.6, 7.1);
         stack.push(8.3, 3.5);
         ComplexNumbers num = stack.top();
@@ -45,6 +59,7 @@ public class StackComplexNumbersTest {
         assertEquals(3.5, num.getImg());
 
     }
+   
 
     /**
      * Test of getLastTwelve method, of class StackComplexNumbers.

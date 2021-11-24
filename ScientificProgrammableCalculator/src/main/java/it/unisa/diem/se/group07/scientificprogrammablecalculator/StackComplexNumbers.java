@@ -6,8 +6,7 @@ package it.unisa.diem.se.group07.scientificprogrammablecalculator;
 
 /**
  * StackComplexNumbers implements a dynamic Stack data structures 
- * with LIFO(Last In First Out) logic 
- * to do calculator operations.
+ * with LIFO(Last In First Out) logic to do calculator operations.
  * @author DELL
  */
 public class StackComplexNumbers {
@@ -16,8 +15,8 @@ public class StackComplexNumbers {
     private int capacity;
     private int top;
     
-    /*
-    Constructs the Stack
+    /**
+    * Constructs the Stack
     */
     public StackComplexNumbers() {
         capacity = 20;
@@ -25,7 +24,7 @@ public class StackComplexNumbers {
         top = -1;
     }
     
-    /*
+    /**
     This method check if the stack is empty
         @return boolean that specifies if the stack is empty
     */
@@ -37,7 +36,7 @@ public class StackComplexNumbers {
         }
     }
     
-    /*
+    /**
     This method check if the stack is full
         @return boolean that specifies if the stack is full
     */
@@ -49,7 +48,7 @@ public class StackComplexNumbers {
         }
     }
     
-    /*
+    /**
     This method doubles the size of the array
     */
     public void expandArray() {
@@ -63,7 +62,7 @@ public class StackComplexNumbers {
         capacity = new_array.length;
     }
     
-    /*
+    /**
     This method reduces the size of the array
     */
     public void reduceSize() {
@@ -76,7 +75,7 @@ public class StackComplexNumbers {
         }
     }
     
-    /*
+    /**
     This method puts the complex number on the stack;
     expands the stack if it is full and then inserts the number
         @param real Real part
@@ -89,7 +88,7 @@ public class StackComplexNumbers {
         array[++top] = createComplex(real, img);
     }
     
-    /*
+    /**
     This method deletes the last element inserted on the stack 
         @return last element in the stack that is deleted
     */
@@ -103,15 +102,20 @@ public class StackComplexNumbers {
         }
     }
     
-    /*
+    /**
     This method returns the last item inserted on the stack
         @return last item inserted on the stack
     */
     public ComplexNumbers top() {
-        return array[top];
+        if (isEmpty()) {
+            System.out.println("Stack is empty");
+            return null;
+        } else {
+            return array[top];
+        }
     }
     
-    /*
+    /**
     This method creates a complex number
         @param real Real part
         @param img Imaginary part
