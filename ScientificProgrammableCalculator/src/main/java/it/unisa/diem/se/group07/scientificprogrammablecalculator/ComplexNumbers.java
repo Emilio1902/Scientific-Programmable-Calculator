@@ -131,4 +131,17 @@ public class ComplexNumbers {
         return new ComplexNumbers(real + w.getReal(), img + w.getImg());
     }
 
+    
+    /**
+     * Parse from ComplexNumbers to string
+     * 
+     * @return Re[z]+Img[z]i string where z is this Complex number.
+     */
+    @Override
+    public String toString() {
+        return real + (img<0?"":"+")+ img + 'i';
+    }
+    
+    
+
 }

@@ -130,7 +130,7 @@ public class StackComplexNumbers {
      *
      * @return An array that contains the last 12 ComplexNumbers.
      */
-    public ComplexNumbers[] getLastTwelve() {
+    public String[] getLastTwelve() {
         if (this.isEmpty()) {
             return null;
 
@@ -139,10 +139,11 @@ public class StackComplexNumbers {
             if (top + 1 < 12) {
                 n = top + 1;
             }
-            ComplexNumbers[] lastTwelve = new ComplexNumbers[n];
+            String[] lastTwelve = new String[n];
             int index = top;
             for (int i = 0; i < n; i++) {
-                lastTwelve[i] = array[index];
+                lastTwelve[i] = array[index].toString();
+                System.out.println(array[index].toString());
                 index--;
             }
             return lastTwelve;
