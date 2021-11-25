@@ -5,6 +5,8 @@
  */
 package it.unisa.diem.se.group07.scientificprogrammablecalculator;
 
+import java.math.BigDecimal;
+
 /**
  * Calculator implements a calculator
  *
@@ -28,8 +30,8 @@ public class Calculator {
      * @return "" if the string format is correct otherwise "Syntax Error" if the string format is incorrect
      */
     public String checkOperations(String s) {
-        ComplexNumbers num = new ComplexNumbers(0.0, 0.0);
-        num = num.StringToComplex(s);
+        ComplexNumbers num = new ComplexNumbers(BigDecimal.ZERO, BigDecimal.ZERO);
+        num = num.stringToComplex(s);
  
         if (num != null) {
             memory.push(num.getReal(), num.getImg());

@@ -4,6 +4,8 @@
  */
 package it.unisa.diem.se.group07.scientificprogrammablecalculator;
 
+import java.math.BigDecimal;
+
 /**
  * StackComplexNumbers implements a dynamic Stack data structures 
  * with LIFO(Last In First Out) logic to do calculator operations.
@@ -81,7 +83,7 @@ public class StackComplexNumbers {
      * @param real Real part 
      * @param img Imaginary part
     */
-    public void push(double real, double img) {
+    public void push(BigDecimal real, BigDecimal img) {
         if (isFull()) {
             expandArray();
         }
@@ -121,7 +123,7 @@ public class StackComplexNumbers {
      *  @param img Imaginary part  
      *  @return a complex number
     */
-    private ComplexNumbers createComplex(double real, double img) {
+    private ComplexNumbers createComplex(BigDecimal real, BigDecimal img) {
         return new ComplexNumbers(real, img);
     }
 
@@ -150,7 +152,7 @@ public class StackComplexNumbers {
     }
     
     /**
-     * This method  sum thsumLastTwoNumbers()e last two stored complex numbers 
+     * This method  sum the last two stored complex numbers 
      * and save the result
     */
     public void sumLastTwoNumbers(){

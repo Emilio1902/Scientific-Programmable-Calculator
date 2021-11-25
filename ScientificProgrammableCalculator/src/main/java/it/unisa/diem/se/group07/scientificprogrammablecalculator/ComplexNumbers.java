@@ -8,6 +8,8 @@
  */
 package it.unisa.diem.se.group07.scientificprogrammablecalculator;
 
+import java.math.BigDecimal;
+
 /**
  * ComplexNumbers implements a complex number
  *
@@ -15,7 +17,7 @@ package it.unisa.diem.se.group07.scientificprogrammablecalculator;
  */
 public class ComplexNumbers {
 
-    private double real, img;
+    private BigDecimal real, img;
 
     /**
      * Constructs the complex number z = real + i*img
@@ -23,7 +25,7 @@ public class ComplexNumbers {
      * @param real Real part
      * @param img Imaginary part
      */
-    public ComplexNumbers(double real, double img) {
+    public ComplexNumbers(BigDecimal real, BigDecimal img) {
         this.real = real;
         this.img = img;
     }
@@ -34,7 +36,7 @@ public class ComplexNumbers {
      *
      * @return Re[z] where z is this Complex number.
      */
-    public double getReal() {
+    public BigDecimal getReal() {
         return real;
     }
 
@@ -44,7 +46,7 @@ public class ComplexNumbers {
      *
      * @return Im[z] where z is this Complex number.
      */
-    public double getImg() {
+    public BigDecimal getImg() {
         return img;
     }
 
@@ -54,14 +56,14 @@ public class ComplexNumbers {
         * @return ComplexNumbers z 
         * @return null if the string format is incorrect
     */
-    public ComplexNumbers StringToComplex(String number) {
+    public ComplexNumbers stringToComplex(String number) {
         String[] split = number.split("[+-]");
         if (((number.endsWith("i") 
            && ((number.length() - number.replace("i", "").length()) == 1)) 
            || !number.contains("i")) && split.length <= 3 && !number.isEmpty() 
            && !number.matches(".*[/*].*")) {
            Double[] res = this.getComplexNumber(split, number);
-           return new ComplexNumbers(res[0], res[1]);
+           return new ComplexNumbers(BigDecimal.valueOf(res[0]), BigDecimal.valueOf(res[1]));
         } else {
             return null;
         }
@@ -128,7 +130,17 @@ public class ComplexNumbers {
      * @return z+w where z is this Complex number.
      */
     public ComplexNumbers sum(ComplexNumbers w) {
-        return new ComplexNumbers(real + w.getReal(), img + w.getImg());
+        return new ComplexNumbers(real.add(w.getReal()),img.add(w.getImg()));
+    }
+    
+    /**
+        Subtraction of ComplexNumbers (doesn't change this Complex number).
+        <br>(x+i*y) - (s+i*t) = (x-s)+i*(y-t).
+        @param w is the number to subtract.
+        @return z-w where z is this Complex number.
+    */
+    public ComplexNumbers difference(ComplexNumbers w) {
+        return new ComplexNumbers(real.subtract(w.getReal()),img.subtract(w.getImg()));
     }
 
     
@@ -139,7 +151,7 @@ public class ComplexNumbers {
      */
     @Override
     public String toString() {
-        return real + (img<0?"":"+")+ img + 'i';
+        return real + (img.compareTo(BigDecimal.ZERO)<0?"":"+")+ img + 'i';
     }
     
     
