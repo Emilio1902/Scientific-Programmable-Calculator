@@ -154,10 +154,34 @@ public class StackComplexNumbers {
     /**
      * This method  sum the last two stored complex numbers 
      * and save the result
+     *  @return an empty string otherwise Math Error if stack has almost one element
     */
-    public void sumLastTwoNumbers(){
-        ComplexNumbers num1 = this.pop();
-        ComplexNumbers num2 = this.pop();
-        this.push(num1.sum(num2).getReal(), num1.sum(num2).getImg());
+    public String sumLastTwoNumbers(){
+        if (top <= 0) {
+            return "Math Error";
+        } else {
+            ComplexNumbers num1 = this.pop();
+            ComplexNumbers num2 = this.pop();
+            ComplexNumbers res = num2.sum(num1);
+            this.push(res.getReal(), res.getImg());
+            return "";
+        }
+    }
+    
+    /**
+     * This method  makes the difference of the last two stored complex numbers 
+     * and save the result
+     *  @return an empty string otherwise Math Error if stack has almost one element
+    */
+    public String differenceLastTwoNumbers(){
+        if (top <= 0) {
+            return "Math Error";
+        } else {
+            ComplexNumbers num1 = this.pop();
+            ComplexNumbers num2 = this.pop();
+            ComplexNumbers res = num2.difference(num1);
+            this.push(res.getReal(), res.getImg());
+            return "";
+        }
     }
 }
