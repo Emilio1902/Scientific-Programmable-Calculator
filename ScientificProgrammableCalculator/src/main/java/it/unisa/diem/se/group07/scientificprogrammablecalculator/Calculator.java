@@ -27,21 +27,34 @@ public class Calculator {
      * Constructs the string to pass to the calculator
      *
      * @param s String to pass to the calculator
-     * @return "" if the string format is correct otherwise "Syntax Error" if the string format is incorrect
+     * @return "" if the string format is correct otherwise "Syntax Error" if
+     * the string format is incorrect
      */
     public String checkOperations(String s) {
-        ComplexNumbers num = new ComplexNumbers(BigDecimal.ZERO, BigDecimal.ZERO);
-        num = num.stringToComplex(s);
- 
-        if (num != null) {
-            memory.push(num.getReal(), num.getImg());
-            return "";
-        } else {
-            return "Syntax Error";
+
+        if (s.compareTo("+") == 0) {
+            return memory.sumLastTwoNumbers();
+        } 
+        
+        if (s.compareTo("-") == 0) {
+            return memory.differenceLastTwoNumbers();
+        } 
+        
+        else {
+
+            ComplexNumbers num = new ComplexNumbers(BigDecimal.ZERO, BigDecimal.ZERO);
+            num = num.stringToComplex(s);
+            if (num != null) {
+                memory.push(num.getReal(), num.getImg());
+                return "";
+            } else {
+                return "Syntax Error";
+            }
+
         }
     }
-    
-    public String[] lastTwelveNumbers(){
+
+    public String[] lastTwelveNumbers() {
         return memory.getLastTwelve();
     }
 

@@ -1,6 +1,5 @@
 package it.unisa.diem.se.group07.scientificprogrammablecalculator;
 
-import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -59,11 +58,18 @@ public class PrimaryController {
     */
     @FXML
     private void makeOperations(ActionEvent event) {
+        
         String s = display.getText();
         String s1 = calculator.checkOperations(s);
         display.setText(s1);
         numbersList.getItems().clear();
         numbersList.getItems().addAll(calculator.lastTwelveNumbers());
+     
+      }
     }
+    
+        
+    
 
-}
+   
+
