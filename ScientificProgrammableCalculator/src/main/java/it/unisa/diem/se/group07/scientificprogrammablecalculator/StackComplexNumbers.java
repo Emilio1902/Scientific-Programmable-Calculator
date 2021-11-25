@@ -153,7 +153,7 @@ public class StackComplexNumbers {
     
     /**
      * This method  sum the last two stored complex numbers 
-     * and save the result
+     * and save the result in the stack
      *  @return an empty string otherwise Math Error if stack has almost one element
     */
     public String sumLastTwoNumbers(){
@@ -170,7 +170,7 @@ public class StackComplexNumbers {
     
     /**
      * This method  makes the difference of the last two stored complex numbers 
-     * and save the result
+     * and save the result in the stack
      *  @return an empty string otherwise Math Error if stack has almost one element
     */
     public String differenceLastTwoNumbers(){
@@ -184,4 +184,22 @@ public class StackComplexNumbers {
             return "";
         }
     }
+    
+    /**
+     * This method  multiplies the last two stored complex numbers 
+     * and save the result in the stack
+     *  @return an empty string otherwise Math Error if stack has almost one element
+    */
+    public String productLastTwoNumbers(){
+        if (top <= 0) {
+            return "Math Error";
+        } else {
+            ComplexNumbers num1 = this.pop();
+            ComplexNumbers num2 = this.pop();
+            ComplexNumbers res = num2.product(num1);
+            this.push(res.getReal(), res.getImg());
+            return "";
+        }
+    }
+    
 }
