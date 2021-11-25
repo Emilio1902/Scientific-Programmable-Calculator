@@ -121,7 +121,7 @@ public class ComplexNumbers {
 
         return new Double[]{realPart, imgPart};
     }
-
+    
     /**
      * Addition of ComplexNumbers (doesn't change this Complex number).
      * <br>(x+i*y) + (s+i*t) = (x+s)+i*(y+t).
@@ -142,7 +142,15 @@ public class ComplexNumbers {
     public ComplexNumbers difference(ComplexNumbers w) {
         return new ComplexNumbers(real.subtract(w.getReal()),img.subtract(w.getImg()));
     }
-
+    
+    /**
+        Complex multiplication (doesn't change this Complex number).
+        @param w is the number to multiply by.
+        @return z*w where z is this Complex number.
+    */
+    public ComplexNumbers product(ComplexNumbers w) {
+        return new ComplexNumbers((real.multiply(w.getReal())).subtract(img.multiply(w.getImg())),(real.multiply(w.getImg())).add(img.multiply(w.getReal()))); 
+    }
     
     /**
      * Parse from ComplexNumbers to string

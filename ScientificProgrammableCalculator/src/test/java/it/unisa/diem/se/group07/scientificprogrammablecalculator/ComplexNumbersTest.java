@@ -109,4 +109,30 @@ public class ComplexNumbersTest {
         assertThat(BigDecimal.valueOf(15.86), Matchers.comparesEqualTo(difference3.getReal()));
         assertThat(BigDecimal.valueOf(0.475), Matchers.comparesEqualTo(difference3.getImg()));
     }
+    
+    
+    /**
+     * Test of product method, of class ComplexNumbers.
+     */
+    @Test
+    public void testProduct() {
+        ComplexNumbers product1 = num1.product(num2);
+        assertThat(BigDecimal.valueOf(-22.5225), Matchers.comparesEqualTo(product1.getReal()));
+        assertThat(BigDecimal.valueOf(-21.105), Matchers.comparesEqualTo(product1.getImg()));
+        
+        num1 = new ComplexNumbers(BigDecimal.valueOf(15.36), BigDecimal.valueOf(-16.32));
+        num2 = new ComplexNumbers(BigDecimal.valueOf(0), BigDecimal.valueOf(0));
+        
+        ComplexNumbers product2 = num1.product(num2);
+        assertThat(BigDecimal.valueOf(0.0), Matchers.comparesEqualTo(product2.getReal()));
+        assertThat(BigDecimal.valueOf(0.0), Matchers.comparesEqualTo(product2.getImg()));
+        
+        num1 = new ComplexNumbers(BigDecimal.valueOf(17.11), BigDecimal.valueOf(-2.345));
+        num2 = new ComplexNumbers(BigDecimal.valueOf(-1.25), BigDecimal.valueOf(-1.87));
+        ComplexNumbers product3 = num1.product(num2);
+        assertThat(BigDecimal.valueOf(-25.77265), Matchers.comparesEqualTo(product3.getReal()));
+        assertThat(BigDecimal.valueOf(-29.06445), Matchers.comparesEqualTo(product3.getImg()));
+        
+        
+    }
 }
