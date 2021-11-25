@@ -198,13 +198,13 @@
                <children>
                   <Label alignment="CENTER" prefHeight="50.0" prefWidth="250.0" text="Memory" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="24.0" />
+                        <Font name="Arial Bold" size="28.0" />
                      </font>
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <ListView fx:id="numbersList" prefHeight="420.0" prefWidth="250.0" style="-fx-background-color: #111111;">
+                  <ListView fx:id="numbersList" prefHeight="420.0" prefWidth="250.0" style="-fx-background-color: #111111; -fx-control-inner-background: #111111; -fx-font: 18pt &quot;Arial&quot;;">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
