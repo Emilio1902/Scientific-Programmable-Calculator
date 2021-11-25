@@ -40,6 +40,10 @@ public class Calculator {
             return memory.differenceLastTwoNumbers();
         } 
         
+        if (s.compareTo("*") == 0) {
+            return memory.productLastTwoNumbers();
+        } 
+        
         else {
 
             ComplexNumbers num = new ComplexNumbers(BigDecimal.ZERO, BigDecimal.ZERO);
