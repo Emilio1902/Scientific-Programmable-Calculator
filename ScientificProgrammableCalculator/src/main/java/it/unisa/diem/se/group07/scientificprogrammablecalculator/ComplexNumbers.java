@@ -150,10 +150,10 @@ public class ComplexNumbers {
         @return z*w where z is this Complex number.
     */
     public ComplexNumbers product(ComplexNumbers w) {
-        BigDecimal realPart = ((real.multiply(w.getReal())).subtract(img.multiply(w.getImg()))).stripTrailingZeros();
-        BigDecimal imgPart = ((real.multiply(w.getImg())).add(img.multiply(w.getReal()))).stripTrailingZeros();
+        BigDecimal realPart = ((real.multiply(w.getReal())).subtract(img.multiply(w.getImg())));
+        BigDecimal imgPart = ((real.multiply(w.getImg())).add(img.multiply(w.getReal())));
                 
-        return new ComplexNumbers(realPart, imgPart); 
+        return new ComplexNumbers(realPart.stripTrailingZeros(), imgPart.stripTrailingZeros()); 
     }
     
     /**
@@ -167,7 +167,7 @@ public class ComplexNumbers {
         if(!distance.equals(BigDecimal.ZERO)){
             BigDecimal realPart = (((real.multiply(w.getReal())).add(w.getImg().multiply(img))).divide(distance,4,RoundingMode.HALF_UP));
             BigDecimal imgPart = ((img.multiply(w.getReal())).subtract(real.multiply(w.getImg()))).divide(distance, 4,RoundingMode.HALF_UP);
-            return new ComplexNumbers(realPart, imgPart);
+            return new ComplexNumbers(realPart.stripTrailingZeros(), imgPart.stripTrailingZeros());
         }
         else{
             return null;

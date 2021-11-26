@@ -152,7 +152,7 @@ public class StackComplexNumbers {
     /**
      * This method  sum the last two stored complex numbers 
      * and save the result in the stack
-     *  @return an empty string otherwise Math Error if stack has almost one element
+     *  @return false if stack has at most one element, true otherwise
     */
     public boolean sumLastTwoNumbers(){
         if (top <= 0) {
@@ -169,7 +169,7 @@ public class StackComplexNumbers {
     /**
      * This method  makes the difference of the last two stored complex numbers 
      * and save the result in the stack
-     *  @return an empty string otherwise Math Error if stack has almost one element
+     *  @return false if stack has at most one element, true otherwise
     */
     public boolean differenceLastTwoNumbers(){
         if (top <= 0) {
@@ -186,7 +186,7 @@ public class StackComplexNumbers {
     /**
      * This method  multiplies the last two stored complex numbers 
      * and save the result in the stack
-     *  @return an empty string otherwise Math Error if stack has almost one element
+     *  @return false if stack has at most one element, true otherwise
     */
     public boolean productLastTwoNumbers(){
         if (top <= 0) {
@@ -203,7 +203,7 @@ public class StackComplexNumbers {
     /**
      * This method  divides the last two stored complex numbers 
      * and save the result in the stack
-     *  @return an empty string otherwise Math Error if stack has almost one element
+     *  @return false if stack has at most one element, true otherwise
     */
     public boolean ratioLastTwoNumbers(){
         if (top <= 0) {

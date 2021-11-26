@@ -24,7 +24,8 @@ public class Calculator {
     }
 
     /**
-     * Constructs the string to pass to the calculator
+     * Constructs the string to pass to the calculator and checks 
+     * the several operations.
      *
      * @param s String to pass to the calculator
      * @return "" if the string format is correct otherwise "Syntax Error" if
@@ -32,6 +33,10 @@ public class Calculator {
      */
     public String checkOperations(String s) {
 
+        if (s.compareTo("") == 0) {
+            return "";
+        } 
+        
         if (s.compareTo("+") == 0) {
             return memory.sumLastTwoNumbers() == true ? "" : "Syntax Error";
         } 
@@ -42,6 +47,10 @@ public class Calculator {
         
         if (s.compareTo("*") == 0) {
             return memory.productLastTwoNumbers() == true ? "" : "Syntax Error";
+        } 
+        
+        if (s.compareTo("/") == 0) {
+            return memory.ratioLastTwoNumbers() == true ? "" : "Syntax Error";
         } 
         
         else {
