@@ -38,19 +38,19 @@ public class Calculator {
         } 
         
         if (s.compareTo("+") == 0) {
-            return memory.sumLastTwoNumbers() == true ? "" : "Syntax Error";
+            return memory.sumLastTwoNumbers() == true ? "" : "Math Error";
         } 
         
         if (s.compareTo("-") == 0) {
-            return memory.differenceLastTwoNumbers() == true ? "" : "Syntax Error";
+            return memory.differenceLastTwoNumbers() == true ? "" : "Math Error";
         } 
         
         if (s.compareTo("*") == 0) {
-            return memory.productLastTwoNumbers() == true ? "" : "Syntax Error";
+            return memory.productLastTwoNumbers() == true ? "" : "Math Error";
         } 
         
         if (s.compareTo("/") == 0) {
-            return memory.ratioLastTwoNumbers() == true ? "" : "Syntax Error";
+            return memory.ratioLastTwoNumbers() == true ? "" : "Math Error";
         } 
         
         else {

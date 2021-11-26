@@ -22,11 +22,11 @@ public class PrimaryController {
     */
     @FXML
     private void pressedKey(ActionEvent event) {
-        String number = ((Button) event.getSource()).getText();
-        if (display.getText().contains("Syntax Error")) {
+        String key = ((Button) event.getSource()).getText();
+        if (display.getText().contains("Syntax Error") || display.getText().contains("Math Error")) {
             this.clearDisplay(event);
         }
-        display.setText(display.getText() + number);
+        display.setText(display.getText() + key);
     }
     
     /**

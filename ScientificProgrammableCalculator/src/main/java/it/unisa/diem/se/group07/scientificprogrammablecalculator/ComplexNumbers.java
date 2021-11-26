@@ -59,24 +59,27 @@ public class ComplexNumbers {
     */
     public ComplexNumbers stringToComplex(String number) {
         String[] split = number.split("[+-]");
-        if (((number.endsWith("i") 
-           && ((number.length() - number.replace("i", "").length()) == 1)) 
-           || !number.contains("i")) && split.length <= 3 && !number.isEmpty() 
-           && !number.matches(".*[/*].*")) {
-           Double[] res = this.getComplexNumber(split, number);
-           return new ComplexNumbers(BigDecimal.valueOf(res[0]), BigDecimal.valueOf(res[1]));
+        if (number.matches(".*[0-9].*") 
+                && ((number.endsWith("i") && ((number.length() - number.replace("i", "").length()) == 1))
+                || !number.contains("i")) && split.length <= 3 && !number.isEmpty()
+                && !number.matches(".*[/*].*")
+                && (!number.endsWith("+") && !number.endsWith("-"))) {
+            Double[] res = this.getComplexNumber(split, number);
+            return new ComplexNumbers(BigDecimal.valueOf(res[0]), BigDecimal.valueOf(res[1]));
         } else {
+            if(number.equalsIgnoreCase("i"))
+                return new ComplexNumbers(BigDecimal.valueOf(0), BigDecimal.valueOf(1.0));
             return null;
         }
-        
+
     }
 
     /**
      * This method obtains the Complex number and performs all checks relating
      * it.
      *
-     * @param split is the string vector that contains real and imaginary part of 
-     * the number.
+     * @param split is the string vector that contains real and imaginary part
+     * of the number.
      * @param number is the string that represents the complex number z.
      * @return Complex number with Re[z] and Im[z] where z is this Complex
      * number.
@@ -96,8 +99,8 @@ public class ComplexNumbers {
                 split[1] = split[2];
             }
         }
-        double realPart = 0;
-        double imgPart = 0;
+        double realPart = 0.0;
+        double imgPart = 0.0; 
         if (split.length == 1) {
             if (number.contains("i")) {
                 imgPart = Double.parseDouble(number.substring(0, number.length() - 1));
@@ -107,7 +110,10 @@ public class ComplexNumbers {
         }
         if (split.length == 2) {
             if (split[1].contains("i") && !split[0].contains("i")) {
-                imgPart = Double.parseDouble((secondPositive ? "+" : "-") + split[1].substring(0, split[1].length() - 1));
+                if(split[1].equalsIgnoreCase("i"))
+                    imgPart = Double.parseDouble((secondPositive ? "+" : "-") + "1");
+                else
+                    imgPart = Double.parseDouble((secondPositive ? "+" : "-") + split[1].substring(0, split[1].length() - 1));
             }
             if (split[0].contains("i")) {
                 imgPart = Double.parseDouble((firstPositive ? "+" : "-") + split[0].substring(0, split[0].length() - 1));
@@ -116,7 +122,10 @@ public class ComplexNumbers {
             }
         }
         if (split.length > 2) {
-            imgPart = Double.parseDouble((secondPositive ? "+" : "-") + split[1].substring(0, split[1].length() - 1));
+            if(split[1].equalsIgnoreCase("i"))
+                imgPart = Double.parseDouble((secondPositive ? "+" : "-") + "1");
+            else
+                imgPart = Double.parseDouble((secondPositive ? "+" : "-") + split[1].substring(0, split[1].length() - 1));
             realPart = Double.parseDouble((firstPositive ? "+" : "-") + split[0]);
         }
 
