@@ -9,6 +9,7 @@
 package it.unisa.diem.se.group07.scientificprogrammablecalculator;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * ComplexNumbers implements a complex number
@@ -149,7 +150,28 @@ public class ComplexNumbers {
         @return z*w where z is this Complex number.
     */
     public ComplexNumbers product(ComplexNumbers w) {
-        return new ComplexNumbers((real.multiply(w.getReal())).subtract(img.multiply(w.getImg())),(real.multiply(w.getImg())).add(img.multiply(w.getReal()))); 
+        BigDecimal realPart = ((real.multiply(w.getReal())).subtract(img.multiply(w.getImg()))).stripTrailingZeros();
+        BigDecimal imgPart = ((real.multiply(w.getImg())).add(img.multiply(w.getReal()))).stripTrailingZeros();
+                
+        return new ComplexNumbers(realPart, imgPart); 
+    }
+    
+    /**
+        Division of Complex numbers (doesn't change this Complex number).
+        <br>(x+i*y)/(s+i*t) = ((x*s + y*t)/(s^2+t^2))+ i*((y*s - x*t)/(s^2+t^2))  
+        @param w is the number to divide by
+        @return new Complex number z/w where z is this Complex number or null if the distance (s^2+t^2) is 0
+    */
+    public ComplexNumbers ratio(ComplexNumbers w) {
+        BigDecimal distance = (w.getReal().multiply(w.getReal())).add(w.getImg().multiply(w.getImg()));
+        if(!distance.equals(BigDecimal.ZERO)){
+            BigDecimal realPart = (((real.multiply(w.getReal())).add(w.getImg().multiply(img))).divide(distance,4,RoundingMode.HALF_UP));
+            BigDecimal imgPart = ((img.multiply(w.getReal())).subtract(real.multiply(w.getImg()))).divide(distance, 4,RoundingMode.HALF_UP);
+            return new ComplexNumbers(realPart, imgPart);
+        }
+        else{
+            return null;
+        } 
     }
     
     /**

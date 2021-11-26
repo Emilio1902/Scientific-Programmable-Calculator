@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import org.hamcrest.Matchers;
+import static org.junit.Assert.*;
 
 /**
  *
@@ -133,6 +134,36 @@ public class ComplexNumbersTest {
         assertThat(BigDecimal.valueOf(-25.77265), Matchers.comparesEqualTo(product3.getReal()));
         assertThat(BigDecimal.valueOf(-29.06445), Matchers.comparesEqualTo(product3.getImg()));
         
+        
+    }
+    
+    /**
+     * Test of ratio method, of class ComplexNumbers.
+     */
+    @Test
+    public void testRatio() {
+        
+        ComplexNumbers ratio1 = num1.ratio(num2);
+        assertThat(BigDecimal.valueOf(-2.2698), Matchers.comparesEqualTo(ratio1.getReal()));
+        assertThat(BigDecimal.valueOf(-2.127), Matchers.comparesEqualTo(ratio1.getImg()));
+        
+        num1 = new ComplexNumbers(BigDecimal.valueOf(15.36), BigDecimal.valueOf(-16.32));
+        num2 = new ComplexNumbers(BigDecimal.valueOf(0), BigDecimal.valueOf(0));
+        ComplexNumbers ratio2 = num1.ratio(num2);
+        System.out.println(ratio2);
+        assertEquals(null, ratio2);
+        
+        num1 = new ComplexNumbers(BigDecimal.valueOf(17.11), BigDecimal.valueOf(-2.345));
+        num2 = new ComplexNumbers(BigDecimal.valueOf(-1.25), BigDecimal.valueOf(-1.87));
+        ComplexNumbers ratio3 = num1.ratio(num2);
+        assertThat(BigDecimal.valueOf(-3.3605), Matchers.comparesEqualTo(ratio3.getReal()));
+        assertThat(BigDecimal.valueOf(6.9034), Matchers.comparesEqualTo(ratio3.getImg()));
+        
+        num1 = new ComplexNumbers(BigDecimal.valueOf(0), BigDecimal.valueOf(0));
+        num2 = new ComplexNumbers(BigDecimal.valueOf(3.24), BigDecimal.valueOf(12.25));
+        ComplexNumbers ratio4 = num1.ratio(num2);
+        assertThat(BigDecimal.valueOf(0), Matchers.comparesEqualTo(ratio4.getReal()));
+        assertThat(BigDecimal.valueOf(0), Matchers.comparesEqualTo(ratio4.getImg()));
         
     }
 }
