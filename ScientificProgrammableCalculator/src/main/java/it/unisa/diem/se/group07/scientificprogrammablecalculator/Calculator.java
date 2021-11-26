@@ -33,15 +33,15 @@ public class Calculator {
     public String checkOperations(String s) {
 
         if (s.compareTo("+") == 0) {
-            return memory.sumLastTwoNumbers();
+            return memory.sumLastTwoNumbers() == true ? "" : "Syntax Error";
         } 
         
         if (s.compareTo("-") == 0) {
-            return memory.differenceLastTwoNumbers();
+            return memory.differenceLastTwoNumbers() == true ? "" : "Syntax Error";
         } 
         
         if (s.compareTo("*") == 0) {
-            return memory.productLastTwoNumbers();
+            return memory.productLastTwoNumbers() == true ? "" : "Syntax Error";
         } 
         
         else {

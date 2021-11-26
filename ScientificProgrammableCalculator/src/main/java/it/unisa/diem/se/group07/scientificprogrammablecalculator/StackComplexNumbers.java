@@ -96,7 +96,6 @@ public class StackComplexNumbers {
     */
     public ComplexNumbers pop() {
         if (isEmpty()) {
-            System.out.println("Stack is empty");
             return null;
         } else {
             reduceSize();
@@ -110,7 +109,6 @@ public class StackComplexNumbers {
     */
     public ComplexNumbers top() {
         if (isEmpty()) {
-            System.out.println("Stack is empty");
             return null;
         } else {
             return array[top];
@@ -156,15 +154,15 @@ public class StackComplexNumbers {
      * and save the result in the stack
      *  @return an empty string otherwise Math Error if stack has almost one element
     */
-    public String sumLastTwoNumbers(){
+    public boolean sumLastTwoNumbers(){
         if (top <= 0) {
-            return "Math Error";
+            return false;
         } else {
             ComplexNumbers num1 = this.pop();
             ComplexNumbers num2 = this.pop();
             ComplexNumbers res = num2.sum(num1);
             this.push(res.getReal(), res.getImg());
-            return "";
+            return true;
         }
     }
     
@@ -173,15 +171,15 @@ public class StackComplexNumbers {
      * and save the result in the stack
      *  @return an empty string otherwise Math Error if stack has almost one element
     */
-    public String differenceLastTwoNumbers(){
+    public boolean differenceLastTwoNumbers(){
         if (top <= 0) {
-            return "Math Error";
+            return false;
         } else {
             ComplexNumbers num1 = this.pop();
             ComplexNumbers num2 = this.pop();
             ComplexNumbers res = num2.difference(num1);
             this.push(res.getReal(), res.getImg());
-            return "";
+            return true;
         }
     }
     
@@ -190,15 +188,38 @@ public class StackComplexNumbers {
      * and save the result in the stack
      *  @return an empty string otherwise Math Error if stack has almost one element
     */
-    public String productLastTwoNumbers(){
+    public boolean productLastTwoNumbers(){
         if (top <= 0) {
-            return "Math Error";
+            return false;
         } else {
             ComplexNumbers num1 = this.pop();
             ComplexNumbers num2 = this.pop();
             ComplexNumbers res = num2.product(num1);
             this.push(res.getReal(), res.getImg());
-            return "";
+            return true;
+        }
+    }
+    
+    /**
+     * This method  divides the last two stored complex numbers 
+     * and save the result in the stack
+     *  @return an empty string otherwise Math Error if stack has almost one element
+    */
+    public boolean ratioLastTwoNumbers(){
+        if (top <= 0) {
+            return false;
+        } else {
+            ComplexNumbers num1 = this.pop();
+            ComplexNumbers num2 = this.pop();
+            ComplexNumbers res = num2.ratio(num1);
+            if (res == null) {
+                this.push(num2.getReal(), num2.getImg());
+                this.push(num1.getReal(), num1.getImg());
+                return false;
+            } else {
+                this.push(res.getReal(), res.getImg());
+                return true;
+            }
         }
     }
     

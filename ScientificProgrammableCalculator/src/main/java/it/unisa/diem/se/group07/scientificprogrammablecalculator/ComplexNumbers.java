@@ -163,7 +163,7 @@ public class ComplexNumbers {
         @return new Complex number z/w where z is this Complex number or null if the distance (s^2+t^2) is 0
     */
     public ComplexNumbers ratio(ComplexNumbers w) {
-        BigDecimal distance = (w.getReal().multiply(w.getReal())).add(w.getImg().multiply(w.getImg()));
+        BigDecimal distance = ((w.getReal().multiply(w.getReal())).add(w.getImg().multiply(w.getImg()))).stripTrailingZeros();
         if(!distance.equals(BigDecimal.ZERO)){
             BigDecimal realPart = (((real.multiply(w.getReal())).add(w.getImg().multiply(img))).divide(distance,4,RoundingMode.HALF_UP));
             BigDecimal imgPart = ((img.multiply(w.getReal())).subtract(real.multiply(w.getImg()))).divide(distance, 4,RoundingMode.HALF_UP);
