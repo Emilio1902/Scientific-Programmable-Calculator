@@ -256,8 +256,8 @@ public class StackComplexNumbersTest {
         stack.push(BigDecimal.valueOf(-5.274), BigDecimal.valueOf(-1.29));
         stack.productLastTwoNumbers();
         ComplexNumbers num4 = stack.top();
-        assertThat(BigDecimal.valueOf(-141.59019), Matchers.comparesEqualTo(num4.getReal()));
-        assertThat(BigDecimal.valueOf(-12.995346), Matchers.comparesEqualTo(num4.getImg()));
+        assertThat(BigDecimal.valueOf(-141.5902), Matchers.comparesEqualTo(num4.getReal()));
+        assertThat(BigDecimal.valueOf(-12.9954), Matchers.comparesEqualTo(num4.getImg()));
 
     }
    
