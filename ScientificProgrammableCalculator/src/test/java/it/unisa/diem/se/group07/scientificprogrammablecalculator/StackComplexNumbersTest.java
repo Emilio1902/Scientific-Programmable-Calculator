@@ -79,7 +79,7 @@ public class StackComplexNumbersTest {
         //test for empty stack
         String[] array;
         array = stack.getLastTwelve();
-        assertEquals(null, array);
+        assertEquals(0, array.length);
 
         //test for a stack with more than 12 numbers
         StackComplexNumbers stack1 = new StackComplexNumbers();

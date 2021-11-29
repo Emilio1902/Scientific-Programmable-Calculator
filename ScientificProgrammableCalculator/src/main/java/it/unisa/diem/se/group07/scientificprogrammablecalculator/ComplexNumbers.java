@@ -81,16 +81,11 @@ public class ComplexNumbers {
      * This method checks and parses a string into a ComplexNumbers.
      *
      * @param number is the string that represents the complex number z.
-     * @return ComplexNumbers z
-     * @return null if the string format is incorrect
+     * @return ComplexNumbers z or null if the string format is incorrect
      */
     public ComplexNumbers stringToComplex(String number) {
         String[] split = number.split("[+-]");
-        if (number.matches(".*[0-9].*")
-                && ((number.endsWith("i") && ((number.length() - number.replace("i", "").length()) == 1))
-                || !number.contains("i")) && split.length <= 3 && !number.isEmpty()
-                && !number.matches(".*[/*].*")
-                && (!number.endsWith("+") && !number.endsWith("-"))) {
+        if (this.checkFormat(number, split)) {
             Double[] res = this.getComplexNumber(split, number);
             return new ComplexNumbers(BigDecimal.valueOf(res[0]).setScale(4,RoundingMode.UP).stripTrailingZeros(), BigDecimal.valueOf(res[1]).setScale(4,RoundingMode.UP).stripTrailingZeros());
         } else {
@@ -100,6 +95,22 @@ public class ComplexNumbers {
             return null;
         }
 
+    }
+    
+    private boolean checkFormat(String number, String[] split){
+        if (number.matches(".*[0-9].*")
+                && ((number.endsWith("i") && ((number.length() - number.replace("i", "").length()) == 1)) || !number.contains("i")) 
+                && split.length <= 3 
+                && !number.isEmpty()
+                && !number.matches(".*[/*√].*")
+                && (!number.endsWith("+") && !number.endsWith("-"))
+                && ((split.length==1)
+                || (split.length==2 && (number.charAt(0)!='-' || number.charAt(0)!='+') && number.endsWith("i"))
+                || (split.length==3 && number.endsWith("i"))
+                || (split.length==2 && number.charAt(0)=='-' && !number.endsWith("i"))))
+            return true;
+        else
+            return false;    
     }
 
     /**

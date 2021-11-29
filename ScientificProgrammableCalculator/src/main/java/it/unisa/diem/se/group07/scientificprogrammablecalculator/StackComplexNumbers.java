@@ -131,7 +131,8 @@ public class StackComplexNumbers {
      */
     public String[] getLastTwelve() {
         if (this.isEmpty()) {
-            return null;
+            String[] s = {};
+            return s;
 
         } else {
             int n = 12;
