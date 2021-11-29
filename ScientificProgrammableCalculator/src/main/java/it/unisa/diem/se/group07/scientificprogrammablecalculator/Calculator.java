@@ -31,7 +31,7 @@ public class Calculator {
      * @return "" if the string format is correct otherwise "Syntax Error" if
      * the string format is incorrect
      */
-    public String checkOperations(String s) {
+    public String checkMathOperations(String s) {
 
         if (s.compareTo("") == 0) {
             return "";
@@ -51,7 +51,16 @@ public class Calculator {
         
         if (s.compareTo("/") == 0) {
             return memory.ratioLastTwoNumbers() == true ? "" : "Math Error";
-        } 
+        }
+        
+        if (s.compareTo("√") == 0) {
+            return memory.squareRootLastNumber() == true ? "" : "Math Error";
+        }
+        
+        if (s.compareTo("+-") == 0) {
+            return memory.invertSignLastNumber() == true ? "" : "Math Error";
+        }
+     
         
         else {
 
@@ -67,6 +76,11 @@ public class Calculator {
         }
     }
 
+    /**
+     * Returns the last twelve numbers in the stack memory.
+     * 
+     * @return the last twelve numbers in the stack memory
+     */
     public String[] lastTwelveNumbers() {
         return memory.getLastTwelve();
     }

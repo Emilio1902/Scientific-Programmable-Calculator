@@ -63,7 +63,7 @@ public class PrimaryController {
     @FXML
     private void makeMathOperations(ActionEvent event) {
         String s = display.getText();
-        String s1 = calculator.checkOperations(s);
+        String s1 = calculator.checkMathOperations(s);
         display.setText(s1);
         numbersList.getItems().clear();
         numbersList.getItems().addAll(calculator.lastTwelveNumbers());

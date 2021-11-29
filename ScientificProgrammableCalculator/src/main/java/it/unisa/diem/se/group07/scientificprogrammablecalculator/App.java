@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.event.EventHandler;
+import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;
 import javafx.scene.image.Image;
@@ -22,7 +24,7 @@ public class App extends Application {
         stage.setScene(scene);
         stage.setTitle("Scientific Programmable Calculator");
         stage.getIcons().add(new Image("file:calculator.jpg"));
-        stage.show();
+        stage.show();     
     }
 
     static void setRoot(String fxml) throws IOException {
