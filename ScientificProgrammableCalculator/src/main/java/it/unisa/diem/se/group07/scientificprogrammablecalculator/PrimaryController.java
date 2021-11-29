@@ -10,16 +10,17 @@ public class PrimaryController {
 
     @FXML
     private Label display;
-    
+
     private Calculator calculator = new Calculator();
-    
+
     @FXML
     private ListView<String> numbersList;
     
     /**
      * This method allows to visualize on display the key button pressed
-     *  @param event rappresents the pressing of the button
-    */
+     *
+     * @param event rappresents the pressing of the button
+     */
     @FXML
     private void pressedKey(ActionEvent event) {
         String key = ((Button) event.getSource()).getText();
@@ -27,12 +28,13 @@ public class PrimaryController {
             this.clearDisplay(event);
         }
         display.setText(display.getText() + key);
-    }
+    } 
     
     /**
      * This method delete the last character of the string showed on display
-     *  @param event rappresents the pressing of the DEL button 
-    */
+     *
+     * @param event rappresents the pressing of the DEL button
+     */
     @FXML
     private void deleteNumber(ActionEvent event) {
         if (display.getText().length() > 0) {
@@ -42,31 +44,32 @@ public class PrimaryController {
 
     /**
      * This method delete the string showed on display
-     *  @param event rappresents the pressing of the AC button
-    */
+     *
+     * @param event rappresents the pressing of the AC button
+     */
     @FXML
     private void clearDisplay(ActionEvent event) {
-        if (display.getText().length()> 0) {
+        if (display.getText().length() > 0) {
             display.setText("");
         }
     }
-    
+
     /**
-     * This method make operation written on display and shows on the memory list 
-     * the last twelve numbers 
-     *  @param event rappresents the pressing of the = button
-    */
+     * This method make operation written on display and shows on the memory
+     * list the last twelve numbers
+     *
+     * @param event rappresents the pressing of the = button
+     */
     @FXML
-    private void makeOperations(ActionEvent event) {
-        
+    private void makeMathOperations(ActionEvent event) {
         String s = display.getText();
         String s1 = calculator.checkOperations(s);
         display.setText(s1);
         numbersList.getItems().clear();
         numbersList.getItems().addAll(calculator.lastTwelveNumbers());
      
-      }
     }
+}
     
         
     
