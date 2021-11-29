@@ -30,8 +30,7 @@ public class StackComplexNumbersTest {
     @Test
     public void testPop() {
         //test for empty stack
-        StackComplexNumbers stackP = new StackComplexNumbers();
-        ComplexNumbers n = stackP.pop();
+        ComplexNumbers n = stack.pop();
         assertEquals(null, n);
 
         //test for stack with inserted numbers
@@ -48,8 +47,7 @@ public class StackComplexNumbersTest {
     @Test
     public void testTop() {
         //test for empty stack
-        StackComplexNumbers stackT = new StackComplexNumbers();
-        ComplexNumbers n = stackT.top();
+        ComplexNumbers n = stack.top();
         assertEquals(null, n);
 
         //test for stack with inserted numbers
@@ -116,9 +114,7 @@ public class StackComplexNumbersTest {
     @Test
     public void testSumLastTwoNumbers() {
         //test for empty stack
-        StackComplexNumbers stackT = new StackComplexNumbers();
-        stackT.sumLastTwoNumbers();
-        boolean n = stackT.sumLastTwoNumbers();
+        boolean n = stack.sumLastTwoNumbers();
         assertEquals(false, n);
         
         //test with 1 element in the stack
@@ -164,9 +160,7 @@ public class StackComplexNumbersTest {
     @Test
     public void testDifferenceLastTwoNumbers() {
         //test for empty stack
-        StackComplexNumbers stackT = new StackComplexNumbers();
-        stackT.differenceLastTwoNumbers();
-        boolean n = stackT.differenceLastTwoNumbers();
+        boolean n = stack.differenceLastTwoNumbers();
         assertEquals(false, n);
         
         //test with 1 element in the stack
@@ -208,13 +202,13 @@ public class StackComplexNumbersTest {
     
     /**
      * Test of productLastTwoNumbers method, of class StackComplexNumbers.
+     * The result of the multiplication expects a maximum of 4 decimal digits rounded up, 
+     * for the implementation of the method in ComplexNumbers class.
      */
     @Test
     public void testProductLastTwoNumbers() {
         //test for empty stack
-        StackComplexNumbers stackT = new StackComplexNumbers();
-        stackT.productLastTwoNumbers();
-        boolean n = stackT.productLastTwoNumbers();
+        boolean n = stack.productLastTwoNumbers();
         assertEquals(false, n);
         
         //test with 1 element in the stack
@@ -269,9 +263,7 @@ public class StackComplexNumbersTest {
     @Test
     public void testRatioLastTwoNumbers() {
         //test for empty stack
-        StackComplexNumbers stackT = new StackComplexNumbers();
-        stackT.ratioLastTwoNumbers();
-        boolean n = stackT.ratioLastTwoNumbers();
+        boolean n = stack.ratioLastTwoNumbers();
         assertEquals(false, n);
         
         //test with 1 element in the stack
@@ -317,7 +309,7 @@ public class StackComplexNumbersTest {
         
         stack.push(BigDecimal.valueOf(73.8), BigDecimal.valueOf(2.6));
         stack.push(BigDecimal.valueOf(0.0), BigDecimal.valueOf(0.0));
-        boolean n5 = stackT.ratioLastTwoNumbers();
+        boolean n5 = stack.ratioLastTwoNumbers();
         assertEquals(false, n5);
         
         stack.push(BigDecimal.valueOf(23.6), BigDecimal.valueOf(2.5));
@@ -336,5 +328,85 @@ public class StackComplexNumbersTest {
 
     }
     
+    /**
+     * Test of squareRootLastNumber method, of class StackComplexNumbers.
+     * The result of the square root expects a maximum of 4 decimal digits rounded down, 
+     * for the implementation of the method in ComplexNumbers class.
+     */
+    @Test
+    public void testSquareRootLastNumber() {
+        //test for empty stack
+        boolean n = stack.squareRootLastNumber();
+        assertEquals(false, n);
+        
+        stack.push(BigDecimal.valueOf(5.67), BigDecimal.valueOf(48.1));
+        stack.push(BigDecimal.valueOf(6.31), BigDecimal.valueOf(39.443));
+        stack.squareRootLastNumber();
+        ComplexNumbers num = stack.top();
+        assertThat(BigDecimal.valueOf(4.8090), Matchers.comparesEqualTo(num.getReal()));
+
+        stack.push(BigDecimal.valueOf(0.0), BigDecimal.valueOf(15.39));
+        stack.squareRootLastNumber();
+        ComplexNumbers num1 = stack.top();
+        assertThat(BigDecimal.valueOf(2.7739), Matchers.comparesEqualTo(num1.getReal()));
+
+        stack.push(BigDecimal.valueOf(0.0), BigDecimal.valueOf(0.0));
+        stack.squareRootLastNumber();
+        ComplexNumbers num2 = stack.top();
+        assertThat(BigDecimal.valueOf(0), Matchers.comparesEqualTo(num2.getReal()));
+
+        stack.push(BigDecimal.valueOf(-36.41), BigDecimal.valueOf(-1.95));
+        stack.squareRootLastNumber();
+        ComplexNumbers num3 = stack.top();
+        assertThat(BigDecimal.valueOf(-0.1614), Matchers.comparesEqualTo(num3.getReal()));
+        
+        stack.push(BigDecimal.valueOf(59.3), BigDecimal.valueOf(-22.56));
+        stack.squareRootLastNumber();
+        ComplexNumbers num4 = stack.top();
+        assertThat(BigDecimal.valueOf( -7.8340), Matchers.comparesEqualTo(num4.getReal()));
+
+    }
+    
+    /**
+     * Test of invertSignLastNumber method, of class StackComplexNumbers.
+     */
+    @Test
+    public void testInvertSignLastNumber() {
+        //test for empty stack
+        boolean n = stack.invertSignLastNumber();
+        assertEquals(false, n);
+        
+        stack.push(BigDecimal.valueOf(4.65), BigDecimal.valueOf(1.5));
+        stack.push(BigDecimal.valueOf(17.593), BigDecimal.valueOf(30.5));
+        stack.invertSignLastNumber();
+        ComplexNumbers num = stack.top();
+        assertThat(BigDecimal.valueOf(-17.593), Matchers.comparesEqualTo(num.getReal()));
+        assertThat(BigDecimal.valueOf(-30.5), Matchers.comparesEqualTo(num.getImg()));
+
+        stack.push(BigDecimal.valueOf(0.0), BigDecimal.valueOf(15.39));
+        stack.invertSignLastNumber();
+        ComplexNumbers num1 = stack.top();
+        assertThat(BigDecimal.valueOf(0.0), Matchers.comparesEqualTo(num1.getReal()));
+        assertThat(BigDecimal.valueOf(-15.39), Matchers.comparesEqualTo(num1.getImg()));
+
+        stack.push(BigDecimal.valueOf(0.0), BigDecimal.valueOf(0.0));
+        stack.invertSignLastNumber();
+        ComplexNumbers num2 = stack.top();
+        assertThat(BigDecimal.valueOf(0.0), Matchers.comparesEqualTo(num2.getReal()));
+        assertThat(BigDecimal.valueOf(0.0), Matchers.comparesEqualTo(num2.getImg()));
+
+        stack.push(BigDecimal.valueOf(-34.921), BigDecimal.valueOf(-30.9));
+        stack.invertSignLastNumber();
+        ComplexNumbers num3 = stack.top();
+        assertThat(BigDecimal.valueOf(34.921), Matchers.comparesEqualTo(num3.getReal()));
+        assertThat(BigDecimal.valueOf(30.9), Matchers.comparesEqualTo(num3.getImg()));
+        
+        stack.push(BigDecimal.valueOf(25.3), BigDecimal.valueOf(-25.3));
+        stack.invertSignLastNumber();
+        ComplexNumbers num4 = stack.top();
+        assertThat(BigDecimal.valueOf(-25.3), Matchers.comparesEqualTo(num4.getReal()));
+        assertThat(BigDecimal.valueOf(25.3), Matchers.comparesEqualTo(num4.getImg()));
+
+    }
     
 }

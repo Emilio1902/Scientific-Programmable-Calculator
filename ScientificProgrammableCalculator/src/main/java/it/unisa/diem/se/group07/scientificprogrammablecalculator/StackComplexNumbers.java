@@ -14,14 +14,13 @@ import java.math.BigDecimal;
 public class StackComplexNumbers {
 
     private ComplexNumbers[] array;
-    private int capacity;
+    private static int capacity = 20;
     private int top;
     
     /**
     * Constructs the Stack
     */
     public StackComplexNumbers() {
-        capacity = 20;
         array = new ComplexNumbers[capacity];
         top = -1;
     }
@@ -222,5 +221,44 @@ public class StackComplexNumbers {
             }
         }
     }
+    
+    /**
+     * This method takes the square root of the last stored complex number 
+     * and save the result in the stack
+     *  @return false if stack has zero element, true otherwise
+    */
+    
+    public boolean squareRootLastNumber(){
+        if (top == -1) {
+            return false;
+        } else {
+            ComplexNumbers num1 = this.pop();
+            ComplexNumbers res = num1.squareRoot();
+            this.push(res.getReal(), res.getImg());
+            return true;
+        }
+    }
+    
+    
+    /**
+     * This method inverted the sign (real and imaginary part) 
+     * of the last stored complex number and save the result in the stack
+     *  @return false if stack has zero element, true otherwise
+    */
+    
+    public boolean invertSignLastNumber(){
+        if (top == -1) {
+            return false;
+        } else {
+            ComplexNumbers num1 = this.pop();
+            ComplexNumbers res = num1.invertSign();
+            this.push(res.getReal(), res.getImg());
+            return true;
+        }
+    }
+    
+    
+    
+
     
 }
