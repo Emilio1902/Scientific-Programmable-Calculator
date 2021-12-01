@@ -105,7 +105,7 @@ public class ComplexNumbers {
         return ((number.endsWith("i") && ((number.length() - number.replace("i", "").length()) == 1)) || !number.contains("i"))
                 && split.length <= 3 
                 && !number.isEmpty()
-                && (number.matches("[0-9i+-]+")) 
+                && (number.matches("[0-9i+-.]+")) 
                 && (!number.endsWith("+") && !number.endsWith("-"))
                 && ((split.length==1)
                 || (split.length==2 && (number.charAt(0)!='-' || number.charAt(0)!='+') && number.endsWith("i"))

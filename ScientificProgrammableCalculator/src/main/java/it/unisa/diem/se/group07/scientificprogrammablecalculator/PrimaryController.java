@@ -72,4 +72,9 @@ public class PrimaryController{
         numbersList.getItems().addAll(calculator.lastTwelveNumbers());
         
     }   
+
+    @FXML
+    private void makeMemoryOperations(ActionEvent event) {
+        
+    }
 }  
