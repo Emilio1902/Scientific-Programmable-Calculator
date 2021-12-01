@@ -33,7 +33,11 @@ public class VariablesTest {
         //check char is an alphabetic character
         assertEquals(false, variables.setVariableValue('1', number1));
         
-        assertEquals(true, variables.setVariableValue('a', number1));
+        variables.setVariableValue('a', number1);
+        assertEquals(number1, variables.getVariableValue('a'));
+        
+        variables.setVariableValue('b', number2);
+        assertEquals(number2, variables.getVariableValue('b'));
     }
     
     /**
