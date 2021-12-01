@@ -163,10 +163,24 @@ public class Calculator {
                 }
             }
         }
+        
+        if (op == '-') {
+            num = variables.getVariableValue(var);
+            if(num == null) {
+                return "No Value Stored";
+            } else {
+                complex = memory.pop();
+                if(complex == null)
+                    return "Few Arguments";
+                else{
+                    variables.setVariableValue(var, num.difference(complex));
+                    return "";
+                }
+            }
+        }
         else {
             return "Syntax Error";
         }
-
     }
 
     /*
