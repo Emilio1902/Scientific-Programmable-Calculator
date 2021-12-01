@@ -257,7 +257,36 @@ public class StackComplexNumbers {
     }
     
     
+    /**
+     * This method drop the last stored complex number 
+     * 
+     * @return false if stack is empty, true otherwise
+    */
+    public boolean dropLastNumber(){
+        if(top < 0){
+            return false;
+        } else{
+            this.pop();
+            return true;
+        }
+    }
     
-
+    /**
+     * This method swap the last two stored complex numbers 
+     * 
+     * @return false if stack has at most one element, true otherwise
+    */
+    
+    public boolean swapLastTwoNumbers(){
+        if(top <= 0){
+            return false;
+        } else{
+            ComplexNumbers n1 = this.pop();
+            ComplexNumbers n2 = this.pop();
+            this.push(n1.getReal(), n1.getImg());
+            this.push(n2.getReal(), n2.getImg());
+            return true;
+        }
+    }
     
 }

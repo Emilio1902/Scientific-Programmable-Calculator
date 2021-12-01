@@ -406,4 +406,45 @@ public class StackComplexNumbersTest {
 
     }
     
+    /**
+     * Test of dropLastNumber method, of class StackComplexNumbers.
+     */
+    @Test
+    public void testDropLastNumber() {
+        //test for empty stack
+        assertEquals(false, stack.dropLastNumber());
+        
+        //test with 1 element in the stack
+        stack.push(15.56, -3.256);
+        stack.dropLastNumber();
+        assertEquals(true, stack.isEmpty());
+        
+        stack.push(1.25, 0.7544);
+        stack.push(12.03, -1.456);
+        stack.dropLastNumber();
+        assertEquals(1.25, stack.top().getReal());
+        assertEquals(0.7544, stack.top().getImg());
+        
+    }
+    
+    /**
+     * Test of swapLastTwoNumbers method, of class StackComplexNumbers.
+     */
+    @Test
+    public void testSwapLastTwoNumbers() {
+        //test for empty stack
+        assertEquals(false, stack.swapLastTwoNumbers());
+        
+        //test with 1 element in the stack
+        stack.push(15.56, -3.256);
+        assertEquals(false, stack.swapLastTwoNumbers());
+        
+        stack.push(1.25, 0.7544);
+        stack.push(12.03, -1.456);
+        stack.swapLastTwoNumbers();
+        assertEquals(1.25, stack.top().getReal());
+        assertEquals(0.7544, stack.top().getImg());
+        
+    }
+    
 }
