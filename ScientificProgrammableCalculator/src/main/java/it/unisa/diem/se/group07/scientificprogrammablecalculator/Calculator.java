@@ -25,7 +25,7 @@ public class Calculator {
 
     /**
      * Constructs the string to pass to the calculator and checks 
-     * the several operations.
+     * math operations.
      *
      * @param s String to pass to the calculator
      * @return "" if the string format is correct otherwise "Syntax Error" if
@@ -74,6 +74,44 @@ public class Calculator {
             }
 
         }
+    }
+    
+    /**
+     * Constructs the string to pass to the calculator and checks 
+     * memory operations.
+     *
+     * @param s String to pass to the calculator
+     * @return "" if the string format is correct otherwise "Syntax Error" if
+     * the string format is incorrect
+     */
+     public String checkMemoryOperations(String s) {
+ 
+        
+        if (s.compareTo("clear") == 0) {
+            memory.clear();
+            return "";
+        } 
+        
+        if (s.compareTo("drop") == 0) {
+            return memory.dropLastNumber() == true ? "" : "Few Arguments";
+        }
+         
+        if (s.compareTo("dup") == 0) {
+            return memory.dupLastNumber() == true ? "" : "Few Arguments";
+        }
+          
+        if (s.compareTo("swap") == 0) {
+            return memory.swapLastTwoNumbers() == true ? "" : "Few Arguments";
+        }
+           
+        if (s.compareTo("over") == 0) {
+            return memory.dupSecondLastNumber() == true ? "" : "Few Arguments";
+        }
+        
+        else {
+                return "Syntax Error";
+            }
+
     }
 
     /**

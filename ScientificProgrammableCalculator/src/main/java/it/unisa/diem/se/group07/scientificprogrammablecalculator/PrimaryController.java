@@ -75,6 +75,10 @@ public class PrimaryController{
 
     @FXML
     private void makeMemoryOperations(ActionEvent event) {
-        
+        String s = ((Button)event.getSource()).getText();
+        String s1 = calculator.checkMemoryOperations(s);
+        display.setText(s1);
+        numbersList.getItems().clear();
+        numbersList.getItems().addAll(calculator.lastTwelveNumbers());
     }
 }  
