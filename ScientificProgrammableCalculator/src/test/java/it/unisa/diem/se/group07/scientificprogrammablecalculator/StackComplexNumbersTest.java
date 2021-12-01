@@ -457,7 +457,6 @@ public class StackComplexNumbersTest {
         assertEquals(true, stack.isEmpty());
         
         stack.push(0.0, 72.54);
-        stack.invertSignLastNumber();
         stack.clear();
         assertEquals(true, stack.isEmpty());
         
@@ -503,7 +502,6 @@ public class StackComplexNumbersTest {
         stack.push(13.65, 22.8);
         boolean n1 = stack.dupSecondLastNumber();
         assertEquals(false, n1);
-        
         stack.push(29.647, 2.0);
         stack.push(8.0, 56.29);
         boolean n2 = stack.dupSecondLastNumber();

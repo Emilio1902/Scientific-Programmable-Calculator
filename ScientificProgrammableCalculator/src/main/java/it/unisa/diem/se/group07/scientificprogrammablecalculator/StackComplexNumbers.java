@@ -307,7 +307,7 @@ public class StackComplexNumbers {
         if (top == -1) {
             return false;
         } else {
-            ComplexNumbers n = this.pop();
+            ComplexNumbers n = this.top();
             this.push(n.getReal(), n.getImg());
             return true;
         }
@@ -323,7 +323,8 @@ public class StackComplexNumbers {
             return false;
         } else {
             ComplexNumbers n = this.pop();
-            ComplexNumbers n1 = this.pop();
+            ComplexNumbers n1 = this.top();
+            this.push(n.getReal(), n.getImg());
             this.push(n1.getReal(), n1.getImg());
             return true;
         }
