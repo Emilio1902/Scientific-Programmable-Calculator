@@ -11,10 +11,19 @@ import java.util.HashMap;
  * @author raffa
  */
 public class Variables {
-    private HashMap<String, String> variables;
+    private HashMap<Character, ComplexNumbers> variables;
 
     public Variables() {
-        this.variables = new HashMap<String, String>();
+        this.variables = new HashMap<Character, ComplexNumbers>();
+    }
+    
+    public boolean setVariableValue(char key, ComplexNumbers number){
+        if(!Character.isAlphabetic(key)){
+            return false;
+        }else{
+            variables.put(Character.toLowerCase(key), number);
+            return true;
+        }
     }
     
     
