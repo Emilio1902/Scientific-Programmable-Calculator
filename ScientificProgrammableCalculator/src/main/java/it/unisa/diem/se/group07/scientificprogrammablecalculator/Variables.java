@@ -29,7 +29,5 @@ public class Variables {
     public ComplexNumbers getVariableValue(char key){
         return variables.get(key);
     }
-    
-    
-    
+ 
 }

@@ -119,7 +119,7 @@ public class Calculator {
      */
     public String checkVariableOperations(String operation, String variable) {
 
-        ComplexNumbers num;
+        ComplexNumbers num, complex;
         char op, var;
         
         if (operation.length() == 1 && variable.length() == 1) {
@@ -147,7 +147,23 @@ public class Calculator {
                 return "";
             }
 
-        } else {
+        }
+        
+        if (op == '+') {
+            num = variables.getVariableValue(var);
+            if(num == null) {
+                return "No Value Stored";
+            } else {
+                complex = memory.pop();
+                if(complex == null)
+                    return "Few Arguments";
+                else{
+                    variables.setVariableValue(var, num.sum(complex));
+                    return "";
+                }
+            }
+        }
+        else {
             return "Syntax Error";
         }
 
