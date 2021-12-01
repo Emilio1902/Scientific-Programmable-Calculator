@@ -447,4 +447,76 @@ public class StackComplexNumbersTest {
         
     }
     
+    /**
+     * Test of clear method, of class StackComplexNumbers.
+     */
+    @Test
+    public void testClear() {
+        //test for empty stack
+        stack.clear();
+        assertEquals(true, stack.isEmpty());
+        
+        stack.push(0.0, 72.54);
+        stack.invertSignLastNumber();
+        stack.clear();
+        assertEquals(true, stack.isEmpty());
+        
+        stack.push(5.93, 10.5);
+        stack.push(78.38, 99.32);
+        stack.clear();
+        assertEquals(true, stack.isEmpty());
+
+    }
+    
+    /**
+     * Test of dupLastNumber method, of class StackComplexNumbers.
+     */
+    @Test
+    public void testDupLastNumber() {
+        //test for empty stack
+        boolean n = stack.dupLastNumber();
+        assertEquals(false, n);
+        
+        stack.push(0.0, 56.1);
+        boolean n1 = stack.dupLastNumber();
+        assertEquals(0.0, stack.top().getReal());
+        assertEquals(56.1, stack.top().getImg());
+        
+        stack.push(13.784, 10.5);
+        stack.push(89.2, 1.1);
+        boolean n2 = stack.dupLastNumber();
+        assertEquals(89.2, stack.top().getReal());
+        assertEquals(1.1, stack.top().getImg());
+
+    }
+    
+    /**
+     * Test of dupSecondLastNumber method, of class StackComplexNumbers.
+     */
+    @Test
+    public void testDupSecondLastNumber() {
+        //test for empty stack
+        boolean n = stack.dupSecondLastNumber();
+        assertEquals(false, n);
+        
+        //test with 1 element in the stack
+        stack.push(13.65, 22.8);
+        boolean n1 = stack.dupSecondLastNumber();
+        assertEquals(false, n1);
+        
+        stack.push(29.647, 2.0);
+        stack.push(8.0, 56.29);
+        boolean n2 = stack.dupSecondLastNumber();
+        assertEquals(29.647, stack.top().getReal());
+        assertEquals(2.0, stack.top().getImg());
+        
+        stack.push(27.4, 2.0);
+        stack.push(11.3, 37.9);
+        stack.push(25.684, 66.1);
+        boolean n3 = stack.dupSecondLastNumber();
+        assertEquals(11.3, stack.top().getReal());
+        assertEquals(37.9, stack.top().getImg());
+
+    }
+    
 }

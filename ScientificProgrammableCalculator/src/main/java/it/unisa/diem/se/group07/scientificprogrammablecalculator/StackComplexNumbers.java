@@ -4,6 +4,8 @@
  */
 package it.unisa.diem.se.group07.scientificprogrammablecalculator;
 
+import java.util.Arrays;
+
 /**
  * StackComplexNumbers implements a dynamic Stack data structures 
  * with LIFO(Last In First Out) logic to do calculator operations.
@@ -285,6 +287,44 @@ public class StackComplexNumbers {
             ComplexNumbers n2 = this.pop();
             this.push(n1.getReal(), n1.getImg());
             this.push(n2.getReal(), n2.getImg());
+            return true;
+        }
+    }
+    
+    /**
+     * This method deletes all stored complex numbers
+     */
+    public void clear(){
+        Arrays.fill(array, null);
+        top = -1;
+    }
+    
+    /**
+     * This method copies the last stored complex number and places it in memory
+     *  @return false if stack has zero element, true otherwise
+     */
+    public boolean dupLastNumber(){
+        if (top == -1) {
+            return false;
+        } else {
+            ComplexNumbers n = this.pop();
+            this.push(n.getReal(), n.getImg());
+            return true;
+        }
+    }
+    
+    /**
+     * This method copies the second last stored complex number 
+     * and places it in memory
+     *  @return false if stack has at most one element, true otherwise
+     */
+    public boolean dupSecondLastNumber(){
+        if (top <= 0) {
+            return false;
+        } else {
+            ComplexNumbers n = this.pop();
+            ComplexNumbers n1 = this.pop();
+            this.push(n1.getReal(), n1.getImg());
             return true;
         }
     }
