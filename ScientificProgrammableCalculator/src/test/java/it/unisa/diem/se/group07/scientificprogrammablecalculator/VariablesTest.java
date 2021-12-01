@@ -15,12 +15,13 @@ import org.junit.Before;
 public class VariablesTest {
     
     private Variables variables;
-    private ComplexNumbers number;
+    private ComplexNumbers number1, number2;
     
     @Before
     public void setUp() {
         variables = new Variables();
-        number = new ComplexNumbers(1.2, 7.6);
+        number1 = new ComplexNumbers(1.2, 7.6);
+        number2 = new ComplexNumbers(-3.25, 0);
         
     }
 
@@ -30,9 +31,29 @@ public class VariablesTest {
     @Test
     public void testSetVariableValue() {
         //check char is an alphabetic character
-        assertEquals(false, variables.setVariableValue('1', number));
+        assertEquals(false, variables.setVariableValue('1', number1));
         
-        assertEquals(true, variables.setVariableValue('a', number));
+        assertEquals(true, variables.setVariableValue('a', number1));
+    }
+    
+    /**
+     * Test of getVariableValue method, of class Variables.
+     */
+    @Test
+    public void testGetVariableValue() {
+        //check with a key not in variables
+        assertEquals(null, variables.getVariableValue('1'));
+        assertEquals(null, variables.getVariableValue('c'));
+        
+        variables.setVariableValue('c', number1);
+        variables.setVariableValue('z', number2);
+        assertEquals(number1, variables.getVariableValue('c'));
+        assertEquals(number2, variables.getVariableValue('z'));
+        
+        variables.setVariableValue('c', number2);
+        assertEquals(number2, variables.getVariableValue('c'));
+        
+        
     }
     
 }
