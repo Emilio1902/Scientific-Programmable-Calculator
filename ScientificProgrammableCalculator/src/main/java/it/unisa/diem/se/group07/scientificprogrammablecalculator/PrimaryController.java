@@ -106,6 +106,12 @@ public class PrimaryController implements Initializable{
     }
 
     @FXML
-    private void makeVariableOperations(ActionEvent event) {
+    private void makeVariableOperations(ActionEvent event) { 
+        String varOp = variableOperations.getValue();
+        String var = variables.getValue();
+        String s1 = calculator.checkVariableOperations(varOp, var);
+        display.setText(s1);
+        numbersList.getItems().clear();
+        numbersList.getItems().addAll(calculator.lastTwelveNumbers());
     }
 }  
