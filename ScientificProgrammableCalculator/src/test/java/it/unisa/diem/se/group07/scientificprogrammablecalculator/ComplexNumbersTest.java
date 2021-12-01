@@ -4,11 +4,8 @@
  */
 package it.unisa.diem.se.group07.scientificprogrammablecalculator;
 
-import java.math.BigDecimal;
 import org.junit.Test;
 import org.junit.*;
-import static org.hamcrest.MatcherAssert.assertThat;
-import org.hamcrest.Matchers;
 import static org.junit.Assert.*;
 
 /**
@@ -21,8 +18,8 @@ public class ComplexNumbersTest {
 
     @Before
     public void setUp() {
-        num1 = new ComplexNumbers(BigDecimal.valueOf(7.15), BigDecimal.valueOf(6.70));
-        num2 = new ComplexNumbers(BigDecimal.valueOf(-3.15), BigDecimal.valueOf(0));
+        num1 = new ComplexNumbers(7.15, 6.70);
+        num2 = new ComplexNumbers(-3.15, 0);
     }
 
     /**
@@ -30,8 +27,8 @@ public class ComplexNumbersTest {
      */
     @Test
     public void testGetReal() {
-        assertThat(BigDecimal.valueOf(7.15), Matchers.comparesEqualTo(num1.getReal()));
-        assertThat(BigDecimal.valueOf(-3.15), Matchers.comparesEqualTo(num2.getReal()));
+        assertEquals(7.15, num1.getReal());
+        assertEquals(-3.15, num2.getReal());
     }
 
     /**
@@ -39,8 +36,8 @@ public class ComplexNumbersTest {
      */
     @Test
     public void testGetImg() {
-        assertThat(BigDecimal.valueOf(6.70), Matchers.comparesEqualTo(num1.getImg()));
-        assertThat(BigDecimal.valueOf(0), Matchers.comparesEqualTo(num2.getImg()));
+        assertEquals(6.70, num1.getImg());
+        assertEquals(0.0, num2.getImg());
     }
     
     /**
@@ -48,15 +45,15 @@ public class ComplexNumbersTest {
      */
     @Test
     public void testMod() {
-        BigDecimal mod1 = num1.mod();
-        assertThat(BigDecimal.valueOf(9.7986), Matchers.comparesEqualTo(mod1));
+        double mod1 = num1.mod();
+        assertEquals(9.79859684, mod1);
         
-        BigDecimal mod2 = num2.mod();
-        assertThat(BigDecimal.valueOf(3.15), Matchers.comparesEqualTo(mod2));
+        double mod2 = num2.mod();
+        assertEquals(3.15, mod2);
         
-        ComplexNumbers num3 = new ComplexNumbers(BigDecimal.ZERO, BigDecimal.ZERO);
-        BigDecimal mod3 = num3.mod();
-        assertThat(BigDecimal.ZERO, Matchers.comparesEqualTo(mod3));  
+        ComplexNumbers num3 = new ComplexNumbers(0, 0);
+        double mod3 = num3.mod();
+        assertEquals(0.0, mod3);  
     }
     
     /**
@@ -64,15 +61,15 @@ public class ComplexNumbersTest {
      */
     @Test
     public void testArg() {
-        BigDecimal arg1 = num1.arg();
-        assertThat(BigDecimal.valueOf(0.753), Matchers.comparesEqualTo(arg1));
+        double arg1 = num1.arg();
+        assertEquals(0.75291861, arg1);
         
-        BigDecimal arg2 = num2.arg();
-        assertThat(BigDecimal.valueOf(3.1416), Matchers.comparesEqualTo(arg2));
+        double arg2 = num2.arg();
+        assertEquals(3.14159265, arg2);
         
-        ComplexNumbers num3 = new ComplexNumbers(BigDecimal.ZERO, BigDecimal.ZERO);
-        BigDecimal arg3 = num3.arg();
-        assertThat(BigDecimal.ZERO, Matchers.comparesEqualTo(arg3));  
+        ComplexNumbers num3 = new ComplexNumbers(0, 0);
+        double arg3 = num3.arg();
+        assertEquals(0.0, arg3);  
     }
 
     /*
@@ -81,21 +78,21 @@ public class ComplexNumbersTest {
      */
     @Test
     public void testStringToComplex() {
-        num1 = num1.stringToComplex("25+37i");
-        assertThat(BigDecimal.valueOf(25.0), Matchers.comparesEqualTo(num1.getReal()));
-        assertThat(BigDecimal.valueOf(37.0), Matchers.comparesEqualTo(num1.getImg()));
+        num1 = new ComplexNumbers("25+37i");
+        assertEquals(25.0, (num1.getReal()));
+        assertEquals(37.0, (num1.getImg()));
 
-        num1 = num1.stringToComplex("25.56");
-        assertThat(BigDecimal.valueOf(25.56), Matchers.comparesEqualTo(num1.getReal()));
-        assertThat(BigDecimal.valueOf(0.0), Matchers.comparesEqualTo(num1.getImg()));
+        num1 = new ComplexNumbers("25.56");
+        assertEquals(25.56, num1.getReal());
+        assertEquals(0.0, num1.getImg());
 
-        num1 = num1.stringToComplex("37.43i");
-        assertThat(BigDecimal.valueOf(0.0), Matchers.comparesEqualTo(num1.getReal()));
-        assertThat(BigDecimal.valueOf(37.43), Matchers.comparesEqualTo(num1.getImg()));
+        num1 = new ComplexNumbers("37.43i");
+        assertEquals(0.0, num1.getReal());
+        assertEquals(37.43, num1.getImg());
 
-        num1 = num1.stringToComplex("-14.56-18.21i");
-        assertThat(BigDecimal.valueOf(-14.56), Matchers.comparesEqualTo(num1.getReal()));
-        assertThat(BigDecimal.valueOf(-18.21), Matchers.comparesEqualTo(num1.getImg()));
+        num1 = new ComplexNumbers("-14.56-18.21i");
+        assertEquals(-14.56, num1.getReal());
+        assertEquals(-18.21, num1.getImg());
     }
 
     /**
@@ -104,21 +101,21 @@ public class ComplexNumbersTest {
     @Test
     public void testSum() {
         ComplexNumbers sum1 = num1.sum(num2);
-        assertThat(BigDecimal.valueOf(4.0), Matchers.comparesEqualTo(sum1.getReal()));
-        assertThat(BigDecimal.valueOf(6.70), Matchers.comparesEqualTo(sum1.getImg()));
+        assertEquals(4.0, sum1.getReal());
+        assertEquals(6.70, sum1.getImg());
 
-        num1 = new ComplexNumbers(BigDecimal.valueOf(0), BigDecimal.valueOf(-16));
-        num2 = new ComplexNumbers(BigDecimal.valueOf(-1.36), BigDecimal.valueOf(0));
+        num1 = new ComplexNumbers(0, -16);
+        num2 = new ComplexNumbers(-1.36, 0);
         ComplexNumbers sum2 = num1.sum(num2);
-        assertThat(BigDecimal.valueOf(-1.36), Matchers.comparesEqualTo(sum2.getReal()));
-        assertThat(BigDecimal.valueOf(-16.0), Matchers.comparesEqualTo(sum2.getImg()));
+        assertEquals(-1.36, sum2.getReal());
+        assertEquals(-16.0, sum2.getImg());
 
-        num1 = new ComplexNumbers(BigDecimal.valueOf(17.11), BigDecimal.valueOf(2.345));
-        num2 = new ComplexNumbers(BigDecimal.valueOf(1.25), BigDecimal.valueOf(1.87));
+        num1 = new ComplexNumbers(17.11, 2.345);
+        num2 = new ComplexNumbers(1.25, 1.87);
 
         ComplexNumbers sum3 = num1.sum(num2);
-        assertThat(BigDecimal.valueOf(18.36), Matchers.comparesEqualTo(sum3.getReal()));
-        assertThat(BigDecimal.valueOf(4.215), Matchers.comparesEqualTo(sum3.getImg()));
+        assertEquals(18.36, sum3.getReal());
+        assertEquals(4.215, sum3.getImg());
     }
 
     /**
@@ -127,20 +124,20 @@ public class ComplexNumbersTest {
     @Test
     public void testDifference() {
         ComplexNumbers difference1 = num1.difference(num2);
-        assertThat(BigDecimal.valueOf(10.3), Matchers.comparesEqualTo(difference1.getReal()));
-        assertThat(BigDecimal.valueOf(6.7), Matchers.comparesEqualTo(difference1.getImg()));
+        assertEquals(10.3, difference1.getReal());
+        assertEquals(6.7, difference1.getImg());
 
-        num1 = new ComplexNumbers(BigDecimal.valueOf(0), BigDecimal.valueOf(-16));
-        num2 = new ComplexNumbers(BigDecimal.valueOf(-1.36), BigDecimal.valueOf(0));
+        num1 = new ComplexNumbers(0, -16);
+        num2 = new ComplexNumbers(-1.36, 0);
         ComplexNumbers difference2 = num1.difference(num2);
-        assertThat(BigDecimal.valueOf(1.36), Matchers.comparesEqualTo(difference2.getReal()));
-        assertThat(BigDecimal.valueOf(-16.0), Matchers.comparesEqualTo(difference2.getImg()));
+        assertEquals(1.36, difference2.getReal());
+        assertEquals(-16.0, difference2.getImg());
 
-        num1 = new ComplexNumbers(BigDecimal.valueOf(17.11), BigDecimal.valueOf(2.345));
-        num2 = new ComplexNumbers(BigDecimal.valueOf(1.25), BigDecimal.valueOf(1.87));
+        num1 = new ComplexNumbers(17.11, 2.345);
+        num2 = new ComplexNumbers(1.25, 1.87);
         ComplexNumbers difference3 = num1.difference(num2);
-        assertThat(BigDecimal.valueOf(15.86), Matchers.comparesEqualTo(difference3.getReal()));
-        assertThat(BigDecimal.valueOf(0.475), Matchers.comparesEqualTo(difference3.getImg()));
+        assertEquals(15.86, difference3.getReal());
+        assertEquals(0.475, difference3.getImg());
     }
     
     
@@ -150,21 +147,21 @@ public class ComplexNumbersTest {
     @Test
     public void testProduct() {
         ComplexNumbers product1 = num1.product(num2);
-        assertThat(BigDecimal.valueOf(-22.5225), Matchers.comparesEqualTo(product1.getReal()));
-        assertThat(BigDecimal.valueOf(-21.105), Matchers.comparesEqualTo(product1.getImg()));
+        assertEquals(-22.5225, product1.getReal());
+        assertEquals(-21.105, product1.getImg());
         
-        num1 = new ComplexNumbers(BigDecimal.valueOf(15.36), BigDecimal.valueOf(-16.32));
-        num2 = new ComplexNumbers(BigDecimal.valueOf(0), BigDecimal.valueOf(0));
+        num1 = new ComplexNumbers(15.36, -16.32);
+        num2 = new ComplexNumbers(0, 0);
         
         ComplexNumbers product2 = num1.product(num2);
-        assertThat(BigDecimal.valueOf(0.0), Matchers.comparesEqualTo(product2.getReal()));
-        assertThat(BigDecimal.valueOf(0.0), Matchers.comparesEqualTo(product2.getImg()));
+        assertEquals(0.0, product2.getReal());
+        assertEquals(0.0, product2.getImg());
         
-        num1 = new ComplexNumbers(BigDecimal.valueOf(17.11), BigDecimal.valueOf(-2.345));
-        num2 = new ComplexNumbers(BigDecimal.valueOf(-1.25), BigDecimal.valueOf(-1.87));
+        num1 = new ComplexNumbers(17.11, -2.345);
+        num2 = new ComplexNumbers(-1.25, -1.87);
         ComplexNumbers product3 = num1.product(num2);
-        assertThat(BigDecimal.valueOf(-25.7727), Matchers.comparesEqualTo(product3.getReal()));
-        assertThat(BigDecimal.valueOf(-29.0645), Matchers.comparesEqualTo(product3.getImg()));
+        assertEquals(-25.77265, product3.getReal());
+        assertEquals(-29.06445, product3.getImg());
         
         
     }
@@ -176,26 +173,26 @@ public class ComplexNumbersTest {
     public void testRatio() {
         
         ComplexNumbers ratio1 = num1.ratio(num2);
-        assertThat(BigDecimal.valueOf(-2.2698), Matchers.comparesEqualTo(ratio1.getReal()));
-        assertThat(BigDecimal.valueOf(-2.127), Matchers.comparesEqualTo(ratio1.getImg()));
+        assertEquals(-2.26984127, ratio1.getReal());
+        assertEquals(-2.12698413, ratio1.getImg());
         
-        num1 = new ComplexNumbers(BigDecimal.valueOf(15.36), BigDecimal.valueOf(-16.32));
-        num2 = new ComplexNumbers(BigDecimal.valueOf(0), BigDecimal.valueOf(0));
+        num1 = new ComplexNumbers(15.36, -16.32);
+        num2 = new ComplexNumbers(0, 0);
         ComplexNumbers ratio2 = num1.ratio(num2);
         System.out.println(ratio2);
         assertEquals(null, ratio2);
         
-        num1 = new ComplexNumbers(BigDecimal.valueOf(17.11), BigDecimal.valueOf(-2.345));
-        num2 = new ComplexNumbers(BigDecimal.valueOf(-1.25), BigDecimal.valueOf(-1.87));
+        num1 = new ComplexNumbers(17.11, -2.345);
+        num2 = new ComplexNumbers(-1.25, -1.87);
         ComplexNumbers ratio3 = num1.ratio(num2);
-        assertThat(BigDecimal.valueOf(-3.3605), Matchers.comparesEqualTo(ratio3.getReal()));
-        assertThat(BigDecimal.valueOf(6.9034), Matchers.comparesEqualTo(ratio3.getImg()));
+        assertEquals(-3.36054669, ratio3.getReal());
+        assertEquals(6.90337784, ratio3.getImg());
         
-        num1 = new ComplexNumbers(BigDecimal.valueOf(0), BigDecimal.valueOf(0));
-        num2 = new ComplexNumbers(BigDecimal.valueOf(3.24), BigDecimal.valueOf(12.25));
+        num1 = new ComplexNumbers(0, 0);
+        num2 = new ComplexNumbers(3.24, 12.25);
         ComplexNumbers ratio4 = num1.ratio(num2);
-        assertThat(BigDecimal.valueOf(0), Matchers.comparesEqualTo(ratio4.getReal()));
-        assertThat(BigDecimal.valueOf(0), Matchers.comparesEqualTo(ratio4.getImg()));
+        assertEquals(0.0, ratio4.getReal());
+        assertEquals(0.0, ratio4.getImg());
         
     }
     
@@ -205,32 +202,32 @@ public class ComplexNumbersTest {
     @Test
     public void testSquareRoot() {
         ComplexNumbers sqrt1 =num1.squareRoot();
-        assertThat(BigDecimal.valueOf(2.911), Matchers.comparesEqualTo(sqrt1.getReal()));
-        assertThat(BigDecimal.valueOf(1.1509), Matchers.comparesEqualTo(sqrt1.getImg()));
+        assertEquals(2.91106483, sqrt1.getReal());
+        assertEquals(1.15078165, sqrt1.getImg());
         
         ComplexNumbers sqrt2 =num2.squareRoot();
-        assertThat(BigDecimal.valueOf(0), Matchers.comparesEqualTo(sqrt2.getReal()));
-        assertThat(BigDecimal.valueOf(1.7748), Matchers.comparesEqualTo(sqrt2.getImg()));
+        assertEquals(0.0, sqrt2.getReal());
+        assertEquals(1.77482393, sqrt2.getImg());
         
-        ComplexNumbers num3 = new ComplexNumbers(BigDecimal.valueOf(-12.2546), BigDecimal.valueOf(-0.3657));
+        ComplexNumbers num3 = new ComplexNumbers(-12.2546, -0.3657);
         ComplexNumbers sqrt3 =num3.squareRoot();
-        assertThat(BigDecimal.valueOf(-0.0521), Matchers.comparesEqualTo(sqrt3.getReal()));
-        assertThat(BigDecimal.valueOf(3.501), Matchers.comparesEqualTo(sqrt3.getImg()));
+        assertEquals(-0.05222724, sqrt3.getReal());
+        assertEquals(3.50104666, sqrt3.getImg());
         
-        ComplexNumbers num4 = new ComplexNumbers(BigDecimal.valueOf(0), BigDecimal.valueOf(-17.52));
+        ComplexNumbers num4 = new ComplexNumbers(0, -17.52);
         ComplexNumbers sqrt4 =num4.squareRoot();
-        assertThat(BigDecimal.valueOf(-2.9597), Matchers.comparesEqualTo(sqrt4.getReal()));
-        assertThat(BigDecimal.valueOf(2.9597), Matchers.comparesEqualTo(sqrt4.getImg()));
+        assertEquals(-2.95972971, sqrt4.getReal());
+        assertEquals(2.95972972, sqrt4.getImg());
         
-        ComplexNumbers num5 = new ComplexNumbers(BigDecimal.valueOf(0), BigDecimal.valueOf(0));
+        ComplexNumbers num5 = new ComplexNumbers(0, 0);
         ComplexNumbers sqrt5 =num5.squareRoot();
-        assertThat(BigDecimal.valueOf(0), Matchers.comparesEqualTo(sqrt5.getReal()));
-        assertThat(BigDecimal.valueOf(0), Matchers.comparesEqualTo(sqrt5.getImg()));
+        assertEquals(0.0, sqrt5.getReal());
+        assertEquals(0.0, sqrt5.getImg());
         
-        ComplexNumbers num6 = new ComplexNumbers(BigDecimal.valueOf(-150.57), BigDecimal.valueOf(41236.21));
+        ComplexNumbers num6 = new ComplexNumbers(-150.57, 41236.21);
         ComplexNumbers sqrt6 =num6.squareRoot();
-        assertThat(BigDecimal.valueOf(143.3243), Matchers.comparesEqualTo(sqrt6.getReal()));
-        assertThat(BigDecimal.valueOf(143.8561), Matchers.comparesEqualTo(sqrt6.getImg()));
+        assertEquals(143.32814626, sqrt6.getReal());
+        assertEquals(143.85245005, sqrt6.getImg());
     }
     
     /**
@@ -239,11 +236,11 @@ public class ComplexNumbersTest {
     @Test
     public void testInvertSign() {
         ComplexNumbers inverted1 =num1.invertSign();
-        assertThat(BigDecimal.valueOf(-7.15), Matchers.comparesEqualTo(inverted1.getReal()));
-        assertThat(BigDecimal.valueOf(-6.70), Matchers.comparesEqualTo(inverted1.getImg()));
+        assertEquals(-7.15, inverted1.getReal());
+        assertEquals(-6.70, inverted1.getImg());
         
         ComplexNumbers inverted2 =num2.invertSign();
-        assertThat(BigDecimal.valueOf(3.15), Matchers.comparesEqualTo(inverted2.getReal()));
-        assertThat(BigDecimal.valueOf(0), Matchers.comparesEqualTo(inverted2.getImg()));
+        assertEquals(3.15, inverted2.getReal());
+        assertEquals(0.0, inverted2.getImg());
     }
 }

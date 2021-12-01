@@ -4,9 +4,6 @@
  */
 package it.unisa.diem.se.group07.scientificprogrammablecalculator;
 
-import java.math.BigDecimal;
-import static org.hamcrest.MatcherAssert.assertThat;
-import org.hamcrest.Matchers;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.*;
@@ -34,11 +31,11 @@ public class StackComplexNumbersTest {
         assertEquals(null, n);
 
         //test for stack with inserted numbers
-        stack.push(BigDecimal.valueOf(2.6), BigDecimal.valueOf(7.1));
-        stack.push(BigDecimal.valueOf(8.3), BigDecimal.valueOf(3.5));
+        stack.push(2.6, 7.1);
+        stack.push(8.3, 3.5);
         ComplexNumbers num = stack.pop();
-        assertThat(BigDecimal.valueOf(8.3), Matchers.comparesEqualTo(num.getReal()));
-        assertThat(BigDecimal.valueOf(3.5), Matchers.comparesEqualTo(num.getImg()));
+        assertEquals(8.3, num.getReal());
+        assertEquals(3.5, num.getImg());
     }
 
     /**
@@ -51,11 +48,11 @@ public class StackComplexNumbersTest {
         assertEquals(null, n);
 
         //test for stack with inserted numbers
-        stack.push(BigDecimal.valueOf(2.6), BigDecimal.valueOf(7.1));
-        stack.push(BigDecimal.valueOf(8.3), BigDecimal.valueOf(3.5));
+        stack.push(2.6, 7.1);
+        stack.push(8.3, 3.5);
         ComplexNumbers num = stack.top();
-        assertThat(BigDecimal.valueOf(8.3), Matchers.comparesEqualTo(num.getReal()));
-        assertThat(BigDecimal.valueOf(3.5), Matchers.comparesEqualTo(num.getImg()));
+        assertEquals(8.3, num.getReal());
+        assertEquals(3.5, num.getImg());
 
     }
 
@@ -64,10 +61,10 @@ public class StackComplexNumbersTest {
      */
     @Test
     public void testPush() {
-        stack.push(BigDecimal.valueOf(14.8), BigDecimal.valueOf(37.1));
+        stack.push(14.8, 37.1);
         ComplexNumbers num = stack.top();
-        assertThat(BigDecimal.valueOf(14.8), Matchers.comparesEqualTo(num.getReal()));
-        assertThat(BigDecimal.valueOf(37.1), Matchers.comparesEqualTo(num.getImg()));
+        assertEquals(14.8, num.getReal());
+        assertEquals(37.1, num.getImg());
     }
 
     /**
@@ -84,7 +81,7 @@ public class StackComplexNumbersTest {
         //test for a stack with more than 12 numbers
         StackComplexNumbers stack1 = new StackComplexNumbers();
         for (i = 0; i < dim1; i++) {
-            stack1.push(BigDecimal.valueOf(i), BigDecimal.valueOf(i));
+            stack1.push(i, i);
         }
         
         String[] array1;
@@ -92,19 +89,19 @@ public class StackComplexNumbersTest {
         assertEquals(12, array1.length);
 
         for (i = 0; i < 12; i++) {
-            assertEquals(String.valueOf(dim1 - 1 - i)  + "+" + String.valueOf(dim1 - 1 - i)  + "i", array1[i]);
+            assertEquals(String.valueOf(dim1 - 1 - i) + ".0"  + "+" + String.valueOf(dim1 - 1 - i) + ".0" + "i", array1[i]);
         }
 
         //test for a stacks with fewer than 12 numbers
         StackComplexNumbers stack2 = new StackComplexNumbers();
         for (i = 0; i < dim2; i++) {
-            stack2.push(BigDecimal.valueOf(i), BigDecimal.valueOf(i));
+            stack2.push(i, i);
         }
         String[] array2;
         array2 = stack2.getLastTwelve();
         assertEquals(5, array2.length);
         for (i = 0; i < 5; i++) {
-            assertEquals(String.valueOf(dim1 - 1 - i) + "+" + String.valueOf(dim1 - 1 - i) + "i", array1[i]);
+            assertEquals(String.valueOf(dim1 - 1 - i) + ".0" + "+" + String.valueOf(dim1 - 1 - i) + ".0" + "i", array1[i]);
         }
     }
 
@@ -119,38 +116,38 @@ public class StackComplexNumbersTest {
         
         //test with 1 element in the stack
         StackComplexNumbers stackT1 = new StackComplexNumbers();
-        stackT1.push(BigDecimal.valueOf(21.5), BigDecimal.valueOf(13.1));
+        stackT1.push(21.5, 13.1);
         stackT1.sumLastTwoNumbers();
         boolean n1 = stackT1.sumLastTwoNumbers();
         assertEquals(false, n1);
         
-        stack.push(BigDecimal.valueOf(21.5), BigDecimal.valueOf(13.1));
-        stack.push(BigDecimal.valueOf(3.5), BigDecimal.valueOf(2.4));
+        stack.push(21.5, 13.1);
+        stack.push(3.5, 2.4);
         stack.sumLastTwoNumbers();
         ComplexNumbers num = stack.top();
-        assertThat(BigDecimal.valueOf(25.0), Matchers.comparesEqualTo(num.getReal()));
-        assertThat(BigDecimal.valueOf(15.5), Matchers.comparesEqualTo(num.getImg()));
+        assertEquals(25.0, num.getReal());
+        assertEquals(15.5, num.getImg());
 
-        stack.push(BigDecimal.valueOf(14.2), BigDecimal.valueOf(-19.7));
-        stack.push(BigDecimal.valueOf(0.0), BigDecimal.valueOf(6.6));
+        stack.push(14.2, -19.7);
+        stack.push(0.0, 6.6);
         stack.sumLastTwoNumbers();
         ComplexNumbers num1 = stack.top();
-        assertThat(BigDecimal.valueOf(14.2), Matchers.comparesEqualTo(num1.getReal()));
-        assertThat(BigDecimal.valueOf(-13.1), Matchers.comparesEqualTo(num1.getImg()));
+        assertEquals(14.2, num1.getReal());
+        assertEquals(-13.1, num1.getImg());
 
-        stack.push(BigDecimal.valueOf(0), BigDecimal.valueOf(-13.9));
-        stack.push(BigDecimal.valueOf(-1.36), BigDecimal.valueOf(1));
+        stack.push(0, -13.9);
+        stack.push(-1.36, 1);
         stack.sumLastTwoNumbers();
         ComplexNumbers num2 = stack.top();
-        assertThat(BigDecimal.valueOf(-1.36), Matchers.comparesEqualTo(num2.getReal()));
-        assertThat(BigDecimal.valueOf(-12.9), Matchers.comparesEqualTo(num2.getImg()));
+        assertEquals(-1.36, num2.getReal());
+        assertEquals(-12.9, num2.getImg());
 
-        stack.push(BigDecimal.valueOf(-73.1), BigDecimal.valueOf(-62.28));
-        stack.push(BigDecimal.valueOf(-36.0), BigDecimal.valueOf(1.8));
+        stack.push(-73.1, -62.28);
+        stack.push(-36.0, 1.8);
         stack.sumLastTwoNumbers();
         ComplexNumbers num3 = stack.top();
-        assertThat(BigDecimal.valueOf(-109.1), Matchers.comparesEqualTo(num3.getReal()));
-        assertThat(BigDecimal.valueOf(-60.48), Matchers.comparesEqualTo(num3.getImg()));
+        assertEquals(-109.1, num3.getReal());
+        assertEquals(-60.48, num3.getImg());
 
     }
     
@@ -165,38 +162,38 @@ public class StackComplexNumbersTest {
         
         //test with 1 element in the stack
         StackComplexNumbers stackT1 = new StackComplexNumbers();
-        stackT1.push(BigDecimal.valueOf(21.5), BigDecimal.valueOf(13.1));
+        stackT1.push(21.5, 13.1);
         stackT1.differenceLastTwoNumbers();
         boolean n1 = stackT1.differenceLastTwoNumbers();
         assertEquals(false, n1);
         
-        stack.push(BigDecimal.valueOf(39.56), BigDecimal.valueOf(13.2));
-        stack.push(BigDecimal.valueOf(47.3), BigDecimal.valueOf(2.4));
+        stack.push(39.56, 13.2);
+        stack.push(47.3, 2.4);
         stack.differenceLastTwoNumbers();
         ComplexNumbers num = stack.top();
-        assertThat(BigDecimal.valueOf(-7.74), Matchers.comparesEqualTo(num.getReal()));
-        assertThat(BigDecimal.valueOf(10.8), Matchers.comparesEqualTo(num.getImg()));
+        assertEquals(-7.74, num.getReal());
+        assertEquals(10.8, num.getImg());
 
-        stack.push(BigDecimal.valueOf(23.6), BigDecimal.valueOf(-11.1));
-        stack.push(BigDecimal.valueOf(0.0), BigDecimal.valueOf(48.29));
+        stack.push(23.6, -11.1);
+        stack.push(0.0, 48.29);
         stack.differenceLastTwoNumbers();
         ComplexNumbers num1 = stack.top();
-        assertThat(BigDecimal.valueOf(23.6), Matchers.comparesEqualTo(num1.getReal()));
-        assertThat(BigDecimal.valueOf(-59.39), Matchers.comparesEqualTo(num1.getImg()));
+        assertEquals(23.6, num1.getReal());
+        assertEquals(-59.39, num1.getImg());
 
-        stack.push(BigDecimal.valueOf(0), BigDecimal.valueOf(-16));
-        stack.push(BigDecimal.valueOf(-79.24), BigDecimal.valueOf(1));
+        stack.push(0, -16);
+        stack.push(-79.24, 1);
         stack.differenceLastTwoNumbers();
         ComplexNumbers num2 = stack.top();
-        assertThat(BigDecimal.valueOf(79.24), Matchers.comparesEqualTo(num2.getReal()));
-        assertThat(BigDecimal.valueOf(-17.0), Matchers.comparesEqualTo(num2.getImg()));
+        assertEquals(79.24, num2.getReal());
+        assertEquals(-17.0, num2.getImg());
 
-        stack.push(BigDecimal.valueOf(-99.1), BigDecimal.valueOf(-2.345));
-        stack.push(BigDecimal.valueOf(-12.25), BigDecimal.valueOf(-18.871));
+        stack.push(-99.1, -2.345);
+        stack.push(-12.25, -18.871);
         stack.differenceLastTwoNumbers();
         ComplexNumbers num3 = stack.top();
-        assertThat(BigDecimal.valueOf(-86.85), Matchers.comparesEqualTo(num3.getReal()));
-        assertThat(BigDecimal.valueOf(16.526), Matchers.comparesEqualTo(num3.getImg()));
+        assertEquals(-86.85, num3.getReal());
+        assertEquals(16.526, num3.getImg());
 
     }
     
@@ -213,45 +210,45 @@ public class StackComplexNumbersTest {
         
         //test with 1 element in the stack
         StackComplexNumbers stackT1 = new StackComplexNumbers();
-        stackT1.push(BigDecimal.valueOf(21.5), BigDecimal.valueOf(13.1));
+        stackT1.push(21.5, 13.1);
         stackT1.productLastTwoNumbers();
         boolean n1 = stackT1.productLastTwoNumbers();
         assertEquals(false, n1);
         
-        stack.push(BigDecimal.valueOf(2.8), BigDecimal.valueOf(28.41));
-        stack.push(BigDecimal.valueOf(4.6), BigDecimal.valueOf(10.0));
+        stack.push(2.8, 28.41);
+        stack.push(4.6, 10.0);
         stack.productLastTwoNumbers();
         ComplexNumbers num = stack.top();
-        assertThat(BigDecimal.valueOf(-271.22), Matchers.comparesEqualTo(num.getReal()));
-        assertThat(BigDecimal.valueOf(158.686), Matchers.comparesEqualTo(num.getImg()));
+        assertEquals(-271.22, num.getReal());
+        assertEquals(158.686, num.getImg());
 
-        stack.push(BigDecimal.valueOf(2.9), BigDecimal.valueOf(-22.89));
-        stack.push(BigDecimal.valueOf(0.0), BigDecimal.valueOf(4.8));
+        stack.push(2.9, -22.89);
+        stack.push(0.0, 4.8);
         stack.productLastTwoNumbers();
         ComplexNumbers num1 = stack.top();
-        assertThat(BigDecimal.valueOf(109.872), Matchers.comparesEqualTo(num1.getReal()));
-        assertThat(BigDecimal.valueOf(13.92), Matchers.comparesEqualTo(num1.getImg()));
+        assertEquals(109.872, num1.getReal());
+        assertEquals(13.92, num1.getImg());
 
-        stack.push(BigDecimal.valueOf(0.0), BigDecimal.valueOf(0.0));
-        stack.push(BigDecimal.valueOf(-5.61), BigDecimal.valueOf(1));
+        stack.push(0.0, 0.0);
+        stack.push(-5.61, 1);
         stack.productLastTwoNumbers();
         ComplexNumbers num2 = stack.top();
-        assertThat(BigDecimal.valueOf(-0), Matchers.comparesEqualTo(num2.getReal()));
-        assertThat(BigDecimal.valueOf(0), Matchers.comparesEqualTo(num2.getImg()));
+        assertEquals(-0.0, num2.getReal());
+        assertEquals(0.0, num2.getImg());
 
-        stack.push(BigDecimal.valueOf(-45.123), BigDecimal.valueOf(-1.1));
-        stack.push(BigDecimal.valueOf(-2.0), BigDecimal.valueOf(-73.8));
+        stack.push(-45.123, -1.1);
+        stack.push(-2.0, -73.8);
         stack.productLastTwoNumbers();
         ComplexNumbers num3 = stack.top();
-        assertThat(BigDecimal.valueOf(9.066), Matchers.comparesEqualTo(num3.getReal()));
-        assertThat(BigDecimal.valueOf(3332.2774), Matchers.comparesEqualTo(num3.getImg()));
+        assertEquals(9.066, num3.getReal());
+        assertEquals(3332.2774, num3.getImg());
         
-        stack.push(BigDecimal.valueOf(25.9), BigDecimal.valueOf(-3.871));
-        stack.push(BigDecimal.valueOf(-5.274), BigDecimal.valueOf(-1.29));
+        stack.push(25.9, -3.871);
+        stack.push(-5.274, -1.29);
         stack.productLastTwoNumbers();
         ComplexNumbers num4 = stack.top();
-        assertThat(BigDecimal.valueOf(-141.5902), Matchers.comparesEqualTo(num4.getReal()));
-        assertThat(BigDecimal.valueOf(-12.9954), Matchers.comparesEqualTo(num4.getImg()));
+        assertEquals(-141.59019, num4.getReal());
+        assertEquals(-12.995346, num4.getImg());
 
     }
    
@@ -268,63 +265,63 @@ public class StackComplexNumbersTest {
         
         //test with 1 element in the stack
         StackComplexNumbers stackT1 = new StackComplexNumbers();
-        stackT1.push(BigDecimal.valueOf(21.5), BigDecimal.valueOf(13.1));
+        stackT1.push(21.5, 13.1);
         boolean n1 = stackT1.ratioLastTwoNumbers();
         assertEquals(false, n1);
         
-        stack.push(BigDecimal.valueOf(5.9), BigDecimal.valueOf(66.8));
-        stack.push(BigDecimal.valueOf(1.9), BigDecimal.valueOf(10.0));
+        stack.push(5.9, 66.8);
+        stack.push(1.9, 10.0);
         stack.ratioLastTwoNumbers();
         ComplexNumbers num = stack.top();
-        assertThat(BigDecimal.valueOf(6.5554), Matchers.comparesEqualTo(num.getReal()));
-        assertThat(BigDecimal.valueOf(0.6555), Matchers.comparesEqualTo(num.getImg()));
+        assertEquals(6.55544832, num.getReal());
+        assertEquals(0.65553518, num.getImg());
 
-        stack.push(BigDecimal.valueOf(19.45), BigDecimal.valueOf(-57.156));
-        stack.push(BigDecimal.valueOf(0.0), BigDecimal.valueOf(3.4));
+        stack.push(19.45, -57.156);
+        stack.push(0.0, 3.4);
         stack.ratioLastTwoNumbers();
         ComplexNumbers num1 = stack.top();
-        assertThat(BigDecimal.valueOf(-16.8106), Matchers.comparesEqualTo(num1.getReal()));
-        assertThat(BigDecimal.valueOf(-5.7206), Matchers.comparesEqualTo(num1.getImg()));
+        assertEquals(-16.81058824, num1.getReal());
+        assertEquals(-5.72058824, num1.getImg());
 
-        stack.push(BigDecimal.valueOf(0.0), BigDecimal.valueOf(0.0));
-        stack.push(BigDecimal.valueOf(-4.7), BigDecimal.valueOf(1));
+        stack.push(0.0, 0.0);
+        stack.push(-4.7, 1);
         stack.ratioLastTwoNumbers();
         ComplexNumbers num2 = stack.top();
-        assertThat(BigDecimal.valueOf(-0), Matchers.comparesEqualTo(num2.getReal()));
-        assertThat(BigDecimal.valueOf(-0), Matchers.comparesEqualTo(num2.getImg()));
+        assertEquals(0.0, num2.getReal());
+        assertEquals(-0.0, num2.getImg());
 
-        stack.push(BigDecimal.valueOf(-23.897), BigDecimal.valueOf(-1.8));
-        stack.push(BigDecimal.valueOf(-6.0), BigDecimal.valueOf(-1.0));
+        stack.push(-23.897, -1.8);
+        stack.push(-6.0, -1.0);
         stack.ratioLastTwoNumbers();
         ComplexNumbers num3 = stack.top();
-        assertThat(BigDecimal.valueOf(3.9238), Matchers.comparesEqualTo(num3.getReal()));
-        assertThat(BigDecimal.valueOf(-0.354), Matchers.comparesEqualTo(num3.getImg()));
+        assertEquals(3.92383784, num3.getReal());
+        assertEquals(-0.35397297, num3.getImg());
         
-        stack.push(BigDecimal.valueOf(42.9), BigDecimal.valueOf(-3.9));
-        stack.push(BigDecimal.valueOf(-2.2), BigDecimal.valueOf(-3.8));
+        stack.push(42.9, -3.9);
+        stack.push(-2.2, -3.8);
         stack.ratioLastTwoNumbers();
         ComplexNumbers num4 = stack.top();
-        assertThat(BigDecimal.valueOf(-4.1266), Matchers.comparesEqualTo(num4.getReal()));
-        assertThat(BigDecimal.valueOf(+8.9004), Matchers.comparesEqualTo(num4.getImg()));
+        assertEquals(-4.12655602, num4.getReal());
+        assertEquals(8.90041494, num4.getImg());
         
-        stack.push(BigDecimal.valueOf(73.8), BigDecimal.valueOf(2.6));
-        stack.push(BigDecimal.valueOf(0.0), BigDecimal.valueOf(0.0));
+        stack.push(73.8, 2.6);
+        stack.push(0.0, 0.0);
         boolean n5 = stack.ratioLastTwoNumbers();
         assertEquals(false, n5);
         
-        stack.push(BigDecimal.valueOf(23.6), BigDecimal.valueOf(2.5));
-        stack.push(BigDecimal.valueOf(13.0), BigDecimal.valueOf(0.0));
+        stack.push(23.6, 2.5);
+        stack.push(13.0, 0.0);
         stack.ratioLastTwoNumbers();
         ComplexNumbers num6 = stack.top();
-        assertThat(BigDecimal.valueOf(1.8154), Matchers.comparesEqualTo(num6.getReal()));
-        assertThat(BigDecimal.valueOf(0.1923), Matchers.comparesEqualTo(num6.getImg()));
+        assertEquals(1.81538462, num6.getReal());
+        assertEquals(0.19230769, num6.getImg());
         
-        stack.push(BigDecimal.valueOf(-6.2), BigDecimal.valueOf(6.2));
-        stack.push(BigDecimal.valueOf(3.1), BigDecimal.valueOf(3.1));
+        stack.push(-6.2, 6.2);
+        stack.push(3.1, 3.1);
         stack.ratioLastTwoNumbers();
         ComplexNumbers num7 = stack.top();
-        assertThat(BigDecimal.valueOf(0), Matchers.comparesEqualTo(num7.getReal()));
-        assertThat(BigDecimal.valueOf(2), Matchers.comparesEqualTo(num7.getImg()));
+        assertEquals(0.0, num7.getReal());
+        assertEquals(2.0, num7.getImg());
 
     }
     
@@ -339,31 +336,31 @@ public class StackComplexNumbersTest {
         boolean n = stack.squareRootLastNumber();
         assertEquals(false, n);
         
-        stack.push(BigDecimal.valueOf(5.67), BigDecimal.valueOf(48.1));
-        stack.push(BigDecimal.valueOf(6.31), BigDecimal.valueOf(39.443));
+        stack.push(5.67, 48.1);
+        stack.push(6.31, 39.443);
         stack.squareRootLastNumber();
         ComplexNumbers num = stack.top();
-        assertThat(BigDecimal.valueOf(4.8090), Matchers.comparesEqualTo(num.getReal()));
+        assertEquals(4.80908208, num.getReal());
 
-        stack.push(BigDecimal.valueOf(0.0), BigDecimal.valueOf(15.39));
+        stack.push(0.0, 15.39);
         stack.squareRootLastNumber();
         ComplexNumbers num1 = stack.top();
-        assertThat(BigDecimal.valueOf(2.7739), Matchers.comparesEqualTo(num1.getReal()));
+        assertEquals(2.7739863, num1.getReal());
 
-        stack.push(BigDecimal.valueOf(0.0), BigDecimal.valueOf(0.0));
+        stack.push(0.0, 0.0);
         stack.squareRootLastNumber();
         ComplexNumbers num2 = stack.top();
-        assertThat(BigDecimal.valueOf(0), Matchers.comparesEqualTo(num2.getReal()));
+        assertEquals(0.0, num2.getReal());
 
-        stack.push(BigDecimal.valueOf(-36.41), BigDecimal.valueOf(-1.95));
+        stack.push(-36.41, -1.95);
         stack.squareRootLastNumber();
         ComplexNumbers num3 = stack.top();
-        assertThat(BigDecimal.valueOf(-0.1614), Matchers.comparesEqualTo(num3.getReal()));
+        assertEquals(-0.16152461, num3.getReal());
         
-        stack.push(BigDecimal.valueOf(59.3), BigDecimal.valueOf(-22.56));
+        stack.push(59.3, -22.56);
         stack.squareRootLastNumber();
         ComplexNumbers num4 = stack.top();
-        assertThat(BigDecimal.valueOf( -7.8340), Matchers.comparesEqualTo(num4.getReal()));
+        assertEquals( -7.8341044, num4.getReal());
 
     }
     
@@ -376,36 +373,36 @@ public class StackComplexNumbersTest {
         boolean n = stack.invertSignLastNumber();
         assertEquals(false, n);
         
-        stack.push(BigDecimal.valueOf(4.65), BigDecimal.valueOf(1.5));
-        stack.push(BigDecimal.valueOf(17.593), BigDecimal.valueOf(30.5));
+        stack.push(4.65, 1.5);
+        stack.push(17.593, 30.5);
         stack.invertSignLastNumber();
         ComplexNumbers num = stack.top();
-        assertThat(BigDecimal.valueOf(-17.593), Matchers.comparesEqualTo(num.getReal()));
-        assertThat(BigDecimal.valueOf(-30.5), Matchers.comparesEqualTo(num.getImg()));
+        assertEquals(-17.593, num.getReal());
+        assertEquals(-30.5, num.getImg());
 
-        stack.push(BigDecimal.valueOf(0.0), BigDecimal.valueOf(15.39));
+        stack.push(0.0, 15.39);
         stack.invertSignLastNumber();
         ComplexNumbers num1 = stack.top();
-        assertThat(BigDecimal.valueOf(0.0), Matchers.comparesEqualTo(num1.getReal()));
-        assertThat(BigDecimal.valueOf(-15.39), Matchers.comparesEqualTo(num1.getImg()));
+        assertEquals(0.0, num1.getReal());
+        assertEquals(-15.39, num1.getImg());
 
-        stack.push(BigDecimal.valueOf(0.0), BigDecimal.valueOf(0.0));
+        stack.push(0.0, 0.0);
         stack.invertSignLastNumber();
         ComplexNumbers num2 = stack.top();
-        assertThat(BigDecimal.valueOf(0.0), Matchers.comparesEqualTo(num2.getReal()));
-        assertThat(BigDecimal.valueOf(0.0), Matchers.comparesEqualTo(num2.getImg()));
+        assertEquals(0.0, num2.getReal());
+        assertEquals(0.0, num2.getImg());
 
-        stack.push(BigDecimal.valueOf(-34.921), BigDecimal.valueOf(-30.9));
+        stack.push(-34.921, -30.9);
         stack.invertSignLastNumber();
         ComplexNumbers num3 = stack.top();
-        assertThat(BigDecimal.valueOf(34.921), Matchers.comparesEqualTo(num3.getReal()));
-        assertThat(BigDecimal.valueOf(30.9), Matchers.comparesEqualTo(num3.getImg()));
+        assertEquals(34.921, num3.getReal());
+        assertEquals(30.9, num3.getImg());
         
-        stack.push(BigDecimal.valueOf(25.3), BigDecimal.valueOf(-25.3));
+        stack.push(25.3, -25.3);
         stack.invertSignLastNumber();
         ComplexNumbers num4 = stack.top();
-        assertThat(BigDecimal.valueOf(-25.3), Matchers.comparesEqualTo(num4.getReal()));
-        assertThat(BigDecimal.valueOf(25.3), Matchers.comparesEqualTo(num4.getImg()));
+        assertEquals(-25.3, num4.getReal());
+        assertEquals(25.3, num4.getImg());
 
     }
     

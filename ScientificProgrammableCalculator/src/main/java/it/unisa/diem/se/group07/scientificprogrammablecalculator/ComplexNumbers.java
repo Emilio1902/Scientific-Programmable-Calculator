@@ -8,9 +8,7 @@
  */
 package it.unisa.diem.se.group07.scientificprogrammablecalculator;
 
-import java.math.BigDecimal;
-import java.math.MathContext;
-import java.math.RoundingMode;
+import org.apache.commons.math3.util.Precision;
 
 /**
  * ComplexNumbers implements a complex number
@@ -19,7 +17,7 @@ import java.math.RoundingMode;
  */
 public class ComplexNumbers {
 
-    private BigDecimal real, img;
+    private Double real, img;
 
     /**
      * Constructs the complex number z = real + i*img
@@ -27,9 +25,9 @@ public class ComplexNumbers {
      * @param real Real part
      * @param img Imaginary part
      */
-    public ComplexNumbers(BigDecimal real, BigDecimal img) {
-        this.real = real;
-        this.img = img;
+    public ComplexNumbers(double real, double img) {
+        this.real = Precision.round(real, 8);
+        this.img = Precision.round(img, 8);
     }
 
     /**
@@ -38,7 +36,7 @@ public class ComplexNumbers {
      *
      * @return Re[z] where z is this Complex number.
      */
-    public BigDecimal getReal() {
+    public double getReal() {
         return real;
     }
 
@@ -48,7 +46,7 @@ public class ComplexNumbers {
      *
      * @return Im[z] where z is this Complex number.
      */
-    public BigDecimal getImg() {
+    public double getImg() {
         return img;
     }
 
@@ -58,12 +56,12 @@ public class ComplexNumbers {
      *
      * @return |z| where z is this Complex number.
      */
-    public BigDecimal mod() {
-        if (real.compareTo(BigDecimal.ZERO) != 0 || img.compareTo(BigDecimal.ZERO) != 0) {
-            BigDecimal quadraticDistance = (real.multiply(real)).add(img.multiply(img));
-            return quadraticDistance.sqrt(MathContext.DECIMAL128).setScale(4, RoundingMode.UP).stripTrailingZeros();
+    public double mod() {
+        if (real != 0 || img != 0) {
+            double distance = Math.sqrt((real*real)+(img*img));
+            return Precision.round(distance, 8);
         } else {
-            return BigDecimal.ZERO;
+            return 0;
         }
     }
 
@@ -73,44 +71,46 @@ public class ComplexNumbers {
      *
      * @return arg(z) where z is this Complex number.
      */
-    public BigDecimal arg() {
-        return BigDecimal.valueOf(Math.atan2(img.doubleValue(), real.doubleValue())).setScale(4, RoundingMode.UP).stripTrailingZeros();
+    public double arg() {
+        return Precision.round(Math.atan2(img, real), 8);
     }
 
     /**
      * This method checks and parses a string into a ComplexNumbers.
      *
      * @param number is the string that represents the complex number z.
-     * @return ComplexNumbers z or null if the string format is incorrect
      */
-    public ComplexNumbers stringToComplex(String number) {
+    public ComplexNumbers (String number) {
         String[] split = number.split("[+-]");
+        try{
         if (this.checkFormat(number, split)) {
             Double[] res = this.getComplexNumber(split, number);
-            return new ComplexNumbers(BigDecimal.valueOf(res[0]).setScale(4,RoundingMode.UP).stripTrailingZeros(), BigDecimal.valueOf(res[1]).setScale(4,RoundingMode.UP).stripTrailingZeros());
+            this.real = res[0];
+            this.img = res[1];
         } else {
             if (number.equalsIgnoreCase("i")) {
-                return new ComplexNumbers(BigDecimal.valueOf(0), BigDecimal.valueOf(1.0));
+                this.real = 0.0;
+                this.img = 1.0;
             }
-            return null;
+            this.real = Double.NEGATIVE_INFINITY;
+            this.img = Double.NEGATIVE_INFINITY;
+        }
+        }catch (Exception c){
+            System.err.println("\n\nEccezione\n\n");
         }
 
     }
     
-    private boolean checkFormat(String number, String[] split){
-        if (number.matches(".*[0-9].*")
-                && ((number.endsWith("i") && ((number.length() - number.replace("i", "").length()) == 1)) || !number.contains("i")) 
+    private boolean checkFormat(String number, String[] split)throws Exception{
+        return ((number.endsWith("i") && ((number.length() - number.replace("i", "").length()) == 1)) || !number.contains("i"))
                 && split.length <= 3 
                 && !number.isEmpty()
-                && !number.matches(".*[/*√].*")
+                && (number.matches("[0-9i+-]+")) 
                 && (!number.endsWith("+") && !number.endsWith("-"))
                 && ((split.length==1)
                 || (split.length==2 && (number.charAt(0)!='-' || number.charAt(0)!='+') && number.endsWith("i"))
                 || (split.length==3 && number.endsWith("i"))
-                || (split.length==2 && number.charAt(0)=='-' && !number.endsWith("i"))))
-            return true;
-        else
-            return false;    
+                || (split.length==2 && number.charAt(0)=='-' && !number.endsWith("i")));
     }
 
     /**
@@ -181,7 +181,7 @@ public class ComplexNumbers {
      * @return z+w where z is this Complex number.
      */
     public ComplexNumbers sum(ComplexNumbers w) {
-        return new ComplexNumbers(real.add(w.getReal()), img.add(w.getImg()));
+        return new ComplexNumbers(real+w.getReal(), img+w.getImg());
     }
 
     /**
@@ -192,7 +192,7 @@ public class ComplexNumbers {
      * @return z-w where z is this Complex number.
      */
     public ComplexNumbers difference(ComplexNumbers w) {
-        return new ComplexNumbers(real.subtract(w.getReal()), img.subtract(w.getImg()));
+        return new ComplexNumbers(real-w.getReal(), img-w.getImg());
     }
 
     /**
@@ -202,8 +202,8 @@ public class ComplexNumbers {
      * @return z*w where z is this Complex number.
      */
     public ComplexNumbers product(ComplexNumbers w) {
-        BigDecimal realPart = (real.multiply(w.getReal())).subtract(img.multiply(w.getImg())).setScale(4, RoundingMode.UP).stripTrailingZeros();
-        BigDecimal imgPart = (real.multiply(w.getImg())).add(img.multiply(w.getReal())).setScale(4, RoundingMode.UP).stripTrailingZeros();
+        double realPart = (real*w.getReal())-(img*w.getImg());
+        double imgPart = (real*w.getImg())+(img*w.getReal());
 
         return new ComplexNumbers(realPart, imgPart);
     }
@@ -217,10 +217,11 @@ public class ComplexNumbers {
      * the distance (s^2+t^2) is 0
      */
     public ComplexNumbers ratio(ComplexNumbers w) {
-        BigDecimal distance = ((w.getReal().multiply(w.getReal())).add(w.getImg().multiply(w.getImg()))).stripTrailingZeros();
-        if (!distance.equals(BigDecimal.ZERO)) {
-            BigDecimal realPart = ((real.multiply(w.getReal())).add(w.getImg().multiply(img))).divide(distance, 4, RoundingMode.HALF_UP).stripTrailingZeros();
-            BigDecimal imgPart = ((img.multiply(w.getReal())).subtract(real.multiply(w.getImg()))).divide(distance, 4, RoundingMode.HALF_UP).stripTrailingZeros();
+        double distance = w.mod();
+        double squareDistance = Math.pow(distance, 2);
+        if (distance!=0) {
+            double realPart = ((real*w.getReal())+(w.getImg()*img))/squareDistance;
+            double imgPart = ((img*w.getReal())-(real*w.getImg()))/squareDistance;
             return new ComplexNumbers(realPart, imgPart);
         } else {
             return null;
@@ -234,13 +235,13 @@ public class ComplexNumbers {
      * @return sqrt(z) where z is this Complex number.
      */
     public ComplexNumbers squareRoot() {
-        BigDecimal r = this.mod().sqrt(MathContext.DECIMAL128);
-        BigDecimal theta = this.arg().divide(BigDecimal.valueOf(2));
-        if(theta.compareTo(BigDecimal.ZERO)<0){
-            theta = theta.add(BigDecimal.valueOf(Math.PI));
+        double r = Math.sqrt(this.mod());
+        double theta = this.arg()/2;
+        if(theta <0){
+            theta = theta+Math.PI;
         }
-        BigDecimal realPart = r.multiply(BigDecimal.valueOf(Math.cos(theta.doubleValue()))).setScale(4, RoundingMode.DOWN).stripTrailingZeros();
-        BigDecimal imgPart = r.multiply(BigDecimal.valueOf(Math.sin(theta.doubleValue()))).setScale(4, RoundingMode.DOWN).stripTrailingZeros();
+        double realPart = r*Math.cos(theta);
+        double imgPart = r*Math.sin(theta);
         return new ComplexNumbers(realPart, imgPart);
     }
 
@@ -252,8 +253,13 @@ public class ComplexNumbers {
      * @return -z where z is this Complex number.
      */
     public ComplexNumbers invertSign() {
-
-        return new ComplexNumbers(real.negate(), img.negate());
+        double realPart = real;
+        double imgPart = img;
+        if(real != 0)
+            realPart = -real;
+        if(img != 0)
+            imgPart = -img;
+        return new ComplexNumbers(realPart, imgPart);
     }
     
 
@@ -264,9 +270,7 @@ public class ComplexNumbers {
      */
     @Override
     public String toString() {
-        return real + (img.compareTo(BigDecimal.ZERO) < 0 ? "" : "+") + img + "i";
+        return real + (img < 0 ? "" : "+") + img + "i";
     }
-
-    
 
 }

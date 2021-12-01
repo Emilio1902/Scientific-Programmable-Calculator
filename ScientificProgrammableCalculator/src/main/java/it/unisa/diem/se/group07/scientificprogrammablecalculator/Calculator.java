@@ -64,9 +64,9 @@ public class Calculator {
         
         else {
 
-            ComplexNumbers num = new ComplexNumbers(BigDecimal.ZERO, BigDecimal.ZERO);
-            num = num.stringToComplex(s);
-            if (num != null) {
+            ComplexNumbers num = new ComplexNumbers(s);
+            
+            if (num.getReal()!=Double.NEGATIVE_INFINITY) {
                 memory.push(num.getReal(), num.getImg());
                 return "";
             } else {

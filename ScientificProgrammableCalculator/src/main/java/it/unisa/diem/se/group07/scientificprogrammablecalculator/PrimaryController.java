@@ -3,19 +3,21 @@ package it.unisa.diem.se.group07.scientificprogrammablecalculator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 
-public class PrimaryController {
+public class PrimaryController{
 
     @FXML
-    private Label display;
+    private TextField display;
 
     private Calculator calculator = new Calculator();
 
     @FXML
     private ListView<String> numbersList;
     
+    @FXML
+    private Button equals;
     /**
      * This method allows to visualize on display the key button pressed
      *
@@ -28,6 +30,7 @@ public class PrimaryController {
             this.clearDisplay(event);
         }
         display.setText(display.getText() + key);
+        equals.requestFocus();
     } 
     
     /**
@@ -67,12 +70,6 @@ public class PrimaryController {
         display.setText(s1);
         numbersList.getItems().clear();
         numbersList.getItems().addAll(calculator.lastTwelveNumbers());
-     
-    }
-}
-    
         
-    
-
-   
-
+    }   
+}  

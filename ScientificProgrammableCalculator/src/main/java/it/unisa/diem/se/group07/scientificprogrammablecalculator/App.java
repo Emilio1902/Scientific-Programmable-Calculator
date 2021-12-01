@@ -5,9 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.event.EventHandler;
-import javafx.scene.input.KeyEvent;
-
 import java.io.IOException;
 import javafx.scene.image.Image;
 
