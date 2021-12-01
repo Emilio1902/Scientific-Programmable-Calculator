@@ -1,12 +1,16 @@
 package it.unisa.diem.se.group07.scientificprogrammablecalculator;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
-public class PrimaryController{
+public class PrimaryController implements Initializable{
 
     @FXML
     private TextField display;
@@ -18,19 +22,38 @@ public class PrimaryController{
     
     @FXML
     private Button equals;
+    
+    @FXML
+    private ComboBox<String> variableOperations;
+    
+    @FXML
+    private ComboBox<String> variables;
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        variableOperations.getItems().removeAll(variableOperations.getItems());
+        variableOperations.getItems().addAll(">", "<", "+", "-");
+        variableOperations.getSelectionModel().select("VarOp");
+        
+        variables.getItems().removeAll(variableOperations.getItems());
+        variables.getItems().addAll("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z");
+        variables.getSelectionModel().select("Vars");
+    }
     /**
      * This method allows to visualize on display the key button pressed
      *
      * @param event rappresents the pressing of the button
      */
     @FXML
-    private void pressedKey(ActionEvent event) {
+    private void pressedButton(ActionEvent event) {
         String key = ((Button) event.getSource()).getText();
         if (display.getText().contains("Syntax Error") || display.getText().contains("Math Error")) {
             this.clearDisplay(event);
         }
         display.setText(display.getText() + key);
         equals.requestFocus();
+        display.requestFocus();
+        display.positionCaret(display.getText().length());
     } 
     
     /**
@@ -80,5 +103,9 @@ public class PrimaryController{
         display.setText(s1);
         numbersList.getItems().clear();
         numbersList.getItems().addAll(calculator.lastTwelveNumbers());
+    }
+
+    @FXML
+    private void makeVariableOperations(ActionEvent event) {
     }
 }  
