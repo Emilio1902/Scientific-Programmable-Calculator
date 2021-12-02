@@ -82,26 +82,24 @@ public class ComplexNumbers {
      */
     public ComplexNumbers (String number) {
         String[] split = number.split("[+-]");
-        try{
-        if (this.checkFormat(number, split)) {
-            Double[] res = this.getComplexNumber(split, number);
-            this.real = res[0];
-            this.img = res[1];
-        } else {
-            if (number.equalsIgnoreCase("i")) {
+        if (number.equalsIgnoreCase("i")) {
                 this.real = 0.0;
                 this.img = 1.0;
             }
-            this.real = Double.NEGATIVE_INFINITY;
-            this.img = Double.NEGATIVE_INFINITY;
+        else {
+            if(this.checkFormat(number, split)) {
+                Double[] res = this.getComplexNumber(split, number);
+                this.real = res[0];
+                this.img = res[1];
+            }
+            else{
+                this.real = Double.NEGATIVE_INFINITY;
+                this.img = Double.NEGATIVE_INFINITY;
+            }
         }
-        }catch (Exception c){
-            System.err.println("\n\nEccezione\n\n");
-        }
-
     }
     
-    private boolean checkFormat(String number, String[] split)throws Exception{
+    private boolean checkFormat(String number, String[] split){
         return ((number.endsWith("i") && ((number.length() - number.replace("i", "").length()) == 1)) || !number.contains("i"))
                 && split.length <= 3 
                 && !number.isEmpty()
@@ -156,7 +154,7 @@ public class ComplexNumbers {
                 }
             }
             if (split[0].contains("i")) {
-                imgPart = Double.parseDouble((firstPositive ? "+" : "-") + split[0].substring(0, split[0].length() - 1));
+                imgPart = Double.parseDouble((firstPositive ? "+" : "-") + (split[0].equalsIgnoreCase("i") ? "1" : split[0].substring(0, split[0].length() - 1)));
             } else {
                 realPart = Double.parseDouble((firstPositive ? "+" : "-") + split[0]);
             }

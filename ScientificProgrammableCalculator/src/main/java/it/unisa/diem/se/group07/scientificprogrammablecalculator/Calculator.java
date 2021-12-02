@@ -60,10 +60,15 @@ public class Calculator {
 
         if (s.compareTo("+-") == 0) {
             return memory.invertSignLastNumber() == true ? "" : "Math Error";
-        } else {
-
+        }
+        
+        if (Character.toString(s.charAt(0)).matches("[<>]+") && s.substring(1).matches("[a-z]")){
+            return checkVariableOperations(Character.toString(s.charAt(0)), s.substring(1));
+        }
+        
+        else {
             ComplexNumbers num = new ComplexNumbers(s);
-
+            
             if (num.getReal() != Double.NEGATIVE_INFINITY) {
                 memory.push(num.getReal(), num.getImg());
                 return "";

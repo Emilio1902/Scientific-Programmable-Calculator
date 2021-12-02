@@ -26,7 +26,7 @@
                   </TextField>
                   <HBox prefHeight="75.0" prefWidth="450.0" style="-fx-background-color: #111111;">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#clearDisplay" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 30; -fx-background-color: #ACACAC;" text="AC">
+                        <Button fx:id="acButton" mnemonicParsing="false" onAction="#clearDisplay" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 30; -fx-background-color: #ACACAC;" text="AC">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>

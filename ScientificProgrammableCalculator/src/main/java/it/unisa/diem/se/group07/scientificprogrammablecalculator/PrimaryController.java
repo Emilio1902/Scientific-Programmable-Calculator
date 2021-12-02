@@ -29,6 +29,9 @@ public class PrimaryController implements Initializable{
     @FXML
     private ComboBox<String> variables;
     
+    @FXML
+    private Button acButton;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         variableOperations.getItems().removeAll(variableOperations.getItems());
@@ -46,14 +49,12 @@ public class PrimaryController implements Initializable{
      */
     @FXML
     private void pressedButton(ActionEvent event) {
-        String key = ((Button) event.getSource()).getText();
-        if (display.getText().contains("Syntax Error") || display.getText().contains("Math Error")) {
-            this.clearDisplay(event);
+        if(display.isEditable()){
+            String key = ((Button) event.getSource()).getText();
+            display.setText(display.getText() + key);
+            display.requestFocus();
+            display.positionCaret(display.getText().length());
         }
-        display.setText(display.getText() + key);
-        equals.requestFocus();
-        display.requestFocus();
-        display.positionCaret(display.getText().length());
     } 
     
     /**
@@ -63,7 +64,7 @@ public class PrimaryController implements Initializable{
      */
     @FXML
     private void deleteNumber(ActionEvent event) {
-        if (display.getText().length() > 0) {
+        if (display.getText().length() > 0 && display.isEditable()) {
             display.setText(display.getText().substring(0, display.getText().length() - 1));
         }
     }
@@ -77,6 +78,11 @@ public class PrimaryController implements Initializable{
     private void clearDisplay(ActionEvent event) {
         if (display.getText().length() > 0) {
             display.setText("");
+            display.setEditable(true);
+            acButton.setStyle("-fx-background-color: #ACACAC; -fx-background-radius: 30;");
+            acButton.setDefaultButton(false);
+            equals.setDefaultButton(true);
+            display.requestFocus();
         }
     }
 
@@ -90,19 +96,14 @@ public class PrimaryController implements Initializable{
     private void makeMathOperations(ActionEvent event) {
         String s = display.getText();
         String s1 = calculator.checkMathOperations(s);
-        display.setText(s1);
-        numbersList.getItems().clear();
-        numbersList.getItems().addAll(calculator.lastTwelveNumbers());
-        
+        updateInterface(s1);
     }   
 
     @FXML
     private void makeMemoryOperations(ActionEvent event) {
         String s = ((Button)event.getSource()).getText();
         String s1 = calculator.checkMemoryOperations(s);
-        display.setText(s1);
-        numbersList.getItems().clear();
-        numbersList.getItems().addAll(calculator.lastTwelveNumbers());
+        updateInterface(s1);
     }
 
     @FXML
@@ -110,16 +111,24 @@ public class PrimaryController implements Initializable{
         String varOp = variableOperations.getValue();
         String var = variables.getValue();
         String s1 = calculator.checkVariableOperations(varOp, var);
-        display.setText(s1);
-        numbersList.getItems().clear();
-        numbersList.getItems().addAll(calculator.lastTwelveNumbers());
+        updateInterface(s1);
     }
 
     @FXML
     private void makeCopyOperations(ActionEvent event) {
-     
         String varOp = ((Button)event.getSource()).getText();
         String s1 = calculator.checkCopyOperations(varOp);
+        updateInterface(s1);
+    }
+    
+    private void updateInterface(String s1) {
+        if(s1.compareTo("")!=0){
+            display.setEditable(false);
+            acButton.setStyle("-fx-background-color: #FF4D4D; -fx-background-radius: 30;");
+            acButton.setDefaultButton(true);
+            equals.setDefaultButton(false);
+        }
+        display.requestFocus();
         display.setText(s1);
         numbersList.getItems().clear();
         numbersList.getItems().addAll(calculator.lastTwelveNumbers());
