@@ -12,8 +12,8 @@ package it.unisa.diem.se.group07.scientificprogrammablecalculator;
  */
 public class Calculator {
 
-    private StackComplexNumbers memory;
-    private Variables variables;
+    private final StackComplexNumbers memory;
+    private final Variables variables;
 
     /**
      * Constructs the stack memory of the calculator
@@ -21,6 +21,7 @@ public class Calculator {
     public Calculator() {
         memory = new StackComplexNumbers();
         variables = new Variables();
+ 
     }
 
     /**
@@ -109,11 +110,11 @@ public class Calculator {
     }
 
     /**
-     * Constructs the string to pass to the calculator and checks memory
+     * Constructs the strings to pass to the calculator and checks variable
      * operations.
      *
-     * @param op
-     * @param var
+     * @param operation is the operation to be performed 
+     * @param variable is the variable used for operation
      * @return "" if the string format is correct otherwise "Syntax Error" if
      * the string format is incorrect
      */
@@ -178,12 +179,38 @@ public class Calculator {
                 }
             }
         }
+        
         else {
             return "Syntax Error";
         }
     }
 
-    /*
+    /**
+     * Constructs the string to pass to the calculator and checks copy
+     * operations.
+     *
+     * @param operation is the operation to be performed
+     * @return "" if the string format is correct otherwise "Syntax Error" if
+     * the string format is incorrect
+     */
+    public String checkCopyOperations(String operation) {
+        
+        if (operation.compareTo("save") == 0) {
+            variables.saveVariables();
+            return "Saved";
+        } 
+    
+        if (operation.compareTo("restore") == 0) {
+            variables.restoreVariables();
+            return "Restored";
+        }
+            
+        else {
+            return "Syntax Error";
+        }
+    }
+    
+
     /**
      * Returns the last twelve numbers in the stack memory.
      * 

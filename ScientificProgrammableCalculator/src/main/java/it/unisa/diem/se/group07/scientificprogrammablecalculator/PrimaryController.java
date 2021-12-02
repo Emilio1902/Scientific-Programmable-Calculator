@@ -117,6 +117,12 @@ public class PrimaryController implements Initializable{
 
     @FXML
     private void makeCopyOperations(ActionEvent event) {
-        
+     
+        String varOp = ((Button)event.getSource()).getText();
+        String s1 = calculator.checkCopyOperations(varOp);
+        display.setText(s1);
+        numbersList.getItems().clear();
+        numbersList.getItems().addAll(calculator.lastTwelveNumbers());
     }
-}  
+  }
+  
