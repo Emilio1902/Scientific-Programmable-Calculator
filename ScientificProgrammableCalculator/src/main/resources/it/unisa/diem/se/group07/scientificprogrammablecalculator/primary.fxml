@@ -64,7 +64,7 @@
                               <Insets left="8.0" top="20.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#makeVariableOperations" prefHeight="25.0" prefWidth="80.0" style="-fx-background-radius: 30; -fx-background-color: #808080;" text="save" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#makeCopyOperations" prefHeight="25.0" prefWidth="80.0" style="-fx-background-radius: 30; -fx-background-color: #808080;" text="save" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -72,7 +72,7 @@
                               <Insets left="8.0" top="20.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#makeVariableOperations" prefHeight="25.0" prefWidth="80.0" style="-fx-background-radius: 30; -fx-background-color: #808080;" text="restore" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#makeCopyOperations" prefHeight="25.0" prefWidth="80.0" style="-fx-background-radius: 30; -fx-background-color: #808080;" text="restore" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
