@@ -60,5 +60,37 @@ public class VariablesTest {
         
     }
     
+    /**
+     * Test of restoreVariables method, of class Variables.
+     */
+    @Test
+    public void testRestoreVariables() {
+        variables.setVariableValue('a', number1);
+        variables.setVariableValue('d', number2);
+        variables.setVariableValue('z', number1);
+        
+        variables.saveVariables();
+        
+        variables.setVariableValue('a', number2);
+        variables.setVariableValue('d', number1);
+        
+        variables.restoreVariables();
+        assertEquals(number1, variables.getVariableValue('a'));
+        assertEquals(number2, variables.getVariableValue('d'));
+        assertEquals(number1, variables.getVariableValue('z'));
+        
+        //test for several saves
+        variables.setVariableValue('a', number2);
+        variables.saveVariables();
+        
+        variables.setVariableValue('d', number1);
+        variables.saveVariables();
+        
+        variables.restoreVariables();
+        assertEquals(number2, variables.getVariableValue('a'));
+        assertEquals(number1, variables.getVariableValue('d'));
+        assertEquals(number1, variables.getVariableValue('z'));    
+    }
+    
 }
 
