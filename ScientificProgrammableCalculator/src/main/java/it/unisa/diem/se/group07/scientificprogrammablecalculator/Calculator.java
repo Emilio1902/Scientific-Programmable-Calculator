@@ -36,9 +36,10 @@ public class Calculator {
             return "";
         }
         
-        if(s.matches("[+-/√*]+"))
+        if(s.matches("[+-/√*]+") || Character.isAlphabetic(s.charAt(0))) {
             return checkMathOperations(s);
-
+        }
+        
         if (Character.toString(s.charAt(0)).matches("[<>+-]+") && s.substring(1).matches("[a-z]")) {
             return checkVariableOperations(Character.toString(s.charAt(0)), s.substring(1));
         } 
@@ -79,6 +80,14 @@ public class Calculator {
 
         if (s.compareTo("+-") == 0) {
             return memory.invertSignLastNumber() == true ? "" : "Math Error";
+        }
+        
+        if (s.compareTo("mod") == 0) {
+            return memory.modLastNumber() == true ? "" : "Math Error";
+        }
+        
+        if (s.compareTo("arg") == 0) {
+            return memory.argLastNumber() == true ? "" : "Math Error";
         }
         
         else
