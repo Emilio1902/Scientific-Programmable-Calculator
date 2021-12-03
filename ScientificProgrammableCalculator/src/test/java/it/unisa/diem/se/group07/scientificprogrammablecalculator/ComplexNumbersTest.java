@@ -53,7 +53,11 @@ public class ComplexNumbersTest {
         
         ComplexNumbers num3 = new ComplexNumbers(0, 0);
         double mod3 = num3.mod();
-        assertEquals(0.0, mod3);  
+        assertEquals(0.0, mod3); 
+        
+        ComplexNumbers num4 = new ComplexNumbers(Double.MAX_VALUE, Double.MIN_VALUE);
+        double mod4 = num4.mod();
+        assertEquals(Double.POSITIVE_INFINITY, mod4); 
     }
     
     /**
@@ -242,5 +246,71 @@ public class ComplexNumbersTest {
         ComplexNumbers inverted2 =num2.invertSign();
         assertEquals(3.15, inverted2.getReal());
         assertEquals(0.0, inverted2.getImg());
+    }
+    
+    /**
+     * Test of exp method, of class ComplexNumbers.
+     */
+    @Test
+    public void testExp() {
+        ComplexNumbers exp1 =num1.exp();
+        assertEquals(1165.02101448, exp1.getReal());
+        assertEquals(515.82169481, exp1.getImg());
+        
+        ComplexNumbers exp2 =num2.exp();
+        assertEquals(0.04285213, exp2.getReal());
+        assertEquals(0.0, exp2.getImg());
+        
+        ComplexNumbers num3 = new ComplexNumbers(0, 0);
+        ComplexNumbers exp3 = num3.exp();
+        assertEquals(1.0, exp3.getReal());
+        assertEquals(0.0, exp3.getImg());
+        
+        ComplexNumbers num4 = new ComplexNumbers(0, -3.20548);
+        ComplexNumbers exp4 = num4.exp();
+        assertEquals(-0.9979599, exp4.getReal());
+        assertEquals(0.06384389, exp4.getImg());
+        
+        ComplexNumbers num5 = new ComplexNumbers(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY);
+        ComplexNumbers exp5 = num5.exp();
+        assertEquals(Double.NaN, exp5.getReal());
+        assertEquals(Double.NaN, exp5.getImg());
+        
+        ComplexNumbers num6 = new ComplexNumbers(15.32, 166.10);
+        ComplexNumbers exp6 = num6.exp();
+        assertEquals(-4138710.03802039, exp6.getReal());
+        assertEquals(1771376.2819426, exp6.getImg());
+
+
+    }
+    
+    /**
+     * Test of log method, of class ComplexNumbers.
+     */
+    @Test
+    public void testLog() {
+        ComplexNumbers log1 =num1.log();
+        assertEquals(2.2822392, log1.getReal());
+        assertEquals(0.75291861, log1.getImg());
+        
+        ComplexNumbers log2 =num2.log();
+        assertEquals(1.14740245, log2.getReal());
+        assertEquals(3.14159265, log2.getImg());
+        
+        ComplexNumbers num3 = new ComplexNumbers(0, 0);
+        ComplexNumbers log3 = num3.log();
+        assertEquals(Double.NEGATIVE_INFINITY, log3.getReal());
+        assertEquals(0.0, log3.getImg());
+        
+        ComplexNumbers num4 = new ComplexNumbers(0, -3.20548);
+        ComplexNumbers log4 = num4.log();
+        assertEquals(1.16486185, log4.getReal());
+        assertEquals(-1.57079633, log4.getImg());
+        
+        ComplexNumbers num5 = new ComplexNumbers(Math.E, 0);
+        ComplexNumbers log5 = num5.log();
+        assertEquals(1.0, log5.getReal());
+        assertEquals(0.0, log5.getImg());
+        
     }
 }

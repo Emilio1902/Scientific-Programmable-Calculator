@@ -270,6 +270,24 @@ public class ComplexNumbers {
     }
 
     /**
+        Complex exponential (doesn't change this Complex number).
+        @return exp(z) where z is this Complex number.
+    */
+    public ComplexNumbers exp() {
+        return new ComplexNumbers(Math.exp(real)*Math.cos(img),Math.exp(real)*Math.sin(img));
+    }
+    
+    /**
+        Principal branch of the Complex logarithm of this Complex number.
+        (doesn't change this Complex number).
+        The principal branch is the branch with -pi < arg <= pi.
+        @return log(z) where z is this Complex number.
+    */
+    public ComplexNumbers log() {
+        return new ComplexNumbers(Math.log(this.mod()),this.arg());
+    }
+
+    /**
      * Parse from ComplexNumbers to string
      *
      * @return Re[z]+Img[z]i string where z is this Complex number.
