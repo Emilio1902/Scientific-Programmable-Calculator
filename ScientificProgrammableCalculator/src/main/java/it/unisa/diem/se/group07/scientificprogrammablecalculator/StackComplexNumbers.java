@@ -363,4 +363,36 @@ public class StackComplexNumbers {
         }
     }
     
+    /**
+     * This method takes the logarithm of the last stored complex number 
+     * and save the result in the stack
+     *  @return false if stack has zero element, true otherwise
+    */
+    public boolean logLastNumber(){
+        if (top == -1) {
+            return false;
+        } else {
+            ComplexNumbers num1 = this.pop();
+            ComplexNumbers res = num1.log();
+            this.push(res.getReal(), res.getImg());
+            return true;
+        }
+    }
+    
+    /**
+     * This method makes the exponent of the last stored complex number 
+     * and save the result in the stack
+     *  @return false if stack has zero element, true otherwise
+    */
+    public boolean expLastNumber(){
+        if (top == -1) {
+            return false;
+        } else {
+            ComplexNumbers num1 = this.pop();
+            ComplexNumbers res = num1.exp();
+            this.push(res.getReal(), res.getImg());
+            return true;
+        }
+    }
+    
 }
