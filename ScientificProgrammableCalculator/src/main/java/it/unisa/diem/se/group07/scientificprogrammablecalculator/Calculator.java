@@ -90,6 +90,14 @@ public class Calculator {
             return memory.argLastNumber() == true ? "" : "Math Error";
         }
         
+        if (s.compareTo("exp") == 0) {
+            return memory.expLastNumber() == true ? "" : "Math Error";
+        }
+        
+        if (s.compareTo("log") == 0) {
+            return memory.logLastNumber() == true ? "" : "Math Error";
+        }
+        
         else
             return "Syntax Error";
     }
