@@ -66,6 +66,8 @@ public class PrimaryController implements Initializable{
     private void deleteNumber(ActionEvent event) {
         if (display.getText().length() > 0 && display.isEditable()) {
             display.setText(display.getText().substring(0, display.getText().length() - 1));
+            display.requestFocus();
+            display.positionCaret(display.getText().length());
         }
     }
 
@@ -93,9 +95,9 @@ public class PrimaryController implements Initializable{
      * @param event rappresents the pressing of the = button
      */
     @FXML
-    private void makeMathOperations(ActionEvent event) {
+    private void makeEqualsButtonOperations(ActionEvent event) {
         String s = display.getText();
-        String s1 = calculator.checkMathOperations(s);
+        String s1 = calculator.checkEqualsButtonOperations(s);
         updateInterface(s1);
     }   
 

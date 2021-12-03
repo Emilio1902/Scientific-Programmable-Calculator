@@ -284,7 +284,7 @@
                               <Font size="28.0" />
                            </font>
                         </Button>
-                        <Button fx:id="equals" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#makeMathOperations" prefHeight="60.0" prefWidth="150.0" style="-fx-background-radius: 30; -fx-background-color: #F29611;" text="=" textFill="WHITE">
+                        <Button fx:id="equals" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#makeEqualsButtonOperations" prefHeight="60.0" prefWidth="150.0" style="-fx-background-radius: 30; -fx-background-color: #F29611;" text="=" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="15.0" right="15.0" />
                            </HBox.margin>

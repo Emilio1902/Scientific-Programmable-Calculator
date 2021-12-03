@@ -58,7 +58,7 @@ public class ComplexNumbers {
      */
     public double mod() {
         if (real != 0 || img != 0) {
-            double distance = Math.sqrt((real*real)+(img*img));
+            double distance = Math.sqrt((real * real) + (img * img));
             return Precision.round(distance, 8);
         } else {
             return 0;
@@ -76,44 +76,45 @@ public class ComplexNumbers {
     }
 
     /**
-     * This method checks and parses a string into a ComplexNumbers.
+     * Constructs the complex number z from the string number; if the number 
+     * format is incorrect, it constructs a ComplexNumbers z with 
+     * NEGATIVE_INFINITY real and imaginary parts.
      *
      * @param number is the string that represents the complex number z.
      */
-    public ComplexNumbers (String number) {
+    public ComplexNumbers(String number) {
         String[] split = number.split("[+-]");
         if (number.equalsIgnoreCase("i")) {
-                this.real = 0.0;
-                this.img = 1.0;
-            }
-        else {
-            if(this.checkFormat(number, split)) {
+            this.real = 0.0;
+            this.img = 1.0;
+        } else {
+            if (this.checkFormat(number, split)) {
                 Double[] res = this.getComplexNumber(split, number);
                 this.real = res[0];
                 this.img = res[1];
-            }
-            else{
+            } else {
                 this.real = Double.NEGATIVE_INFINITY;
                 this.img = Double.NEGATIVE_INFINITY;
             }
         }
     }
     
-    private boolean checkFormat(String number, String[] split){
+    /**
+     * This method checks if the String could be a complex number
+     * 
+     * @param number is the string that contains the complex number
+     * @param split is the string vector that contains the split of number on +
+     * and -
+     * 
+     * @return true if the format is correct, false otherwise
+    */
+    private boolean checkFormat(String number, String[] split) {
         return ((number.endsWith("i") && ((number.length() - number.replace("i", "").length()) == 1)) || !number.contains("i"))
-                && split.length <= 3 
-                && !number.isEmpty()
-                && (number.matches("[0-9i+-.]+")) 
-                && (!number.endsWith("+") && !number.endsWith("-"))
-                && ((split.length==1)
-                || (split.length==2 && (number.charAt(0)!='-' || number.charAt(0)!='+') && number.endsWith("i"))
-                || (split.length==3 && number.endsWith("i"))
-                || (split.length==2 && number.charAt(0)=='-' && !number.endsWith("i")));
+                && split.length <= 3;
     }
 
     /**
-     * This method obtains the Complex number and performs all checks relating
-     * it.
+     * Obtains the Complex number and performs all checks relating it.
      *
      * @param split is the string vector that contains real and imaginary part
      * of the number.
@@ -138,37 +139,43 @@ public class ComplexNumbers {
         }
         double realPart = 0.0;
         double imgPart = 0.0;
-        if (split.length == 1) {
-            if (number.contains("i")) {
-                imgPart = Double.parseDouble(number.substring(0, number.length() - 1));
-            } else {
-                realPart = Double.parseDouble(number);
+        try {
+            if (split.length == 1) {
+                if (number.contains("i")) {
+                    imgPart = Double.parseDouble(number.substring(0, number.length() - 1));
+                } else {
+                    realPart = Double.parseDouble(number);
+                }
             }
-        }
-        if (split.length == 2) {
-            if (split[1].contains("i") && !split[0].contains("i")) {
+            if (split.length == 2) {
+                if (split[1].contains("i") && !split[0].contains("i")) {
+                    if (split[1].equalsIgnoreCase("i")) {
+                        imgPart = Double.parseDouble((secondPositive ? "+" : "-") + "1");
+                    } else {
+                        imgPart = Double.parseDouble((secondPositive ? "+" : "-") + split[1].substring(0, split[1].length() - 1));
+                    }
+                }
+                if (split[0].contains("i")) {
+                    imgPart = Double.parseDouble((firstPositive ? "+" : "-") + (split[0].equalsIgnoreCase("i") ? "1" : split[0].substring(0, split[0].length() - 1)));
+                } else {
+                    realPart = Double.parseDouble((firstPositive ? "+" : "-") + split[0]);
+                }
+            }
+            if (split.length > 2) {
                 if (split[1].equalsIgnoreCase("i")) {
                     imgPart = Double.parseDouble((secondPositive ? "+" : "-") + "1");
                 } else {
                     imgPart = Double.parseDouble((secondPositive ? "+" : "-") + split[1].substring(0, split[1].length() - 1));
                 }
-            }
-            if (split[0].contains("i")) {
-                imgPart = Double.parseDouble((firstPositive ? "+" : "-") + (split[0].equalsIgnoreCase("i") ? "1" : split[0].substring(0, split[0].length() - 1)));
-            } else {
                 realPart = Double.parseDouble((firstPositive ? "+" : "-") + split[0]);
             }
+        } catch (Exception e) {
+            realPart = Double.NEGATIVE_INFINITY;
+            imgPart = Double.NEGATIVE_INFINITY;
         }
-        if (split.length > 2) {
-            if (split[1].equalsIgnoreCase("i")) {
-                imgPart = Double.parseDouble((secondPositive ? "+" : "-") + "1");
-            } else {
-                imgPart = Double.parseDouble((secondPositive ? "+" : "-") + split[1].substring(0, split[1].length() - 1));
-            }
-            realPart = Double.parseDouble((firstPositive ? "+" : "-") + split[0]);
+        finally {
+            return new Double[]{realPart, imgPart};
         }
-
-        return new Double[]{realPart, imgPart};
     }
 
     /**
@@ -179,7 +186,7 @@ public class ComplexNumbers {
      * @return z+w where z is this Complex number.
      */
     public ComplexNumbers sum(ComplexNumbers w) {
-        return new ComplexNumbers(real+w.getReal(), img+w.getImg());
+        return new ComplexNumbers(real + w.getReal(), img + w.getImg());
     }
 
     /**
@@ -190,7 +197,7 @@ public class ComplexNumbers {
      * @return z-w where z is this Complex number.
      */
     public ComplexNumbers difference(ComplexNumbers w) {
-        return new ComplexNumbers(real-w.getReal(), img-w.getImg());
+        return new ComplexNumbers(real - w.getReal(), img - w.getImg());
     }
 
     /**
@@ -200,8 +207,8 @@ public class ComplexNumbers {
      * @return z*w where z is this Complex number.
      */
     public ComplexNumbers product(ComplexNumbers w) {
-        double realPart = (real*w.getReal())-(img*w.getImg());
-        double imgPart = (real*w.getImg())+(img*w.getReal());
+        double realPart = (real * w.getReal()) - (img * w.getImg());
+        double imgPart = (real * w.getImg()) + (img * w.getReal());
 
         return new ComplexNumbers(realPart, imgPart);
     }
@@ -217,9 +224,9 @@ public class ComplexNumbers {
     public ComplexNumbers ratio(ComplexNumbers w) {
         double distance = w.mod();
         double squareDistance = Math.pow(distance, 2);
-        if (distance!=0) {
-            double realPart = ((real*w.getReal())+(w.getImg()*img))/squareDistance;
-            double imgPart = ((img*w.getReal())-(real*w.getImg()))/squareDistance;
+        if (distance != 0) {
+            double realPart = ((real * w.getReal()) + (w.getImg() * img)) / squareDistance;
+            double imgPart = ((img * w.getReal()) - (real * w.getImg())) / squareDistance;
             return new ComplexNumbers(realPart, imgPart);
         } else {
             return null;
@@ -234,12 +241,12 @@ public class ComplexNumbers {
      */
     public ComplexNumbers squareRoot() {
         double r = Math.sqrt(this.mod());
-        double theta = this.arg()/2;
-        if(theta <0){
-            theta = theta+Math.PI;
+        double theta = this.arg() / 2;
+        if (theta < 0) {
+            theta = theta + Math.PI;
         }
-        double realPart = r*Math.cos(theta);
-        double imgPart = r*Math.sin(theta);
+        double realPart = r * Math.cos(theta);
+        double imgPart = r * Math.sin(theta);
         return new ComplexNumbers(realPart, imgPart);
     }
 
@@ -253,13 +260,14 @@ public class ComplexNumbers {
     public ComplexNumbers invertSign() {
         double realPart = real;
         double imgPart = img;
-        if(real != 0)
+        if (real != 0) {
             realPart = -real;
-        if(img != 0)
+        }
+        if (img != 0) {
             imgPart = -img;
+        }
         return new ComplexNumbers(realPart, imgPart);
     }
-    
 
     /**
      * Parse from ComplexNumbers to string
