@@ -199,7 +199,7 @@ public class StackComplexNumbersTest {
     
     /**
      * Test of productLastTwoNumbers method, of class StackComplexNumbers.
-     * The result of the multiplication expects a maximum of 4 decimal digits rounded up, 
+     * The result of the multiplication expects a maximum of 8 decimal digits rounded up, 
      * for the implementation of the method in ComplexNumbers class.
      */
     @Test
@@ -254,7 +254,7 @@ public class StackComplexNumbersTest {
    
     /**
      * Test of ratioLastTwoNumbers method, of class StackComplexNumbers.
-     * The result of the division expects a maximum of 4 decimal digits rounded up, 
+     * The result of the division expects a maximum of 8 decimal digits rounded up, 
      * for the implementation of the method in ComplexNumbers class.
      */
     @Test
@@ -327,7 +327,7 @@ public class StackComplexNumbersTest {
     
     /**
      * Test of squareRootLastNumber method, of class StackComplexNumbers.
-     * The result of the square root expects a maximum of 4 decimal digits rounded down, 
+     * The result of the square root expects a maximum of 8 decimal digits rounded up, 
      * for the implementation of the method in ComplexNumbers class.
      */
     @Test
@@ -514,6 +514,110 @@ public class StackComplexNumbersTest {
         boolean n3 = stack.dupSecondLastNumber();
         assertEquals(11.3, stack.top().getReal());
         assertEquals(37.9, stack.top().getImg());
+
+    }
+    
+    /**
+     * Test of modLastNumber method, of class StackComplexNumbers.
+     * The result of the modulus expects a maximum of 8 decimal digits rounded up, 
+     * for the implementation of the method in ComplexNumbers class.
+     */
+    @Test
+    public void testModLastNumber() {
+        //test for empty stack
+        boolean n = stack.modLastNumber();
+        assertEquals(false, n);
+        
+        stack.push(5.63, 10.5);
+        stack.push(13.6, 16.0);
+        stack.modLastNumber();
+        ComplexNumbers num = stack.top();
+        assertEquals(20.9990476, num.getReal());
+
+        stack.push(0.0, 23.286);
+        stack.modLastNumber();
+        ComplexNumbers num1 = stack.top();
+        assertEquals(23.286, num1.getReal());
+        
+        stack.push(99.3, 0.0);
+        stack.modLastNumber();
+        ComplexNumbers num2 = stack.top();
+        assertEquals(99.3, num2.getReal());
+
+        stack.push(0.0, 0.0);
+        stack.modLastNumber();
+        ComplexNumbers num3 = stack.top();
+        assertEquals(0.0, num3.getReal());
+
+        stack.push(-50.32, -1.4);
+        stack.modLastNumber();
+        ComplexNumbers num4 = stack.top();
+        assertEquals(50.33947159, num4.getReal());
+        
+        stack.push(32.09, -47.6);
+        stack.modLastNumber();
+        ComplexNumbers num5 = stack.top();
+        assertEquals(57.40669038, num5.getReal());
+
+    }
+    
+    /**
+     * Test of argLastNumber method, of class StackComplexNumbers.
+     * The result of the arguments expects a maximum of 8 decimal digits rounded up, 
+     * for the implementation of the method in ComplexNumbers class.
+     */
+    @Test
+    public void testArgLastNumber() {
+        //test for empty stack
+        boolean n = stack.argLastNumber();
+        assertEquals(false, n);
+        
+        stack.push(40.32, 3.7);
+        stack.push(10.3, 55.93);
+        stack.argLastNumber();
+        ComplexNumbers num = stack.top();
+        assertEquals(1.38867807, num.getReal());
+
+        
+        stack.push(8.21, -3.78);
+        stack.argLastNumber();
+        ComplexNumbers num1 = stack.top();
+        assertEquals(-0.43148049, num1.getReal());
+
+        stack.push(0.0, 21.854);
+        stack.argLastNumber();
+        ComplexNumbers num2 = stack.top();
+        assertEquals(1.57079633, num2.getReal());
+        
+        stack.push(0.0, -5.1);
+        stack.argLastNumber();
+        ComplexNumbers num3 = stack.top();
+        assertEquals(-1.57079633, num3.getReal());
+        
+        stack.push(0.0, 0.0);
+        stack.argLastNumber();
+        ComplexNumbers num4 = stack.top();
+        assertEquals(0.0, num4.getReal());
+        
+        stack.push(37.492, 0.0);
+        stack.argLastNumber();
+        ComplexNumbers num5 = stack.top();
+        assertEquals(0.0, num5.getReal());
+
+        stack.push(0.0, 0.0);
+        stack.argLastNumber();
+        ComplexNumbers num6 = stack.top();
+        assertEquals(0.0, num6.getReal());
+
+        stack.push(-19.4, -53.28);
+        stack.argLastNumber();
+        ComplexNumbers num7 = stack.top();
+        assertEquals(-1.91998922, num7.getReal());
+        
+        stack.push(-65.4, 2.345);
+        stack.argLastNumber();
+        ComplexNumbers num8 = stack.top();
+        assertEquals(3.10575174, num8.getReal());
 
     }
     

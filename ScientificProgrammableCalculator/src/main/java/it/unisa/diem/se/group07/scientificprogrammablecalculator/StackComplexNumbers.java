@@ -18,7 +18,8 @@ public class StackComplexNumbers {
     private int top;
     
     /**
-    * Constructs the Stack
+     * Constructs the memory that contains the stored complex numbers 
+     * in a stack data structure
     */
     public StackComplexNumbers() {
         array = new ComplexNumbers[capacity];
@@ -326,6 +327,38 @@ public class StackComplexNumbers {
             ComplexNumbers n1 = this.top();
             this.push(n.getReal(), n.getImg());
             this.push(n1.getReal(), n1.getImg());
+            return true;
+        }
+    }
+    
+    /**
+     * This method makes the modulus of the last stored complex number 
+     * and save the result in the stack
+     *  @return false if stack has zero element, true otherwise
+    */
+    public boolean modLastNumber(){
+        if (top == -1) {
+            return false;
+        } else {
+            ComplexNumbers num1 = this.pop();
+            double res = num1.mod();
+            this.push(res, 0.0);
+            return true;
+        }
+    }
+    
+    /**
+     * This method makes the arguments of the last stored complex number 
+     * and save the result in the stack
+     *  @return false if stack has zero element, true otherwise
+    */
+    public boolean argLastNumber(){
+        if (top == -1) {
+            return false;
+        } else {
+            ComplexNumbers num1 = this.pop();
+            double res = num1.arg();
+            this.push(res, 0.0);
             return true;
         }
     }
