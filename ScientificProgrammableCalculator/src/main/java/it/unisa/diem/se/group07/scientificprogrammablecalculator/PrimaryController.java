@@ -21,9 +21,6 @@ public class PrimaryController implements Initializable{
     private ListView<String> numbersList;
     
     @FXML
-    private Button equals;
-    
-    @FXML
     private ComboBox<String> variableOperations;
     
     @FXML
@@ -31,6 +28,9 @@ public class PrimaryController implements Initializable{
     
     @FXML
     private Button acButton;
+    
+    @FXML
+    private Button equalButton;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -83,7 +83,7 @@ public class PrimaryController implements Initializable{
             display.setEditable(true);
             acButton.setStyle("-fx-background-color: #ACACAC; -fx-background-radius: 30;");
             acButton.setDefaultButton(false);
-            equals.setDefaultButton(true);
+            equalButton.setDefaultButton(true);
             display.requestFocus();
         }
     }
@@ -128,7 +128,7 @@ public class PrimaryController implements Initializable{
             display.setEditable(false);
             acButton.setStyle("-fx-background-color: #FF4D4D; -fx-background-radius: 30;");
             acButton.setDefaultButton(true);
-            equals.setDefaultButton(false);
+            equalButton.setDefaultButton(false);
         }
         display.requestFocus();
         display.setText(s1);

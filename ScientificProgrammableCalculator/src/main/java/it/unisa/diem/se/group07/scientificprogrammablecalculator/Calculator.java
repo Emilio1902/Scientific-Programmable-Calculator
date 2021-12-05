@@ -45,7 +45,7 @@ public class Calculator {
         } 
         
         else {
-            return insertComplexNumbers(s);
+            return insertComplexNumbers(s) == true ? "" : "Syntax Error";
         }
     }
     
@@ -108,14 +108,14 @@ public class Calculator {
      * @param s String that contains the complex number
      * @return "" if the insert is successfull otherwise "Syntax Error"
      */
-    private String insertComplexNumbers(String s) {
+    private boolean insertComplexNumbers(String s) {
         ComplexNumbers num = new ComplexNumbers(s);
 
         if (num.getReal() != Double.NEGATIVE_INFINITY) {
             memory.push(num.getReal(), num.getImg());
-            return "";
+            return true;
         } else {
-            return "Syntax Error";
+            return false;
         }
     }
 
