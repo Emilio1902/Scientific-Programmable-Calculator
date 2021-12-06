@@ -307,7 +307,7 @@ public class StackComplexNumbersTest {
         stack.push(73.8, 2.6);
         stack.push(0.0, 0.0);
         boolean n5 = stack.ratioLastTwoNumbers();
-        assertEquals(false, n5);
+        assertEquals(true, n5);
         
         stack.push(23.6, 2.5);
         stack.push(13.0, 0.0);
@@ -355,12 +355,12 @@ public class StackComplexNumbersTest {
         stack.push(-36.41, -1.95);
         stack.squareRootLastNumber();
         ComplexNumbers num3 = stack.top();
-        assertEquals(-0.16152461, num3.getReal());
+        assertEquals(-0.16152462, num3.getReal());
         
         stack.push(59.3, -22.56);
         stack.squareRootLastNumber();
         ComplexNumbers num4 = stack.top();
-        assertEquals( -7.8341044, num4.getReal());
+        assertEquals( -7.83410441, num4.getReal());
 
     }
     

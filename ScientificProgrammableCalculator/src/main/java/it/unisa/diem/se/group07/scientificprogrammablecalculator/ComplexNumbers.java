@@ -26,8 +26,14 @@ public class ComplexNumbers {
      * @param img Imaginary part
      */
     public ComplexNumbers(double real, double img) {
-        this.real = Precision.round(real, 8);
-        this.img = Precision.round(img, 8);
+        if(Double.compare(real,Double.NaN)!=0 && Double.compare(img,Double.NaN)!=0){
+            this.real = Precision.round(real, 8);
+            this.img = Precision.round(img, 8);
+        }
+        else{
+            this.real = Double.NaN;
+            this.img = Double.NaN;
+        }
     }
 
     /**
@@ -58,8 +64,7 @@ public class ComplexNumbers {
      */
     public double mod() {
         if (real != 0 || img != 0) {
-            double distance = Math.sqrt((real * real) + (img * img));
-            return Precision.round(distance, 8);
+            return Math.sqrt((real * real) + (img * img));
         } else {
             return 0;
         }
@@ -72,7 +77,10 @@ public class ComplexNumbers {
      * @return arg(z) where z is this Complex number.
      */
     public double arg() {
-        return Precision.round(Math.atan2(img, real), 8);
+        if(Math.abs(real) != Double.POSITIVE_INFINITY && Math.abs(img) != Double.POSITIVE_INFINITY)
+            return Math.atan2(img, real);
+        else
+            return 0.0;
     }
 
     /**
@@ -109,7 +117,9 @@ public class ComplexNumbers {
      * @return true if the format is correct, false otherwise
     */
     private boolean checkFormat(String number, String[] split) {
-        return ((number.endsWith("i") && ((number.length() - number.replace("i", "").length()) == 1)) || !number.contains("i"))
+        return ((number.endsWith("i") && ((number.length() - number.replace("i", "").length()) == 1)) 
+                || (!number.contains("i")&& ((split.length==2 && Character.isDigit(number.charAt(number.length()-1))
+                &&((number.startsWith("+"))||number.startsWith("-")))|| split.length==1)))
                 && split.length <= 3;
     }
 
@@ -209,7 +219,6 @@ public class ComplexNumbers {
     public ComplexNumbers product(ComplexNumbers w) {
         double realPart = (real * w.getReal()) - (img * w.getImg());
         double imgPart = (real * w.getImg()) + (img * w.getReal());
-
         return new ComplexNumbers(realPart, imgPart);
     }
 
@@ -218,8 +227,8 @@ public class ComplexNumbers {
      * <br>(x+i*y)/(s+i*t) = ((x*s + y*t)/(s^2+t^2))+ i*((y*s - x*t)/(s^2+t^2))
      *
      * @param w is the number to divide by
-     * @return new Complex number z/w where z is this Complex number or null if
-     * the distance (s^2+t^2) is 0
+     * @return new Complex number z/w where z is this Complex number or -infinity if
+     * the mod of w (s^2+t^2) is 0
      */
     public ComplexNumbers ratio(ComplexNumbers w) {
         double distance = w.mod();
@@ -229,7 +238,7 @@ public class ComplexNumbers {
             double imgPart = ((img * w.getReal()) - (real * w.getImg())) / squareDistance;
             return new ComplexNumbers(realPart, imgPart);
         } else {
-            return null;
+            return new ComplexNumbers(Double.NEGATIVE_INFINITY, 0.0);
         }
     }
 
@@ -274,7 +283,13 @@ public class ComplexNumbers {
         @return exp(z) where z is this Complex number.
     */
     public ComplexNumbers exp() {
-        return new ComplexNumbers(Math.exp(real)*Math.cos(img),Math.exp(real)*Math.sin(img));
+        double realPart = Math.exp(real)*Math.cos(img);
+        double imgPart = Math.exp(real)*Math.sin(img);
+        if(Math.abs(realPart)==0)
+            realPart =0.0;
+        if(Math.abs(imgPart)==0)
+            imgPart =0.0;
+        return new ComplexNumbers(realPart, imgPart);
     }
     
     /**

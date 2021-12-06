@@ -7,8 +7,9 @@ package it.unisa.diem.se.group07.scientificprogrammablecalculator;
 import java.util.Arrays;
 
 /**
- * StackComplexNumbers implements a dynamic Stack data structures 
- * with LIFO(Last In First Out) logic to do calculator operations.
+ * StackComplexNumbers implements a dynamic Stack data structures with LIFO(Last
+ * In First Out) logic to do calculator operations.
+ *
  * @author DELL
  */
 public class StackComplexNumbers {
@@ -16,20 +17,21 @@ public class StackComplexNumbers {
     private ComplexNumbers[] array;
     private static int capacity = 20;
     private int top;
-    
+
     /**
-     * Constructs the memory that contains the stored complex numbers 
-     * in a stack data structure
-    */
+     * Constructs the memory that contains the stored complex numbers in a stack
+     * data structure
+     */
     public StackComplexNumbers() {
         array = new ComplexNumbers[capacity];
         top = -1;
     }
-    
+
     /**
-     * This method check if the stack is empty 
-     *  @return boolean that specifies if the stack is empty
-    */
+     * This method check if the stack is empty
+     *
+     * @return boolean that specifies if the stack is empty
+     */
     public boolean isEmpty() {
         if (top == -1) {
             return true;
@@ -37,11 +39,12 @@ public class StackComplexNumbers {
             return false;
         }
     }
-    
+
     /**
-     * This method check if the stack is full 
-     *  @return boolean that specifies if the stack is full
-    */
+     * This method check if the stack is full
+     *
+     * @return boolean that specifies if the stack is full
+     */
     public boolean isFull() {
         if (capacity == top + 1) {
             return true;
@@ -49,10 +52,10 @@ public class StackComplexNumbers {
             return false;
         }
     }
-    
+
     /**
      * This method doubles the size of the array
-    */
+     */
     public void expandArray() {
         int i = 0;
         int curr_size = top + 1;
@@ -63,10 +66,10 @@ public class StackComplexNumbers {
         array = new_array;
         capacity = new_array.length;
     }
-    
+
     /**
      * This method reduces the size of the array
-    */
+     */
     public void reduceSize() {
         int curr_length = top + 1;
         if (curr_length < capacity / 2) {
@@ -76,24 +79,26 @@ public class StackComplexNumbers {
             capacity = new_array.length;
         }
     }
-    
+
     /**
-     * This method puts the complex number on the stack; 
-     * expands the stack if it is full and then inserts the number 
-     * @param real Real part 
+     * This method puts the complex number on the stack; expands the stack if it
+     * is full and then inserts the number
+     *
+     * @param real Real part
      * @param img Imaginary part
-    */
+     */
     public void push(double real, double img) {
         if (isFull()) {
             expandArray();
         }
         array[++top] = createComplex(real, img);
     }
-    
-    /** 
-     * This method deletes the last element inserted on the stack 
-     *  @return last element in the stack that is deleted
-    */
+
+    /**
+     * This method deletes the last element inserted on the stack
+     *
+     * @return last element in the stack that is deleted
+     */
     public ComplexNumbers pop() {
         if (isEmpty()) {
             return null;
@@ -102,11 +107,12 @@ public class StackComplexNumbers {
             return array[top--];
         }
     }
-    
+
     /**
-     * This method returns the last item inserted on the stack 
-     *  @return last item inserted on the stack
-    */
+     * This method returns the last item inserted on the stack
+     *
+     * @return last item inserted on the stack
+     */
     public ComplexNumbers top() {
         if (isEmpty()) {
             return null;
@@ -114,13 +120,14 @@ public class StackComplexNumbers {
             return array[top];
         }
     }
-    
+
     /**
-     * This method creates a complex number 
-     *  @param real Real part  
-     *  @param img Imaginary part  
-     *  @return a complex number
-    */
+     * This method creates a complex number
+     *
+     * @param real Real part
+     * @param img Imaginary part
+     * @return a complex number
+     */
     private ComplexNumbers createComplex(double real, double img) {
         return new ComplexNumbers(real, img);
     }
@@ -149,13 +156,14 @@ public class StackComplexNumbers {
             return lastTwelve;
         }
     }
-    
+
     /**
-     * This method  sum the last two stored complex numbers 
-     * and save the result in the stack
-     *  @return false if stack has at most one element, true otherwise
-    */
-    public boolean sumLastTwoNumbers(){
+     * This method sum the last two stored complex numbers and save the result
+     * in the stack
+     *
+     * @return false if stack has at most one element, true otherwise
+     */
+    public boolean sumLastTwoNumbers() {
         if (top <= 0) {
             return false;
         } else {
@@ -166,13 +174,14 @@ public class StackComplexNumbers {
             return true;
         }
     }
-    
+
     /**
-     * This method  makes the difference of the last two stored complex numbers 
+     * This method makes the difference of the last two stored complex numbers
      * and save the result in the stack
-     *  @return false if stack has at most one element, true otherwise
-    */
-    public boolean differenceLastTwoNumbers(){
+     *
+     * @return false if stack has at most one element, true otherwise
+     */
+    public boolean differenceLastTwoNumbers() {
         if (top <= 0) {
             return false;
         } else {
@@ -183,13 +192,14 @@ public class StackComplexNumbers {
             return true;
         }
     }
-    
+
     /**
-     * This method  multiplies the last two stored complex numbers 
-     * and save the result in the stack
-     *  @return false if stack has at most one element, true otherwise
-    */
-    public boolean productLastTwoNumbers(){
+     * This method multiplies the last two stored complex numbers and save the
+     * result in the stack
+     *
+     * @return false if stack has at most one element, true otherwise
+     */
+    public boolean productLastTwoNumbers() {
         if (top <= 0) {
             return false;
         } else {
@@ -200,37 +210,34 @@ public class StackComplexNumbers {
             return true;
         }
     }
-    
+
     /**
-     * This method  divides the last two stored complex numbers 
-     * and save the result in the stack
-     *  @return false if stack has at most one element, true otherwise
-    */
-    public boolean ratioLastTwoNumbers(){
+     * This method divides the last two stored complex numbers and save the
+     * result in the stack
+     *
+     * @return false if stack has at most one element, true otherwise
+     */
+    public boolean ratioLastTwoNumbers() {
         if (top <= 0) {
             return false;
         } else {
             ComplexNumbers num1 = this.pop();
             ComplexNumbers num2 = this.pop();
             ComplexNumbers res = num2.ratio(num1);
-            if (res == null) {
-                this.push(num2.getReal(), num2.getImg());
-                this.push(num1.getReal(), num1.getImg());
-                return false;
-            } else {
-                this.push(res.getReal(), res.getImg());
-                return true;
-            }
+
+            this.push(res.getReal(), res.getImg());
+            return true;
         }
     }
-    
-    /**
-     * This method takes the square root of the last stored complex number 
-     * and save the result in the stack
-     *  @return false if stack has zero element, true otherwise
-    */
-    
-    public boolean squareRootLastNumber(){
+
+
+/**
+ * This method takes the square root of the last stored complex number and save
+ * the result in the stack
+ *
+ * @return false if stack has zero element, true otherwise
+ */
+public boolean squareRootLastNumber(){
         if (top == -1) {
             return false;
         } else {
