@@ -2,12 +2,14 @@ package it.unisa.diem.se.group07.scientificprogrammablecalculator;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class PrimaryController implements Initializable{
@@ -36,7 +38,7 @@ public class PrimaryController implements Initializable{
     private TextField nameFunction;
     
     @FXML
-    private TextField operationsFunction;
+    private TextArea operationsFunction;
     
     @FXML
     private ComboBox<String> functionsList;
@@ -53,6 +55,17 @@ public class PrimaryController implements Initializable{
         
         functionsList.getItems().removeAll(functionsList.getItems());
         functionsList.getSelectionModel().select("Functions");
+        
+        operationsFunction.setWrapText(true);
+        
+        Platform.runLater(new Runnable(){
+            @Override
+            public void run() {
+                display.requestFocus();
+            }
+            
+        });
+        
     }
     /**
      * This method allows to visualize on display the key button pressed
@@ -78,9 +91,9 @@ public class PrimaryController implements Initializable{
     private void deleteNumber(ActionEvent event) {
         if (display.getText().length() > 0 && display.isEditable()) {
             display.setText(display.getText().substring(0, display.getText().length() - 1));
-            display.requestFocus();
-            display.positionCaret(display.getText().length());
         }
+        display.requestFocus();
+        display.positionCaret(display.getText().length());
     }
 
     /**
@@ -96,8 +109,8 @@ public class PrimaryController implements Initializable{
             acButton.setStyle("-fx-background-color: #ACACAC; -fx-background-radius: 30;");
             acButton.setDefaultButton(false);
             equalButton.setDefaultButton(true);
-            display.requestFocus();
         }
+        display.requestFocus();
     }
 
     /**

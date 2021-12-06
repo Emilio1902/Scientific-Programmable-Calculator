@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -35,7 +36,7 @@
                <children>
                   <TextField fx:id="display" alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="450.0" style="-fx-background-color: #111111; -fx-text-fill: white;">
                      <VBox.margin>
-                        <Insets left="15.0" right="15.0" />
+                        <Insets left="15.0" right="65.0" top="30.0" />
                      </VBox.margin>
                      <font>
                         <Font size="40.0" />
@@ -95,7 +96,7 @@
                               </Button>
                            </children>
                            <VBox.margin>
-                              <Insets top="60.0" />
+                              <Insets top="30.0" />
                            </VBox.margin>
                         </HBox>
                         <HBox prefHeight="75.0" prefWidth="450.0" style="-fx-background-color: #111111;">
@@ -378,14 +379,14 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="operationsFunction" alignment="TOP_LEFT" prefHeight="150.0" promptText="Operations..." style="-fx-background-color: #3E3E3E; -fx-text-fill: white; -fx-prompt-text-fill: white;">
+                  <TextArea fx:id="operationsFunction" prefHeight="166.0" prefWidth="280.0" promptText="Operations..." style="-fx-control-inner-background: #3E3E3E; -fx-prompt-text-fill: white;">
                      <VBox.margin>
-                        <Insets left="10.0" right="10.0" top="20.0" />
+                        <Insets left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
-                  </TextField>
+                  </TextArea>
                   <Button mnemonicParsing="false" onAction="#saveFunctionButton" prefHeight="30.0" prefWidth="300.0" style="-fx-background-radius: 30; -fx-background-color: #808080;" text="save function" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
