@@ -32,6 +32,15 @@ public class PrimaryController implements Initializable{
     @FXML
     private Button equalButton;
     
+    @FXML
+    private TextField nameFunction;
+    
+    @FXML
+    private TextField operationsFunction;
+    
+    @FXML
+    private ComboBox<String> functionsList;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         variableOperations.getItems().removeAll(variableOperations.getItems());
@@ -41,6 +50,9 @@ public class PrimaryController implements Initializable{
         variables.getItems().removeAll(variableOperations.getItems());
         variables.getItems().addAll("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z");
         variables.getSelectionModel().select("Vars");
+        
+        functionsList.getItems().removeAll(functionsList.getItems());
+        functionsList.getSelectionModel().select("Functions");
     }
     /**
      * This method allows to visualize on display the key button pressed
@@ -134,6 +146,26 @@ public class PrimaryController implements Initializable{
         display.setText(s1);
         numbersList.getItems().clear();
         numbersList.getItems().addAll(calculator.lastTwelveNumbers());
+    }
+
+    @FXML
+    private void saveFunctionButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void useFunctionButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void modifyFunctionButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void deleteFunctionButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void loadFunctionButton(ActionEvent event) {
     }
   }
   
