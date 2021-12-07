@@ -14,6 +14,7 @@ public class Calculator {
 
     private final StackComplexNumbers memory;
     private final Variables variables;
+    private final Functions functions;
 
     /**
      * Constructs the stack memory of the calculator
@@ -21,7 +22,7 @@ public class Calculator {
     public Calculator() {
         memory = new StackComplexNumbers();
         variables = new Variables();
-
+        functions = new Functions();
     }
 
     /**
@@ -250,6 +251,18 @@ public class Calculator {
         } else {
             return "Syntax Error";
         }
+    }
+    
+    /**
+     * Save a function with relatives name and operations.
+     *
+     * @param name is the name of the function to save.
+     * @param operations is the sequence of the operations to do.
+     * @return true if the format is correct, false otherwise
+     */
+    public String saveFunctionOperations(String name, String operations) {
+        
+        return functions.saveFunction(name, operations) == true ? "Saved" : "Format Error";
     }
 
     /**
