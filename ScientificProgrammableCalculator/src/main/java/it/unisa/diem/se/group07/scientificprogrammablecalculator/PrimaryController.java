@@ -6,7 +6,10 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -136,16 +139,17 @@ public class PrimaryController implements Initializable {
     private void setVariableOperations(ActionEvent event) {
         String varOp = variableOperations.getValue();
         String var = variables.getValue();
-        if(varOp.compareTo("VarOp")!=0 && var.compareTo("Vars")!=0)
-            display.setText(varOp+var);
+        if (varOp.compareTo("VarOp") != 0 && var.compareTo("Vars") != 0) {
+            display.setText(varOp + var);
+        }
         display.requestFocus();
         display.positionCaret(display.getText().length());
     }
 
-     /**
-     * This method make update the graphic interface 
+    /**
+     * This method make update the graphic interface
      *
-     * @param result is the string managed for the controls 
+     * @param result is the string managed for the controls
      */
     private void updateInterface(String result) {
         if (result.compareTo("") != 0) {
@@ -160,9 +164,9 @@ public class PrimaryController implements Initializable {
         numbersList.getItems().addAll(calculator.lastTwelveNumbers());
     }
 
-     /**
-     * This method takes the user-defined function and save it in the 
-     * function list
+    /**
+     * This method takes the user-defined function and save it in the function
+     * list
      *
      * @param event represents the pressing of save function button
      */
@@ -171,13 +175,14 @@ public class PrimaryController implements Initializable {
         String name = nameFunction.getText();
         String funcOp = operationsFunction.getText();
         String result = "";
-        if(name.length()>0 && funcOp.length()>0) {
+        if (name.length() > 0 && funcOp.length() > 0) {
             result = calculator.saveFunctionOperations(name, funcOp);
             operationsFunction.clear();
             nameFunction.clear();
         }
-        if (result.compareTo("Saved") == 0 && !functionsList.getItems().contains(name))
+        if (result.compareTo("Saved") == 0 && !functionsList.getItems().contains(name)) {
             functionsList.getItems().add(name);
+        }
         updateInterface(result);
     }
 
@@ -199,6 +204,16 @@ public class PrimaryController implements Initializable {
 
     @FXML
     private void deleteFunctionButton(ActionEvent event) {
+        if(functionsList.getValue().compareTo("Functions")!=0){
+            Alert confirmDelete = new Alert(AlertType.NONE, "Delete " + functionsList.getValue() + " ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+            confirmDelete.showAndWait();
+            if (confirmDelete.getResult() == ButtonType.YES) {
+                String result = calculator.deleteFunctionOperations(functionsList.getValue());
+                functionsList.getItems().remove(functionsList.getValue());
+                functionsList.getSelectionModel().select("Functions");
+                updateInterface(result);
+            }
+        }
     }
 
     @FXML

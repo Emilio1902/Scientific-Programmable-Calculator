@@ -323,4 +323,8 @@ public class Calculator {
         return "";
     }
 
+    
+    public String deleteFunctionOperations(String name) {
+        return functions.deleteFunction(name) == true ? "Done" : "Syntax Error";
+    }
 }
