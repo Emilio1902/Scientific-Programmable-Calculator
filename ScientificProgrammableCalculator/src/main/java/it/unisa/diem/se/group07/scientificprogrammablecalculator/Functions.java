@@ -55,6 +55,20 @@ public class Functions {
     }
     
     /**
+     * Delete the specified function.
+     *
+     * @param name is the name of the function.
+     * @return true if the remove is successfull, false otherwise
+     */
+    public boolean deleteFunction(String name){
+        if(functions.containsKey(name)){
+            allowedOperations.remove(name, null);
+            return functions.remove(name, functions.get(name));
+        }else
+            return false;
+    }
+    
+    /**
      * Return the operations of specified function.
      *
      * @param name is the name of the function.

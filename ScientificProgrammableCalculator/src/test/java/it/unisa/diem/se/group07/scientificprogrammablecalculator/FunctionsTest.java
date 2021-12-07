@@ -6,6 +6,7 @@ package it.unisa.diem.se.group07.scientificprogrammablecalculator;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Before;
 
 /**
  *
@@ -13,22 +14,27 @@ import static org.junit.Assert.*;
  */
 public class FunctionsTest {
     
-    private Functions function = new Functions();
+    private final Functions function = new Functions();
+    private String function1, function2, function3; 
 
+    @Before
+    public void setUp() {
+        function1 = ">a + + - >a * /";
+        function2 = "12+13i * sqrt +- dup drop save >a +a restore -3i 12 *";
+        function3 = "+ -z +a * -13.3546-7.23654i swap dup arg mod log exp";
+    }
+    
     /**
      * Test of saveFunction method, of class Functions.
      */
     @Test
     public void testSaveFunction() {
-        String method1 =">a + + - >a * /";
-        assertEquals(true,function.saveFunction("Example", method1));
+        assertEquals(true,function.saveFunction("Example", function1));
         
-        String method2 ="12+13i * sqrt +- dup drop save >a +a restore -3i 12 *";
-        assertEquals(true,function.saveFunction("Example1", method2));
+        assertEquals(true,function.saveFunction("Example1", function2));
        
         //If a key already exists in function data structure, it will overwrite 
-        String method3 ="+ -z +a * -13.3546-7.23654i swap dup arg mod log exp";
-        assertEquals(true,function.saveFunction("Example", method3));
+        assertEquals(true,function.saveFunction("Example", function3));
         
         String method4 =">a +- +* + - >a * /";
         assertEquals(false,function.saveFunction("Example2", method4));
@@ -48,6 +54,21 @@ public class FunctionsTest {
         String method9 ="save restores 12.335 + + *";
         assertEquals(false,function.saveFunction("Example4", method9));
        
+    }
+    
+    /**
+     * Test of deleteFunction method, of class Functions.
+     */
+    @Test
+    public void testDeleteFunction() {
+        function.saveFunction("Example1", function1);
+        function.saveFunction("Example2", function2);
+        
+        assertEquals(true,function.deleteFunction("Example1"));
+     
+        assertEquals(false,function.deleteFunction("Example"));
+        assertEquals(false,function.deleteFunction("Example3"));
+        
     }
     
 }
