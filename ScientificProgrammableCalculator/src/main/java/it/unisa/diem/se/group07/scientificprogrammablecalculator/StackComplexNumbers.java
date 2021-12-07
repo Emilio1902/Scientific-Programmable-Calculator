@@ -12,11 +12,12 @@ import java.util.Arrays;
  *
  * @author DELL
  */
-public class StackComplexNumbers {
+public class StackComplexNumbers{
 
     private ComplexNumbers[] array;
+    private ComplexNumbers[] arrayBackup;
     private static int capacity = 20;
-    private int top;
+    private int top, topBackup;
 
     /**
      * Constructs the memory that contains the stored complex numbers in a stack
@@ -56,7 +57,7 @@ public class StackComplexNumbers {
     /**
      * This method doubles the size of the array
      */
-    public void expandArray() {
+    private void expandArray() {
         int i = 0;
         int curr_size = top + 1;
         ComplexNumbers[] new_array = new ComplexNumbers[curr_size * 2];
@@ -70,7 +71,7 @@ public class StackComplexNumbers {
     /**
      * This method reduces the size of the array
      */
-    public void reduceSize() {
+    private void reduceSize() {
         int curr_length = top + 1;
         if (curr_length < capacity / 2) {
             ComplexNumbers[] new_array = new ComplexNumbers[capacity / 2];
@@ -130,6 +131,24 @@ public class StackComplexNumbers {
      */
     private ComplexNumbers createComplex(double real, double img) {
         return new ComplexNumbers(real, img);
+    }
+    
+    /**
+     * This method saves a copy of stored values.
+     */
+    public void createBackup(){
+        topBackup = top;
+        arrayBackup = array.clone();
+    }
+    
+    /**
+     * This method restores stored values.
+     */
+    public void restoreBackup(){
+        if(arrayBackup != null){
+            array = arrayBackup.clone();
+            top = topBackup;
+        }
     }
 
     /**

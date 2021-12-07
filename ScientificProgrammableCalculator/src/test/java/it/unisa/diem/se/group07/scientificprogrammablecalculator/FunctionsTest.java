@@ -23,7 +23,7 @@ public class FunctionsTest {
         String method1 =">a + + - >a * /";
         assertEquals(true,function.saveFunction("Example", method1));
         
-        String method2 ="12+13i * √ +- dup drop save >a +a restore -3i 12 *";
+        String method2 ="12+13i * sqrt +- dup drop save >a +a restore -3i 12 *";
         assertEquals(true,function.saveFunction("Example1", method2));
        
         //If a key already exists in function data structure, it will overwrite 

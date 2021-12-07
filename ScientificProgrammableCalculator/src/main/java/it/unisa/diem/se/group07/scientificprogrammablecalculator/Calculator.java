@@ -5,6 +5,8 @@
  */
 package it.unisa.diem.se.group07.scientificprogrammablecalculator;
 
+import java.util.Set;
+
 /**
  * Calculator implements a calculator
  *
@@ -12,9 +14,10 @@ package it.unisa.diem.se.group07.scientificprogrammablecalculator;
  */
 public class Calculator {
 
-    private final StackComplexNumbers memory;
-    private final Variables variables;
-    private final Functions functions;
+    private StackComplexNumbers memory;
+    private Variables variables;
+    private Functions functions;
+    private boolean flagBackup = true;
 
     /**
      * Constructs the stack memory of the calculator
@@ -37,7 +40,7 @@ public class Calculator {
             return "";
         }
         
-        if(s.matches("[+-/√*]+") || Character.isAlphabetic(s.charAt(0))) {
+        if(s.matches("[+-/*]+") || s.matches(".*sqrt.*||.*mod.*||.*arg.*||.*exp.*||.*log.*") ) {
             return checkMathOperations(s);
         }
         
@@ -45,6 +48,14 @@ public class Calculator {
             return checkVariableOperations(Character.toString(s.charAt(0)), s.substring(1));
         } 
         
+        if(s.matches(".*save.*||.*restore.*")){
+            return checkCopyOperations(s) == "" ? "Done" : "Syntax Error";
+        }
+        
+        if(s.matches(".*clear.*||.*drop.*||.*dup.*||.*swap.*||.*over.*")){
+            return checkMemoryOperations(s);
+        }
+ 
         else {
             return insertComplexNumbers(s) == true ? "" : "Syntax Error";
         }
@@ -75,7 +86,7 @@ public class Calculator {
             return memory.ratioLastTwoNumbers() == true ? "" : "Math Error";
         }
 
-        if (s.compareTo("√") == 0) {
+        if (s.compareTo("sqrt") == 0) {
             return memory.squareRootLastNumber() == true ? "" : "Math Error";
         }
 
@@ -242,12 +253,12 @@ public class Calculator {
 
         if (operation.compareTo("save") == 0) {
             variables.saveVariables();
-            return "Saved";
+            return "";
         }
 
         if (operation.compareTo("restore") == 0) {
             variables.restoreVariables();
-            return "Restored";
+            return "";
         } else {
             return "Syntax Error";
         }
@@ -272,6 +283,44 @@ public class Calculator {
      */
     public String[] lastTwelveNumbers() {
         return memory.getLastTwelve();
+    }
+    
+    /**
+     * Execution of stored function specified by user.
+     *
+     * @return "" if operation is successfull, "Function Error" otherwise
+     */
+    public String executeFunctionOperations(String name){
+        Set<String> setFunctions = functions.getFunctions();
+        String[] operations = functions.getOperation(name);
+        if(flagBackup == true){
+            memory.createBackup();
+            flagBackup = false;
+        }
+       
+        if(operations == null){
+            flagBackup = true;
+            return "Function Error";        
+        }
+   
+        for (int i=0; i<operations.length; i++){
+            if(setFunctions.contains(operations[i])){
+                if(executeFunctionOperations(operations[i]).compareTo("")!= 0){
+                    memory.restoreBackup();
+                    flagBackup = true;
+                    return "Function Error";
+                }           
+            }
+            else{
+                if(checkEqualsButtonOperations(operations[i])!= ""){
+                    memory.restoreBackup();
+                    flagBackup = true;
+                    return "Function Error";
+                }
+            }     
+        }
+        flagBackup = true;
+        return "";
     }
 
 }

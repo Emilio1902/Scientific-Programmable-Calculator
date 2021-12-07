@@ -197,15 +197,24 @@ public class PrimaryController implements Initializable {
         String name = nameFunction.getText();
         String funcOp = operationsFunction.getText();
         String result = calculator.saveFunctionOperations(name, funcOp);
-        if (result.compareTo("Saved") == 0) {
+        operationsFunction.clear();
+        nameFunction.clear();
+        if (result.compareTo("Saved") == 0 && !functionsList.getItems().contains(name)) {
             functionsList.getItems().add(name);
         }
-        
         updateInterface(result);
     }
 
+    /**
+     * This method allows to use the user-defined function.
+     *
+     * @param event represents the pressing of use button
+     */
     @FXML
     private void useFunctionButton(ActionEvent event) {
+        String result = calculator.executeFunctionOperations(functionsList.getValue());
+        updateInterface(result);
+        functionsList.getSelectionModel().select("Functions");
     }
 
     @FXML

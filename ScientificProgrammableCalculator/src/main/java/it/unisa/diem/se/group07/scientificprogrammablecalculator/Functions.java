@@ -6,6 +6,7 @@ package it.unisa.diem.se.group07.scientificprogrammablecalculator;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -24,7 +25,7 @@ public class Functions {
         this.functions = new HashMap<>();
         this.allowedOperations = new HashMap<String, String>() {
         { put("+", null);put("-", null); put("*", null);put("/", null);put("+-", null);
-        put("√", null);put(">", null);put("<", null);put("save", null);put("restore", null);
+        put("sqrt", null);put(">", null);put("<", null);put("save", null);put("restore", null);
         put("clear", null);put("drop", null);put("dup", null);put("swap", null);put("over", null);
         put("mod", null); put("arg", null);put("log", null);put("exp", null);}};   
     }
@@ -37,8 +38,7 @@ public class Functions {
      * @return true if the format is correct, false otherwise
      */
     public boolean saveFunction(String name,String operations){
-        String newOperations = operations.replaceAll("sqrt", "√");
-        String[] splitOp = newOperations.split(" ");
+        String[] splitOp = operations.split(" ");
         for(int i=0; i< splitOp.length; i++){
             if(!allowedOperations.containsKey(splitOp[i])){
                 String start = splitOp[i].substring(0,1);
@@ -50,7 +50,28 @@ public class Functions {
             }
         }
         functions.put(name, operations);
+        allowedOperations.put(name, null);
         return true;
+    }
+    
+    /**
+     * Return the operations of specified function.
+     *
+     * @param name is the name of the function.
+     * @return operations of specified function, null if the HashMap function not cointains key name
+     */
+    public String[] getOperation (String name){
+        String operations = functions.get(name);
+        return operations != null ? operations.split(" ") : null;   
+    }
+  
+    /**
+     * Return the specified function.
+     *
+     * @return set of stored function, null if the HashMap function not cointains elements
+     */
+    public Set<String> getFunctions (){
+       return functions.keySet();
     }
     
     

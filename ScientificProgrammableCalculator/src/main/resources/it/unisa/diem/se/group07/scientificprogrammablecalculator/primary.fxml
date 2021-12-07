@@ -207,12 +207,12 @@
                                     <Font size="28.0" />
                                  </font>
                               </Button>
-                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#pressedButton" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 30; -fx-background-color: #F29611;" text="√" textAlignment="CENTER" textFill="WHITE">
+                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#pressedButton" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 30; -fx-background-color: #F29611;" text="sqrt" textAlignment="CENTER" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets left="15.0" right="15.0" />
                                  </HBox.margin>
                                  <font>
-                                    <Font name="System Bold" size="24.0" />
+                                    <Font name="System Bold" size="18.0" />
                                  </font>
                               </Button>
                               <Button alignment="CENTER" mnemonicParsing="false" onAction="#pressedButton" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 30; -fx-background-color: #F29611;" text="+-" textAlignment="CENTER" textFill="WHITE">
