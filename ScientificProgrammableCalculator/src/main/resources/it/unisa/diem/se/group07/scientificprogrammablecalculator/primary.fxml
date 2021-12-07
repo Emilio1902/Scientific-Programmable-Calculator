@@ -111,7 +111,7 @@
                                     <Insets left="8.0" top="20.0" />
                                  </HBox.margin>
                               </ComboBox>
-                              <Button mnemonicParsing="false" onAction="#makeVariableOperations" prefHeight="25.0" prefWidth="80.0" style="-fx-background-radius: 30; -fx-background-color: #808080;" text="var" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#setVariableOperations" prefHeight="25.0" prefWidth="80.0" style="-fx-background-radius: 30; -fx-background-color: #808080;" text="var" textFill="WHITE">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -119,7 +119,7 @@
                                     <Insets left="8.0" top="20.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#makeCopyOperations" prefHeight="25.0" prefWidth="80.0" style="-fx-background-radius: 30; -fx-background-color: #808080;" text="save" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#pressedButton" prefHeight="25.0" prefWidth="80.0" style="-fx-background-radius: 30; -fx-background-color: #808080;" text="save" textFill="WHITE">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -127,7 +127,7 @@
                                     <Insets left="8.0" top="20.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#makeCopyOperations" prefHeight="25.0" prefWidth="80.0" style="-fx-background-radius: 30; -fx-background-color: #808080;" text="restore" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#pressedButton" prefHeight="25.0" prefWidth="80.0" style="-fx-background-radius: 30; -fx-background-color: #808080;" text="restore" textFill="WHITE">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -139,7 +139,7 @@
                         </HBox>
                         <HBox prefHeight="75.0" prefWidth="450.0" style="-fx-background-color: #111111;">
                            <children>
-                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#makeMemoryOperations" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #808080; -fx-background-radius: 30;" text="clear" textAlignment="CENTER" textFill="WHITE">
+                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pressedButton" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #808080; -fx-background-radius: 30;" text="clear" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -147,7 +147,7 @@
                                     <Insets left="8.0" top="15.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#makeMemoryOperations" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #808080; -fx-background-radius: 30;" text="drop" textAlignment="CENTER" textFill="WHITE">
+                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pressedButton" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #808080; -fx-background-radius: 30;" text="drop" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -155,7 +155,7 @@
                                     <Insets left="8.0" top="15.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#makeMemoryOperations" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #808080; -fx-background-radius: 30;" text="dup" textAlignment="CENTER" textFill="WHITE">
+                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pressedButton" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #808080; -fx-background-radius: 30;" text="dup" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -163,7 +163,7 @@
                                     <Insets left="8.0" top="15.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#makeMemoryOperations" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #808080; -fx-background-radius: 30;" text="swap" textAlignment="CENTER" textFill="WHITE">
+                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pressedButton" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #808080; -fx-background-radius: 30;" text="swap" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -171,7 +171,7 @@
                                     <Insets left="8.0" top="15.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#makeMemoryOperations" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #808080; -fx-background-radius: 30;" text="over" textAlignment="CENTER" textFill="WHITE">
+                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pressedButton" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #808080; -fx-background-radius: 30;" text="over" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font size="18.0" />
                                  </font>

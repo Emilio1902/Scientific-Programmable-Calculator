@@ -128,44 +128,18 @@ public class PrimaryController implements Initializable {
     }
 
     /**
-     * This method make memory operations written on display and shows on 
-     * the memory list the last twelve numbers
-     *
-     * @param event represents the pressing of clear, drop, dup, swap 
-     * and over buttons
-     */
-    @FXML
-    private void makeMemoryOperations(ActionEvent event) {
-        String input = ((Button) event.getSource()).getText();
-        String result = calculator.checkMemoryOperations(input);
-        updateInterface(result);
-    }
-
-    /**
-     * This method make variable operations written on display and shows on 
-     * the memory list the last twelve numbers
+     * This method write on display selected variable operation
      *
      * @param event represents the pressing of variable buttons
      */
     @FXML
-    private void makeVariableOperations(ActionEvent event) {
+    private void setVariableOperations(ActionEvent event) {
         String varOp = variableOperations.getValue();
         String var = variables.getValue();
-        String result = calculator.checkVariableOperations(varOp, var);
-        updateInterface(result);
-    }
-
-    /**
-     * This method make copy operations (save and restore) written on display 
-     * and shows on the memory list the last twelve numbers
-     *
-     * @param event represents the pressing of save and restore buttons
-     */
-    @FXML
-    private void makeCopyOperations(ActionEvent event) {
-        String varOp = ((Button) event.getSource()).getText();
-        String result = calculator.checkCopyOperations(varOp);
-        updateInterface(result);
+        if(varOp.compareTo("VarOp")!=0 && var.compareTo("Vars")!=0)
+            display.setText(varOp+var);
+        display.requestFocus();
+        display.positionCaret(display.getText().length());
     }
 
      /**
@@ -196,12 +170,14 @@ public class PrimaryController implements Initializable {
     private void saveFunctionButton(ActionEvent event) {
         String name = nameFunction.getText();
         String funcOp = operationsFunction.getText();
-        String result = calculator.saveFunctionOperations(name, funcOp);
-        operationsFunction.clear();
-        nameFunction.clear();
-        if (result.compareTo("Saved") == 0 && !functionsList.getItems().contains(name)) {
-            functionsList.getItems().add(name);
+        String result = "";
+        if(name.length()>0 && funcOp.length()>0) {
+            result = calculator.saveFunctionOperations(name, funcOp);
+            operationsFunction.clear();
+            nameFunction.clear();
         }
+        if (result.compareTo("Saved") == 0 && !functionsList.getItems().contains(name))
+            functionsList.getItems().add(name);
         updateInterface(result);
     }
 
