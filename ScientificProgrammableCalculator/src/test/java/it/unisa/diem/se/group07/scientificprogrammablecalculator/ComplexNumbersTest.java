@@ -793,5 +793,81 @@ public class ComplexNumbersTest {
         assertEquals(0.0, sin16.getImg());
 
     }
+    
+    /**
+     * Test of sin method, of class ComplexNumbers.
+     */
+    @Test
+    public void testCos() {
+        
+        ComplexNumbers cos0 =numbers[0].cos();
+        assertEquals(Double.NEGATIVE_INFINITY, cos0.getReal());
+        assertEquals(Double.NEGATIVE_INFINITY, cos0.getImg());
+
+        ComplexNumbers cos1 =numbers[1].cos();
+        assertEquals(Double.NEGATIVE_INFINITY, cos1.getReal());
+        assertEquals(Double.NEGATIVE_INFINITY, cos1.getImg());
+        
+        ComplexNumbers cos2 =numbers[2].cos();
+        assertEquals(Double.NEGATIVE_INFINITY, cos2.getReal());
+        assertEquals(Double.NEGATIVE_INFINITY, cos2.getImg());
+
+        ComplexNumbers cos3 = numbers[3].cos();
+        assertEquals(262.91844022, cos3.getReal());
+        assertEquals(-309.63626875, cos3.getImg());
+        
+        ComplexNumbers cos4 = numbers[4].cos();
+        assertEquals(1.44280494315750656E17, cos4.getReal());
+        assertEquals(3.3455019777686195E17, cos4.getImg());
+        
+        ComplexNumbers cos5 = numbers[5].cos();
+        assertEquals(6.14894513, cos5.getReal());
+        assertEquals(13.24319164, cos5.getImg());
+        
+        ComplexNumbers cos6 = numbers[6].cos();
+        assertEquals(-16533.26077159, cos6.getReal());
+        assertEquals(59881.33010256, cos6.getImg());
+        
+        ComplexNumbers cos7 = numbers[7].cos();
+        assertEquals(0.28653768, cos7.getReal());
+        assertEquals(0.0, cos7.getImg());
+        
+        ComplexNumbers cos8 = numbers[8].cos();
+        assertEquals(1192.55458491, cos8.getReal());
+        assertEquals(0.0, cos8.getImg());
+        
+        ComplexNumbers cos9 = numbers[9].cos();
+        assertEquals(-0.99996466, cos9.getReal());
+        assertEquals(0.0, cos9.getImg());
+        
+        ComplexNumbers cos10 = numbers[10].cos();
+        assertEquals(9910422513.450508, cos10.getReal());
+        assertEquals(0.0, cos10.getImg());
+        
+        ComplexNumbers cos11 = numbers[11].cos();
+        assertEquals(1.0, cos11.getReal());
+        assertEquals(0.0, cos11.getImg());
+        
+        ComplexNumbers cos12 = numbers[12].cos();
+        assertEquals(Double.NEGATIVE_INFINITY, cos12.getReal());
+        assertEquals(Double.NEGATIVE_INFINITY, cos12.getImg());
+        
+        ComplexNumbers cos13 = numbers[13].cos();
+        assertEquals(Double.NEGATIVE_INFINITY, cos13.getReal());
+        assertEquals(Double.NEGATIVE_INFINITY, cos13.getImg());
+        
+        ComplexNumbers cos14 = numbers[14].cos();
+        assertEquals(Double.NEGATIVE_INFINITY, cos14.getReal());
+        assertEquals(Double.NEGATIVE_INFINITY, cos14.getImg());
+        
+        ComplexNumbers cos15 = numbers[15].cos();
+        assertEquals(1.0, cos15.getReal());
+        assertEquals(0.0, cos15.getImg());
+        
+        ComplexNumbers cos16 = numbers[16].cos();
+        assertEquals(1.0, cos16.getReal());
+        assertEquals(0.0, cos16.getImg());
+
+    }
 }
 

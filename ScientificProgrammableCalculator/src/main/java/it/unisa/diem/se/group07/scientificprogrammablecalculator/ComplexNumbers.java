@@ -303,21 +303,6 @@ public class ComplexNumbers {
     }
 
     /**
-     * Sine of this Complex number (doesn't change this Complex number).
-     * <br>sin(z) = (exp(i*z)-exp(-i*z))/(2*i).
-     * @return sin(z) where z is this Complex number.
-    */
-    public ComplexNumbers sin() {
-        double realPart = cosh(img)*Math.sin(real);
-        double imgPart = sinh(img)*Math.cos(real);
-        if(Math.abs(realPart)==0)
-            realPart =0.0;
-        if(Math.abs(imgPart)==0)
-            imgPart =0.0;
-        return new ComplexNumbers(realPart,imgPart);
-    }
-    
-    /**
      * Real cosh function (used to compute complex trig functions).
      * 
      * @param theta is the angle.
@@ -337,6 +322,36 @@ public class ComplexNumbers {
      */ 
     private double sinh(double theta) {
         return (Math.exp(theta)-Math.exp(-theta))/2;
+    }
+    
+    /**
+     * Sine of this Complex number (doesn't change this Complex number).
+     * <br>sin(z) = (exp(i*z)-exp(-i*z))/(2*i).
+     * @return sin(z) where z is this Complex number.
+    */
+    public ComplexNumbers sin() {
+        double realPart = cosh(img)*Math.sin(real);
+        double imgPart = sinh(img)*Math.cos(real);
+        if(Math.abs(Precision.round(realPart,8))==0)
+            realPart = 0.0;
+        if(Math.abs(Precision.round(imgPart,8))==0)
+            imgPart = 0.0;
+        return new ComplexNumbers(realPart,imgPart);
+    }
+    
+     /**
+     *  Cosine of this Complex number (doesn't change this Complex number).
+     *  <br>cos(z) = (exp(i*z)+exp(-i*z))/ 2.
+     *  @return cos(z) where z is this Complex number.
+    */
+    public ComplexNumbers cos() {
+        double realPart = cosh(img)*Math.cos(real);
+        double imgPart = -sinh(img)*Math.sin(real);
+        if(Math.abs(Precision.round(realPart,8))==0)
+            realPart = 0.0;
+        if(Math.abs(Precision.round(imgPart,8))==0)
+            imgPart = 0.0;
+        return new ComplexNumbers(realPart,imgPart);
     }
     
     /**
