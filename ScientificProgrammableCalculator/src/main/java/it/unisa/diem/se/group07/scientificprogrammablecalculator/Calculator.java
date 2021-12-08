@@ -327,4 +327,8 @@ public class Calculator {
     public String deleteFunctionOperations(String name) {
         return functions.deleteFunction(name) == true ? "Done" : "Syntax Error";
     }
+    
+    public String getFunctionOperations(String name) {
+        return String.join(" ", functions.getOperation(name));
+    }
 }

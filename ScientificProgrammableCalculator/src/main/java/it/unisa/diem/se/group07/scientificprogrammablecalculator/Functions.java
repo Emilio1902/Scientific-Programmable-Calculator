@@ -68,6 +68,7 @@ public class Functions {
             return false;
     }
     
+    
     /**
      * Return the operations of specified function.
      *
@@ -87,6 +88,6 @@ public class Functions {
     public Set<String> getFunctions (){
        return functions.keySet();
     }
-    
+
     
 }

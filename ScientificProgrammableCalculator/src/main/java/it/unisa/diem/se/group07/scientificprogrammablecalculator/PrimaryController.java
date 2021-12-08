@@ -180,8 +180,13 @@ public class PrimaryController implements Initializable {
             operationsFunction.clear();
             nameFunction.clear();
         }
-        if (result.compareTo("Saved") == 0 && !functionsList.getItems().contains(name)) {
-            functionsList.getItems().add(name);
+        if (result.compareTo("Saved") == 0) {
+            if (!functionsList.getItems().contains(name)) {
+                functionsList.getItems().add(name);
+
+            } else {
+                result = "Modified";
+            }
         }
         updateInterface(result);
     }
@@ -200,11 +205,15 @@ public class PrimaryController implements Initializable {
 
     @FXML
     private void modifyFunctionButton(ActionEvent event) {
+        if (functionsList.getValue().compareTo("Functions") != 0) {
+            nameFunction.setText(functionsList.getValue());
+            operationsFunction.setText(calculator.getFunctionOperations(functionsList.getValue()));
+        }
     }
 
     @FXML
     private void deleteFunctionButton(ActionEvent event) {
-        if(functionsList.getValue().compareTo("Functions")!=0){
+        if (functionsList.getValue().compareTo("Functions") != 0) {
             Alert confirmDelete = new Alert(AlertType.NONE, "Delete " + functionsList.getValue() + " ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
             confirmDelete.showAndWait();
             if (confirmDelete.getResult() == ButtonType.YES) {
