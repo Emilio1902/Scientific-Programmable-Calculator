@@ -17,6 +17,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
@@ -50,6 +52,9 @@ public class PrimaryController implements Initializable {
 
     @FXML
     private ComboBox<String> functionsList;
+    
+    @FXML
+    private VBox functionVBox;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -115,6 +120,7 @@ public class PrimaryController implements Initializable {
         if (display.getText().length() > 0) {
             display.setText("");
             display.setEditable(true);
+            functionVBox.setDisable(false);
             acButton.setStyle("-fx-background-color: #ACACAC; -fx-background-radius: 30;");
             acButton.setDefaultButton(false);
             equalButton.setDefaultButton(true);
@@ -158,6 +164,7 @@ public class PrimaryController implements Initializable {
      */
     private void updateInterface(String result) {
         if (result.compareTo("") != 0) {
+            functionVBox.setDisable(true);
             display.setEditable(false);
             acButton.setStyle("-fx-background-color: #FF4D4D; -fx-background-radius: 30;");
             acButton.setDefaultButton(true);
@@ -204,7 +211,6 @@ public class PrimaryController implements Initializable {
     @FXML
     private void useFunction(ActionEvent event) {
         String result = calculator.executeFunctionOperations(functionsList.getValue());
-        functionsList.getSelectionModel().select("Functions");
         operationsFunction.clear();
         nameFunction.clear();
         updateInterface(result);

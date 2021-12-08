@@ -321,7 +321,8 @@ public class Calculator {
                 }           
             }
             else{
-                if(checkOperations(operations[i])!= ""){
+                String result = checkOperations(operations[i]);
+                if(result.compareTo("")!=0 && result.compareTo("Done")!=0){
                     memory.restoreBackup();
                     flagBackup = true;
                     return "Function Error";

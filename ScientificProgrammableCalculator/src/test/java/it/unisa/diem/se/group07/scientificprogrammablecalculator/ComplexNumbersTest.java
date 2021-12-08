@@ -717,5 +717,81 @@ public class ComplexNumbersTest {
         assertEquals(0.0, log16.getImg());
      
     }
+    
+    /**
+     * Test of sin method, of class ComplexNumbers.
+     */
+    @Test
+    public void testSin() {
+        
+        ComplexNumbers sin0 =numbers[0].sin();
+        assertEquals(Double.NEGATIVE_INFINITY, sin0.getReal());
+        assertEquals(Double.POSITIVE_INFINITY, sin0.getImg());
+
+        ComplexNumbers sin1 =numbers[1].sin();
+        assertEquals(Double.NEGATIVE_INFINITY, sin1.getReal());
+        assertEquals(Double.POSITIVE_INFINITY, sin1.getImg());
+        
+        ComplexNumbers sin2 =numbers[2].sin();
+        assertEquals(Double.NEGATIVE_INFINITY, sin2.getReal());
+        assertEquals(Double.POSITIVE_INFINITY, sin2.getImg());
+
+        ComplexNumbers sin3 = numbers[3].sin();
+        assertEquals(309.63720704, sin3.getReal());
+        assertEquals(262.91764350, sin3.getImg());
+        
+        ComplexNumbers sin4 = numbers[4].sin();
+        assertEquals(3.3455019777686195E17, sin4.getReal());
+        assertEquals(-1.44280494315750656E17, sin4.getImg());
+        
+        ComplexNumbers sin5 = numbers[5].sin();
+        assertEquals(-13.27424036, sin5.getReal());
+        assertEquals(6.13456262, sin5.getImg());
+        
+        ComplexNumbers sin6 = numbers[6].sin();
+        assertEquals(59881.33011032, sin6.getReal());
+        assertEquals(16533.26076945, sin6.getImg());
+        
+        ComplexNumbers sin7 = numbers[7].sin();
+        assertEquals(-0.95806897, sin7.getReal());
+        assertEquals(0.0, sin7.getImg());
+        
+        ComplexNumbers sin8 = numbers[8].sin();
+        assertEquals(0.0, sin8.getReal());
+        assertEquals(1192.55416564, sin8.getImg());
+        
+        ComplexNumbers sin9 = numbers[9].sin();
+        assertEquals(0.00840725, sin9.getReal());
+        assertEquals(0.0, sin9.getImg());
+        
+        ComplexNumbers sin10 = numbers[10].sin();
+        assertEquals(0.0, sin10.getReal());
+        assertEquals(-9910422513.450508, sin10.getImg());
+        
+        ComplexNumbers sin11 = numbers[11].sin();
+        assertEquals(0.0, sin11.getReal());
+        assertEquals(0.0, sin11.getImg());
+        
+        ComplexNumbers sin12 = numbers[12].sin();
+        assertEquals(Double.POSITIVE_INFINITY, sin12.getReal());
+        assertEquals(Double.NEGATIVE_INFINITY, sin12.getImg());
+        
+        ComplexNumbers sin13 = numbers[13].sin();
+        assertEquals(Double.POSITIVE_INFINITY, sin13.getReal());
+        assertEquals(Double.NEGATIVE_INFINITY, sin13.getImg());
+        
+        ComplexNumbers sin14 = numbers[14].sin();
+        assertEquals(Double.POSITIVE_INFINITY, sin14.getReal());
+        assertEquals(Double.NEGATIVE_INFINITY, sin14.getImg());
+        
+        ComplexNumbers sin15 = numbers[15].sin();
+        assertEquals(1E-8, sin15.getReal());
+        assertEquals(1E-8, sin15.getImg());
+        
+        ComplexNumbers sin16 = numbers[16].sin();
+        assertEquals(0.0, sin16.getReal());
+        assertEquals(0.0, sin16.getImg());
+
+    }
 }
 

@@ -28,15 +28,15 @@ import java.util.Set;
 public class Functions {
 
     private HashMap<String, String> functions;
-    private Map<String, String> allowedOperations;
+    private Map<String, String> basicOperations;
 
     /**
-     * Constructs the functions data structures and the allowedOperations
+     * Constructs the functions data structures and the basicOperations
      *
      */
     public Functions() {
         this.functions = new HashMap<>();
-        this.allowedOperations = new HashMap<String, String>() {
+        this.basicOperations = new HashMap<String, String>() {
             {
                 put("+", null);
                 put("-", null);
@@ -70,9 +70,11 @@ public class Functions {
      * @return true if the format is correct, false otherwise
      */
     public boolean saveFunction(String name, String operations) {
+        if(basicOperations.containsKey(name))
+            return false;
         String[] splitOp = operations.split(" ");
         for (int i = 0; i < splitOp.length; i++) {
-            if (!allowedOperations.containsKey(splitOp[i])) {
+            if (!basicOperations.containsKey(splitOp[i]) && !functions.containsKey(splitOp[i])) {
                 String start = splitOp[i].substring(0, 1);
                 if (!(start.matches("[<>+-]+") && splitOp[i].length() == 2 && Character.isAlphabetic(splitOp[i].charAt(1)))) {
                     ComplexNumbers num = new ComplexNumbers(splitOp[i]);
@@ -83,7 +85,6 @@ public class Functions {
             }
         }
         functions.put(name, operations);
-        allowedOperations.put(name, null);
         return true;
     }
 
@@ -95,7 +96,7 @@ public class Functions {
      */
     public boolean deleteFunction(String name) {
         if (functions.containsKey(name)) {
-            allowedOperations.remove(name, null);
+            basicOperations.remove(name, null);
             return functions.remove(name, functions.get(name));
         } else {
             return false;
@@ -164,7 +165,6 @@ public class Functions {
                 name = function[0];
                 operation = function[1];
                 functions.put(name, operation);
-                allowedOperations.put(name, null);
                 functionsName.add(name);    
             }
         } catch (FileNotFoundException e) {
