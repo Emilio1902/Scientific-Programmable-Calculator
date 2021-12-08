@@ -453,4 +453,20 @@ public boolean squareRootLastNumber(){
         }
     }
     
+    /**
+     * This method makes the tangent of the last stored complex number 
+     * and save the result in the stack
+     *  @return false if stack has zero element, true otherwise
+    */
+    public boolean tanLastNumber(){
+        if (top == -1) {
+            return false;
+        } else {
+            ComplexNumbers num1 = this.pop();
+            ComplexNumbers res = num1.tan();
+            this.push(res.getReal(), res.getImg());
+            return true;
+        }
+    }
+    
 }

@@ -1978,4 +1978,122 @@ public class StackComplexNumbersTest {
         assertEquals(1.0, num16.getReal());
         assertEquals(0.0, num16.getImg());
     }  
+    
+    /**
+     * Test of tanLastNumber method, of class StackComplexNumbers.
+     * The result of the arguments expects a maximum of 8 decimal digits rounded up, 
+     * for the implementation of the method in ComplexNumbers class.
+     */
+    @Test
+    public void testTanLastNumber() {
+        //test for empty stack
+        boolean n = stack.sinLastNumber();
+        assertEquals(false, n); 
+        
+        //test for stack with inserted numbers
+        stack.push(34.9, 9.2);
+        stack.push(42.741, 1.99);
+        stack.tanLastNumber();
+        ComplexNumbers num = stack.top();
+        assertEquals(-0.02357159, num.getReal());
+        assertEquals(1.02971524, num.getImg());
+        
+        stack.push(5.813, -100.43);
+        stack.tanLastNumber();
+        ComplexNumbers num1 = stack.top();
+        assertEquals(0.0, num1.getReal());
+        assertEquals(-1.0, num1.getImg());
+        
+        stack.push(-43.8112, 52.7);
+        stack.tanLastNumber();
+        ComplexNumbers num2 = stack.top();
+        assertEquals(0.0, num2.getReal());
+        assertEquals(1.0, num2.getImg());
+        
+        stack.push(-31.88, -2.65);
+        stack.tanLastNumber();
+        ComplexNumbers num3 = stack.top();
+        assertEquals(-0.00794392, num3.getReal());
+        assertEquals(-0.99400309, num3.getImg());
+        
+        stack.push(0.0, 0.0);
+        stack.tanLastNumber();
+        ComplexNumbers num4 = stack.top();
+        assertEquals(0.0, num4.getReal());
+        assertEquals(0.0, num4.getImg());
+
+        stack.push(0.0, 43.723);
+        stack.tanLastNumber();
+        ComplexNumbers num5 = stack.top();
+        assertEquals(0.0, num5.getReal());
+        assertEquals(1.0, num5.getImg());
+        
+        stack.push(0.0, -8.12);
+        stack.tanLastNumber();
+        ComplexNumbers num6 = stack.top();
+        assertEquals(0.0, num6.getReal());
+        assertEquals(-0.99999982, num6.getImg());
+        
+        stack.push(72.77, 0.0);
+        stack.tanLastNumber();
+        ComplexNumbers num7 = stack.top();
+        assertEquals(0.56379015, num7.getReal());
+        assertEquals(0.0, num7.getImg());
+        
+        stack.push(-6.83, 0.0);
+        stack.tanLastNumber();
+        ComplexNumbers num8 = stack.top();
+        assertEquals(-0.60873109, num8.getReal());
+        assertEquals(0.0, num8.getImg());
+        
+        //test for stack with inserted boundary limits
+        stack.push(-Double.MAX_VALUE-Double.MIN_VALUE, -Double.MAX_VALUE-Double.MIN_VALUE);
+        stack.tanLastNumber();
+        ComplexNumbers num9 = stack.top();
+        assertEquals(Double.NaN, num9.getReal()); 
+        assertEquals(Double.NaN, num9.getImg());  
+  
+        stack.push(-Double.MAX_VALUE, -Double.MAX_VALUE);
+        stack.tanLastNumber();
+        ComplexNumbers num10 = stack.top();
+        assertEquals(Double.NaN, num10.getReal());  
+        assertEquals(Double.NaN, num10.getImg());  
+        
+        stack.push(-Double.MAX_VALUE+Double.MIN_VALUE, -Double.MAX_VALUE+Double.MIN_VALUE);
+        stack.tanLastNumber();
+        ComplexNumbers num11 = stack.top();
+        assertEquals(Double.NaN, num11.getReal());  
+        assertEquals(Double.NaN, num11.getImg());  
+              
+        stack.push(Double.MAX_VALUE-Double.MIN_VALUE, Double.MAX_VALUE-Double.MIN_VALUE);
+        stack.tanLastNumber();
+        ComplexNumbers num12 = stack.top();
+        assertEquals(Double.NaN, num12.getReal());  
+        assertEquals(Double.NaN, num12.getImg());
+          
+        stack.push(Double.MAX_VALUE, Double.MAX_VALUE);
+        stack.tanLastNumber();
+        ComplexNumbers num13 = stack.top();
+        assertEquals(Double.NaN, num13.getReal());
+        assertEquals(Double.NaN, num13.getImg()); 
+        
+        stack.push(Double.MAX_VALUE+Double.MIN_VALUE, Double.MAX_VALUE+Double.MIN_VALUE);
+        stack.tanLastNumber();
+        ComplexNumbers num14 = stack.top();
+        assertEquals(Double.NaN, num14.getReal());
+        assertEquals(Double.NaN, num14.getImg());
+        
+        //the complex number constructor approximates the number to the eighth decimal place
+        stack.push(0.00000001, 0.00000001);
+        stack.tanLastNumber();
+        ComplexNumbers num15 = stack.top();
+        assertEquals(1E-8, num15.getReal());
+        assertEquals(1E-8, num15.getImg());
+       
+        stack.push(0.000000001, 0.000000001);
+        stack.tanLastNumber();
+        ComplexNumbers num16 = stack.top();
+        assertEquals(0.0, num16.getReal());
+        assertEquals(0.0, num16.getImg());
+    }
 }
