@@ -1860,4 +1860,122 @@ public class StackComplexNumbersTest {
         assertEquals(0.0, num16.getReal());
         assertEquals(0.0, num16.getImg());
     }  
+    
+    /**
+     * Test of cosLastNumber method, of class StackComplexNumbers.
+     * The result of the arguments expects a maximum of 8 decimal digits rounded up, 
+     * for the implementation of the method in ComplexNumbers class.
+     */
+    @Test
+    public void testCosLastNumber() {
+        //test for empty stack
+        boolean n = stack.cosLastNumber();
+        assertEquals(false, n); 
+        
+        //test for stack with inserted numbers
+        stack.push(18.77, 22.99);
+        stack.push(14.75, 87.56);
+        stack.cosLastNumber();
+        ComplexNumbers num = stack.top();
+        assertEquals(-3.05917347360021E37, num.getReal());
+        assertEquals(-4.350705612070417E37, num.getImg());
+        
+        stack.push(19.54, -77.89);
+        stack.cosLastNumber();
+        ComplexNumbers num1 = stack.top();
+        assertEquals(2.5894103873483407E33, num1.getReal());
+        assertEquals(2.1390677838079556E33, num1.getImg());
+        
+        stack.push(-27.63, 54.22);
+        stack.cosLastNumber();
+        ComplexNumbers num2 = stack.top();
+        assertEquals(-1.4100525977947374E23, num2.getReal());
+        assertEquals(1.0593753680400563E23, num2.getImg());
+        
+        stack.push(-152.12, -6.94);
+        stack.cosLastNumber();
+        ComplexNumbers num3 = stack.top();
+        assertEquals(126.37628964, num3.getReal());
+        assertEquals(-500.68170781, num3.getImg());
+        
+        stack.push(0.0, 0.0);
+        stack.cosLastNumber();
+        ComplexNumbers num4 = stack.top();
+        assertEquals(1.0, num4.getReal());
+        assertEquals(0.0, num4.getImg());
+
+        stack.push(0.0, 34.75);
+        stack.cosLastNumber();
+        ComplexNumbers num5 = stack.top();
+        assertEquals(617594259311741.0, num5.getReal());
+        assertEquals(0.0, num5.getImg());
+        
+        stack.push(0.0, -23.99);
+        stack.cosLastNumber();
+        ComplexNumbers num6 = stack.top();
+        assertEquals(13112775480.406448, num6.getReal());
+        assertEquals(0.0, num6.getImg());
+        
+        stack.push(13.85, 0.0);
+        stack.cosLastNumber();
+        ComplexNumbers num7 = stack.top();
+        assertEquals(0.28323632, num7.getReal());
+        assertEquals(0.0, num7.getImg());
+        
+        stack.push(-20.32, 0.0);
+        stack.cosLastNumber();
+        ComplexNumbers num8 = stack.top();
+        assertEquals(0.1001839, num8.getReal());
+        assertEquals(0.0, num8.getImg());
+        
+        //test for stack with inserted boundary limits
+        stack.push(-Double.MAX_VALUE-Double.MIN_VALUE, -Double.MAX_VALUE-Double.MIN_VALUE);
+        stack.cosLastNumber();
+        ComplexNumbers num9 = stack.top();
+        assertEquals(Double.NEGATIVE_INFINITY, num9.getReal()); 
+        assertEquals(Double.NEGATIVE_INFINITY, num9.getImg());  
+  
+        stack.push(-Double.MAX_VALUE, -Double.MAX_VALUE);
+        stack.cosLastNumber();
+        ComplexNumbers num10 = stack.top();
+        assertEquals(Double.NEGATIVE_INFINITY, num10.getReal());  
+        assertEquals(Double.NEGATIVE_INFINITY, num10.getImg());  
+        
+        stack.push(-Double.MAX_VALUE+Double.MIN_VALUE, -Double.MAX_VALUE+Double.MIN_VALUE);
+        stack.cosLastNumber();
+        ComplexNumbers num11 = stack.top();
+        assertEquals(Double.NEGATIVE_INFINITY, num11.getReal());  
+        assertEquals(Double.NEGATIVE_INFINITY, num11.getImg());  
+              
+        stack.push(Double.MAX_VALUE-Double.MIN_VALUE, Double.MAX_VALUE-Double.MIN_VALUE);
+        stack.cosLastNumber();
+        ComplexNumbers num12 = stack.top();
+        assertEquals(Double.NEGATIVE_INFINITY, num12.getReal());  
+        assertEquals(Double.NEGATIVE_INFINITY, num12.getImg());
+          
+        stack.push(Double.MAX_VALUE, Double.MAX_VALUE);
+        stack.cosLastNumber();
+        ComplexNumbers num13 = stack.top();
+        assertEquals(Double.NEGATIVE_INFINITY, num13.getReal());
+        assertEquals(Double.NEGATIVE_INFINITY, num13.getImg()); 
+        
+        stack.push(Double.MAX_VALUE+Double.MIN_VALUE, Double.MAX_VALUE+Double.MIN_VALUE);
+        stack.cosLastNumber();
+        ComplexNumbers num14 = stack.top();
+        assertEquals(Double.NEGATIVE_INFINITY, num14.getReal());
+        assertEquals(Double.NEGATIVE_INFINITY, num14.getImg());
+        
+        //the complex number constructor approximates the number to the eighth decimal place
+        stack.push(0.00000001, 0.00000001);
+        stack.cosLastNumber();
+        ComplexNumbers num15 = stack.top();
+        assertEquals(1.0, num15.getReal());
+        assertEquals(0.0, num15.getImg());
+       
+        stack.push(0.000000001, 0.000000001);
+        stack.cosLastNumber();
+        ComplexNumbers num16 = stack.top();
+        assertEquals(1.0, num16.getReal());
+        assertEquals(0.0, num16.getImg());
+    }  
 }

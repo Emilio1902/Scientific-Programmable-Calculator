@@ -33,8 +33,8 @@ public class Calculator {
     }
 
     /**
-     * Constructs the string to pass to the calculator and checks
-     * operations to do.
+     * Constructs the string to pass to the calculator and checks operations to
+     * do.
      *
      * @param s String to pass to the calculator
      * @return "" if the string is empty otherwise the result of the operation
@@ -43,41 +43,38 @@ public class Calculator {
         if (s.compareTo("") == 0) {
             return "";
         }
-        
+
         userFunctions = functions.getFunctions();
-        if(userFunctions.contains(s)){
+        if (userFunctions.contains(s)) {
             return executeFunctionOperations(s);
         }
-        
-        if(s.matches("[+-/*]+") || s.matches(".*sqrt.*||.*mod.*||.*arg.*||.*exp.*||.*log.*") ) {
+
+        if (s.matches("[+-/*]+") || s.matches(".*sqrt.*||.*mod.*||.*arg.*||.*exp.*||.*log.*||.*sin.*||.*cos.*")) {
             return checkMathOperations(s);
         }
-        
+
         if (Character.toString(s.charAt(0)).matches("[<>+-]+") && s.substring(1).matches("[a-z]")) {
             return checkVariableOperations(Character.toString(s.charAt(0)), s.substring(1));
-        } 
-        
-        if(s.matches(".*save.*||.*restore.*")){
+        }
+
+        if (s.matches(".*save.*||.*restore.*")) {
             return checkCopyOperations(s) == "" ? "Done" : "Syntax Error";
         }
-        
-        if(s.matches(".*clear.*||.*drop.*||.*dup.*||.*swap.*||.*over.*")){
+
+        if (s.matches(".*clear.*||.*drop.*||.*dup.*||.*swap.*||.*over.*")) {
             return checkMemoryOperations(s);
-        }
- 
-        else {
+        } else {
             return insertComplexNumbers(s) == true ? "" : "Syntax Error";
         }
     }
-    
+
     /**
      * Checks math operations.
      *
      * @param s String that contains the operation to do
-     * @return "" if the string format is correct otherwise "Math Error" if
-     * the string format is incorrect
+     * @return "" if the string format is correct otherwise "Math Error" if the
+     * string format is incorrect
      */
-    
     private String checkMathOperations(String s) {
         if (s.compareTo("+") == 0) {
             return memory.sumLastTwoNumbers() == true ? "" : "Math Error";
@@ -102,27 +99,36 @@ public class Calculator {
         if (s.compareTo("+-") == 0) {
             return memory.invertSignLastNumber() == true ? "" : "Math Error";
         }
-        
+
         if (s.compareTo("mod") == 0) {
             return memory.modLastNumber() == true ? "" : "Math Error";
         }
-        
+
         if (s.compareTo("arg") == 0) {
             return memory.argLastNumber() == true ? "" : "Math Error";
         }
-        
+
         if (s.compareTo("exp") == 0) {
             return memory.expLastNumber() == true ? "" : "Math Error";
         }
-        
+
         if (s.compareTo("log") == 0) {
             return memory.logLastNumber() == true ? "" : "Math Error";
         }
         
-        else
+        if (s.compareTo("sin") == 0) {
+            return memory.sinLastNumber() == true ? "" : "Math Error";
+        } 
+        
+        if (s.compareTo("cos") == 0) {
+            return memory.cosLastNumber() == true ? "" : "Math Error";
+        }
+        
+        else {
             return "Syntax Error";
+        }
     }
-    
+
     /**
      * Stores insert complex number in the memory .
      *
@@ -272,7 +278,7 @@ public class Calculator {
             return "Syntax Error";
         }
     }
-    
+
     /**
      * Save a function with relatives name and operations.
      *
@@ -281,7 +287,7 @@ public class Calculator {
      * @return true if the format is correct, false otherwise
      */
     public String saveFunctionOperations(String name, String operations) {
-        
+
         return functions.saveFunction(name, operations) == true ? "Saved" : "Format Error";
     }
 
@@ -293,41 +299,40 @@ public class Calculator {
     public String[] lastTwelveNumbers() {
         return memory.getLastTwelve();
     }
-    
+
     /**
      * Execution of stored function specified by user.
      *
      * @return "" if operation is successfull, "Function Error" otherwise
      */
-    public String executeFunctionOperations(String name){
+    public String executeFunctionOperations(String name) {
         userFunctions = functions.getFunctions();
         String[] operations = functions.getOperation(name);
-        if(flagBackup == true){
+        if (flagBackup == true) {
             memory.createBackup();
             flagBackup = false;
         }
-       
-        if(operations == null){
+
+        if (operations == null) {
             flagBackup = true;
-            return "Function Error";        
+            return "Function Error";
         }
-   
-        for (int i=0; i<operations.length; i++){
-            if(userFunctions.contains(operations[i])){
-                if(executeFunctionOperations(operations[i]).compareTo("")!= 0){
-                    memory.restoreBackup();
-                    flagBackup = true;
-                    return "Function Error";
-                }           
-            }
-            else{
-                String result = checkOperations(operations[i]);
-                if(result.compareTo("")!=0 && result.compareTo("Done")!=0){
+
+        for (int i = 0; i < operations.length; i++) {
+            if (userFunctions.contains(operations[i])) {
+                if (executeFunctionOperations(operations[i]).compareTo("") != 0) {
                     memory.restoreBackup();
                     flagBackup = true;
                     return "Function Error";
                 }
-            }     
+            } else {
+                String result = checkOperations(operations[i]);
+                if (result.compareTo("") != 0 && result.compareTo("Done") != 0) {
+                    memory.restoreBackup();
+                    flagBackup = true;
+                    return "Function Error";
+                }
+            }
         }
         flagBackup = true;
         return "";
@@ -342,7 +347,7 @@ public class Calculator {
     public String deleteFunctionOperations(String name) {
         return functions.deleteFunction(name) == true ? "Done" : "Syntax Error";
     }
-    
+
     /**
      * This method separates the operations with white space.
      *
@@ -352,7 +357,7 @@ public class Calculator {
     public String getFunctionOperations(String name) {
         return String.join(" ", functions.getOperation(name));
     }
-    
+
     /**
      * This method writes the stored functions to file.
      *
@@ -362,12 +367,13 @@ public class Calculator {
     public String writeFunctionsToFile(File file) throws IOException {
         return functions.writeToFile(file) == true ? "Saved" : "Saved Error";
     }
-    
+
     /**
      * This method reads the stored functions from file.
      *
      * @param file is the File to read
-     * @return List<String> of the operatations loaded if the read is successfull, null otherwise
+     * @return List<String> of the operatations loaded if the read is
+     * successfull, null otherwise
      */
     public List<String> readFunctionsFromFile(File file) throws IOException {
         return functions.readFromFile(file);

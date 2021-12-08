@@ -437,4 +437,20 @@ public boolean squareRootLastNumber(){
         }
     }
     
+     /**
+     * This method makes the cosine of the last stored complex number 
+     * and save the result in the stack
+     *  @return false if stack has zero element, true otherwise
+    */
+    public boolean cosLastNumber(){
+        if (top == -1) {
+            return false;
+        } else {
+            ComplexNumbers num1 = this.pop();
+            ComplexNumbers res = num1.cos();
+            this.push(res.getReal(), res.getImg());
+            return true;
+        }
+    }
+    
 }
