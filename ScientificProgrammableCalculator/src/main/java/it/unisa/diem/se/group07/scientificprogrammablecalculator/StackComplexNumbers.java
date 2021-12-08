@@ -421,4 +421,20 @@ public boolean squareRootLastNumber(){
         }
     }
     
+    /**
+     * This method makes the sine of the last stored complex number 
+     * and save the result in the stack
+     *  @return false if stack has zero element, true otherwise
+    */
+    public boolean sinLastNumber(){
+        if (top == -1) {
+            return false;
+        } else {
+            ComplexNumbers num1 = this.pop();
+            ComplexNumbers res = num1.sin();
+            this.push(res.getReal(), res.getImg());
+            return true;
+        }
+    }
+    
 }
