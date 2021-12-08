@@ -49,7 +49,8 @@ public class Calculator {
             return executeFunctionOperations(s);
         }
 
-        if (s.matches("[+-/*]+") || s.matches(".*sqrt.*||.*mod.*||.*arg.*||.*exp.*||.*log.*||.*sin.*||.*cos.*")) {
+        if (s.matches("[+-/*]+") || s.matches(".*sqrt.*||.*mod.*||.*arg.*||.*exp.*||"
+                + ".*log.*||.*sin.*||.*cos.*||.*tan.*")) {
             return checkMathOperations(s);
         }
 
@@ -122,6 +123,10 @@ public class Calculator {
         
         if (s.compareTo("cos") == 0) {
             return memory.cosLastNumber() == true ? "" : "Math Error";
+        }
+        
+        if (s.compareTo("tan") == 0) {
+            return memory.tanLastNumber() == true ? "" : "Math Error";
         }
         
         else {

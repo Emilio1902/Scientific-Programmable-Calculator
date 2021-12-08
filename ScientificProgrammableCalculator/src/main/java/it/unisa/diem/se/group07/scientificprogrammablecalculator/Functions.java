@@ -57,6 +57,9 @@ public class Functions {
                 put("arg", null);
                 put("log", null);
                 put("exp", null);
+                put("sin", null);
+                put("cos", null);
+                put("tan", null);
             }
         };
     }
