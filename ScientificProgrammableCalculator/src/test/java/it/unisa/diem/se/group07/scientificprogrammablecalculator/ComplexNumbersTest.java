@@ -869,5 +869,81 @@ public class ComplexNumbersTest {
         assertEquals(0.0, cos16.getImg());
 
     }
+    
+    /**
+     * Test of sin method, of class ComplexNumbers.
+     */
+    @Test
+    public void testTan() {
+        
+        ComplexNumbers tan0 =numbers[0].tan();
+        assertEquals(Double.NaN, tan0.getReal());
+        assertEquals(Double.NaN, tan0.getImg());
+
+        ComplexNumbers tan1 =numbers[1].tan();
+        assertEquals(Double.NaN, tan1.getReal());
+        assertEquals(Double.NaN, tan1.getImg());
+        
+        ComplexNumbers tan2 =numbers[2].tan();
+        assertEquals(Double.NaN, tan2.getReal());
+        assertEquals(Double.NaN, tan2.getImg());
+
+        ComplexNumbers tan3 = numbers[3].tan();
+        assertEquals(0.00000299, tan3.getReal());
+        assertEquals(1.00000049, tan3.getImg());
+        
+        ComplexNumbers tan4 = numbers[4].tan();
+        assertEquals(0.0, tan4.getReal());
+        assertEquals(-1.0, tan4.getImg());
+        
+        ComplexNumbers tan5 = numbers[5].tan();
+        assertEquals(-0.00178894, tan5.getReal());
+        assertEquals(1.00151388, tan5.getImg());
+        
+        ComplexNumbers tan6 = numbers[6].tan();
+        assertEquals(0.0, tan6.getReal());
+        assertEquals(-1.0, tan6.getImg());
+        
+        ComplexNumbers tan7 = numbers[7].tan();
+        assertEquals(-3.34360553, tan7.getReal());
+        assertEquals(0.0, tan7.getImg());
+        
+        ComplexNumbers tan8 = numbers[8].tan();
+        assertEquals(0.0, tan8.getReal());
+        assertEquals(0.99999965, tan8.getImg());
+        
+        ComplexNumbers tan9 = numbers[9].tan();
+        assertEquals(-0.00840755, tan9.getReal());
+        assertEquals(0.0, tan9.getImg());
+        
+        ComplexNumbers tan10 = numbers[10].tan();
+        assertEquals(0.0, tan10.getReal());
+        assertEquals(-1.0, tan10.getImg());
+        
+        ComplexNumbers tan11 = numbers[11].tan();
+        assertEquals(0.0, tan11.getReal());
+        assertEquals(0.0, tan11.getImg());
+        
+        ComplexNumbers tan12 = numbers[12].tan();
+        assertEquals(Double.NaN, tan12.getReal());
+        assertEquals(Double.NaN, tan12.getImg());
+        
+        ComplexNumbers tan13 = numbers[13].tan();
+        assertEquals(Double.NaN, tan13.getReal());
+        assertEquals(Double.NaN, tan13.getImg());
+        
+        ComplexNumbers tan14 = numbers[14].tan();
+        assertEquals(Double.NaN, tan14.getReal());
+        assertEquals(Double.NaN, tan14.getImg());
+        
+        ComplexNumbers tan15 = numbers[15].tan();
+        assertEquals(1E-8, tan15.getReal());
+        assertEquals(1E-8, tan15.getImg());
+        
+        ComplexNumbers tan16 = numbers[16].tan();
+        assertEquals(0.0, tan16.getReal());
+        assertEquals(0.0, tan16.getImg());
+
+    }
 }
 

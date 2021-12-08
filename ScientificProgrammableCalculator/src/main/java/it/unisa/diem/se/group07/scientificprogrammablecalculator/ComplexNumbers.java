@@ -355,6 +355,22 @@ public class ComplexNumbers {
     }
     
     /**
+        Tangent of this Complex number (doesn't change this Complex number).
+        <br>tan(z) = sin(z)/cos(z).
+        @return tan(z) where z is this Complex number.
+    */
+    public ComplexNumbers tan() {
+        ComplexNumbers result = (this.sin()).ratio(this.cos());
+        double realPart = result.getReal();
+        double imgPart = result.getImg();
+        if(Math.abs(realPart)==0)
+            realPart = 0.0;
+        if(Math.abs(imgPart)==0)
+            imgPart = 0.0;
+        return new ComplexNumbers(realPart, imgPart);
+    }
+    
+    /**
      * Parse from ComplexNumbers to string
      *
      * @return Re[z]+Img[z]i string where z is this Complex number.
