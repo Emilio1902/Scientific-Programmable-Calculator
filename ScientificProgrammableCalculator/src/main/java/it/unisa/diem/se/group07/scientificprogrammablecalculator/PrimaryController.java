@@ -1,5 +1,7 @@
 package it.unisa.diem.se.group07.scientificprogrammablecalculator;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -14,6 +16,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 public class PrimaryController implements Initializable {
 
@@ -203,6 +207,11 @@ public class PrimaryController implements Initializable {
         functionsList.getSelectionModel().select("Functions");
     }
 
+    /**
+     * This method allows to modify the user-defined function.
+     *
+     * @param event represents the pressing of modify button
+     */
     @FXML
     private void modifyFunction(ActionEvent event) {
         if (functionsList.getValue().compareTo("Functions") != 0) {
@@ -211,6 +220,11 @@ public class PrimaryController implements Initializable {
         }
     }
 
+    /**
+     * This method allows to delete the user-defined function.
+     *
+     * @param event represents the pressing of delete button
+     */
     @FXML
     private void deleteFunction(ActionEvent event) {
         if (functionsList.getValue().compareTo("Functions") != 0) {
@@ -225,11 +239,24 @@ public class PrimaryController implements Initializable {
         }
     }
 
+    /**
+     * This method allows to write the user-defined function to file.
+     *
+     * @param event represents the pressing of save function button
+     */
+    @FXML
+    private void writeToFile(ActionEvent event) throws IOException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(
+                new ExtensionFilter("Text Files", "*.txt")
+        );
+        File selectedFile = fileChooser.showSaveDialog(null);
+        String result = calculator.writeFunctionsToFile(selectedFile);
+        updateInterface(result);
+    }
+    
     @FXML
     private void readFromFile(ActionEvent event) {
     }
 
-    @FXML
-    private void writeToFile(ActionEvent event) {
-    }
 }

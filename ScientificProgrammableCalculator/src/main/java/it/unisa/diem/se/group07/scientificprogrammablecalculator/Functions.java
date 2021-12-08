@@ -4,7 +4,13 @@
  */
 package it.unisa.diem.se.group07.scientificprogrammablecalculator;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -88,6 +94,26 @@ public class Functions {
     public Set<String> getFunctions (){
        return functions.keySet();
     }
-
     
+    /**
+     * This method writes to file stored functions.
+     *
+     * @param file is the name of file.
+     * @return true if the writing is successfull, false and Exception otherwise
+     */
+    public boolean writeToFile(File file) throws IOException{
+        Set entrySet = functions.entrySet();
+        Iterator it = entrySet.iterator();
+        try(PrintWriter o = new PrintWriter(new BufferedWriter(new FileWriter(file.getPath())))){
+            while(it.hasNext()){
+                HashMap.Entry pair = (HashMap.Entry)it.next();
+                o.print(pair.getKey() + " : " + pair.getValue() + "\n");
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage() + "\nError on written file");
+            return false;
+        } 
+        return true;
+    }
+ 
 }

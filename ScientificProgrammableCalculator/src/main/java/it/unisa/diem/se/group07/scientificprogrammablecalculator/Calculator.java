@@ -5,6 +5,8 @@
  */
 package it.unisa.diem.se.group07.scientificprogrammablecalculator;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Set;
 
 /**
@@ -323,12 +325,33 @@ public class Calculator {
         return "";
     }
 
-    
+    /**
+     * Delete user-defined functions.
+     *
+     * @param name is the name of the function to delete.
+     * @return true if the deleting is successfull, false otherwise
+     */
     public String deleteFunctionOperations(String name) {
         return functions.deleteFunction(name) == true ? "Done" : "Syntax Error";
     }
     
+    /**
+     * This method separates the operations with white space.
+     *
+     * @param name is the name of the function to separate
+     * @return a string of operations separated with white space
+     */
     public String getFunctionOperations(String name) {
         return String.join(" ", functions.getOperation(name));
+    }
+    
+    /**
+     * This method writes the stored functions to file.
+     *
+     * @param file is the File to write on
+     * @return "Saved" if the operation is successfull, "Saved Error" otherwise
+     */
+    public String writeFunctionsToFile(File file) throws IOException {
+        return functions.writeToFile(file) == true ? "Saved" : "Saved Error";
     }
 }
