@@ -339,7 +339,7 @@
                                     <Font size="28.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="equalButton" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#makeEqualsButtonOperations" prefHeight="60.0" prefWidth="150.0" style="-fx-background-radius: 30; -fx-background-color: #F29611;" text="=" textFill="WHITE">
+                              <Button fx:id="equalButton" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#makeOperations" prefHeight="60.0" prefWidth="150.0" style="-fx-background-radius: 30; -fx-background-color: #F29611;" text="=" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets left="15.0" right="15.0" />
                                  </HBox.margin>
@@ -387,7 +387,7 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </TextArea>
-                  <Button mnemonicParsing="false" onAction="#saveFunctionButton" prefHeight="30.0" prefWidth="300.0" style="-fx-background-radius: 30; -fx-background-color: #808080;" text="save function" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#saveFunction" prefHeight="30.0" prefWidth="300.0" style="-fx-background-radius: 30; -fx-background-color: #808080;" text="save function" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -413,7 +413,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                      <children>
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#useFunctionButton" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #808080; -fx-background-radius: 30;" text="use" textAlignment="CENTER" textFill="WHITE">
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#useFunction" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #808080; -fx-background-radius: 30;" text="use" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -421,7 +421,7 @@
                               <Insets left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
                         </Button>
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#modifyFunctionButton" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #808080; -fx-background-radius: 30;" text="modify" textAlignment="CENTER" textFill="WHITE">
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#modifyFunction" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #808080; -fx-background-radius: 30;" text="modify" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -429,7 +429,7 @@
                               <Insets left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
                         </Button>
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#deleteFunctionButton" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #808080; -fx-background-radius: 30;" text="delete" textAlignment="CENTER" textFill="WHITE">
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#deleteFunction" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #808080; -fx-background-radius: 30;" text="delete" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -449,7 +449,7 @@
                   </Label>
                   <HBox prefHeight="44.0" prefWidth="300.0">
                      <children>
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#loadFunctionButton" prefHeight="35.0" prefWidth="130.0" style="-fx-background-color: #808080; -fx-background-radius: 30;" text="load function" textAlignment="CENTER" textFill="WHITE">
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#readFromFile" prefHeight="35.0" prefWidth="130.0" style="-fx-background-color: #808080; -fx-background-radius: 30;" text="load function" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -457,7 +457,7 @@
                               <Insets left="10.0" right="5.0" top="10.0" />
                            </HBox.margin>
                         </Button>
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#saveFunctionButton" prefHeight="35.0" prefWidth="130.0" style="-fx-background-color: #808080; -fx-background-radius: 30;" text="save function" textAlignment="CENTER" textFill="WHITE">
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#writeToFile" prefHeight="35.0" prefWidth="130.0" style="-fx-background-color: #808080; -fx-background-radius: 30;" text="save function" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>

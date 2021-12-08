@@ -35,7 +35,7 @@ public class Calculator {
      * @param s String to pass to the calculator
      * @return "" if the string is empty otherwise the result of the operation
      */
-    public String checkEqualsButtonOperations(String s) {
+    public String checkOperations(String s) {
         if (s.compareTo("") == 0) {
             return "";
         }
@@ -312,7 +312,7 @@ public class Calculator {
                 }           
             }
             else{
-                if(checkEqualsButtonOperations(operations[i])!= ""){
+                if(checkOperations(operations[i])!= ""){
                     memory.restoreBackup();
                     flagBackup = true;
                     return "Function Error";

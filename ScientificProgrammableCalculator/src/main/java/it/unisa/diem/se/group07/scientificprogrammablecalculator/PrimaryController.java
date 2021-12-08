@@ -124,9 +124,9 @@ public class PrimaryController implements Initializable {
      * @param event represents the pressing of the = button
      */
     @FXML
-    private void makeEqualsButtonOperations(ActionEvent event) {
+    private void makeOperations(ActionEvent event) {
         String input = display.getText();
-        String result = calculator.checkEqualsButtonOperations(input);
+        String result = calculator.checkOperations(input);
         updateInterface(result);
     }
 
@@ -171,7 +171,7 @@ public class PrimaryController implements Initializable {
      * @param event represents the pressing of save function button
      */
     @FXML
-    private void saveFunctionButton(ActionEvent event) {
+    private void saveFunction(ActionEvent event) {
         String name = nameFunction.getText();
         String funcOp = operationsFunction.getText();
         String result = "";
@@ -197,14 +197,14 @@ public class PrimaryController implements Initializable {
      * @param event represents the pressing of use button
      */
     @FXML
-    private void useFunctionButton(ActionEvent event) {
+    private void useFunction(ActionEvent event) {
         String result = calculator.executeFunctionOperations(functionsList.getValue());
         updateInterface(result);
         functionsList.getSelectionModel().select("Functions");
     }
 
     @FXML
-    private void modifyFunctionButton(ActionEvent event) {
+    private void modifyFunction(ActionEvent event) {
         if (functionsList.getValue().compareTo("Functions") != 0) {
             nameFunction.setText(functionsList.getValue());
             operationsFunction.setText(calculator.getFunctionOperations(functionsList.getValue()));
@@ -212,7 +212,7 @@ public class PrimaryController implements Initializable {
     }
 
     @FXML
-    private void deleteFunctionButton(ActionEvent event) {
+    private void deleteFunction(ActionEvent event) {
         if (functionsList.getValue().compareTo("Functions") != 0) {
             Alert confirmDelete = new Alert(AlertType.NONE, "Delete " + functionsList.getValue() + " ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
             confirmDelete.showAndWait();
@@ -226,6 +226,10 @@ public class PrimaryController implements Initializable {
     }
 
     @FXML
-    private void loadFunctionButton(ActionEvent event) {
+    private void readFromFile(ActionEvent event) {
+    }
+
+    @FXML
+    private void writeToFile(ActionEvent event) {
     }
 }
