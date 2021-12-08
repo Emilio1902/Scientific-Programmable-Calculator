@@ -7,6 +7,7 @@ package it.unisa.diem.se.group07.scientificprogrammablecalculator;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -20,6 +21,7 @@ public class Calculator {
     private Variables variables;
     private Functions functions;
     private boolean flagBackup = true;
+    private Set<String> userFunctions;
 
     /**
      * Constructs the stack memory of the calculator
@@ -40,6 +42,11 @@ public class Calculator {
     public String checkOperations(String s) {
         if (s.compareTo("") == 0) {
             return "";
+        }
+        
+        userFunctions = functions.getFunctions();
+        if(userFunctions.contains(s)){
+            return executeFunctionOperations(s);
         }
         
         if(s.matches("[+-/*]+") || s.matches(".*sqrt.*||.*mod.*||.*arg.*||.*exp.*||.*log.*") ) {
@@ -293,7 +300,7 @@ public class Calculator {
      * @return "" if operation is successfull, "Function Error" otherwise
      */
     public String executeFunctionOperations(String name){
-        Set<String> setFunctions = functions.getFunctions();
+        userFunctions = functions.getFunctions();
         String[] operations = functions.getOperation(name);
         if(flagBackup == true){
             memory.createBackup();
@@ -306,7 +313,7 @@ public class Calculator {
         }
    
         for (int i=0; i<operations.length; i++){
-            if(setFunctions.contains(operations[i])){
+            if(userFunctions.contains(operations[i])){
                 if(executeFunctionOperations(operations[i]).compareTo("")!= 0){
                     memory.restoreBackup();
                     flagBackup = true;
@@ -353,5 +360,15 @@ public class Calculator {
      */
     public String writeFunctionsToFile(File file) throws IOException {
         return functions.writeToFile(file) == true ? "Saved" : "Saved Error";
+    }
+    
+    /**
+     * This method reads the stored functions from file.
+     *
+     * @param file is the File to read
+     * @return List<String> of the operatations loaded if the read is successfull, null otherwise
+     */
+    public List<String> readFunctionsFromFile(File file) throws IOException {
+        return functions.readFromFile(file);
     }
 }

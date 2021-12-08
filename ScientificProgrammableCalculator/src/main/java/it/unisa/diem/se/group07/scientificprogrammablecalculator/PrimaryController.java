@@ -3,6 +3,7 @@ package it.unisa.diem.se.group07.scientificprogrammablecalculator;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -203,8 +204,10 @@ public class PrimaryController implements Initializable {
     @FXML
     private void useFunction(ActionEvent event) {
         String result = calculator.executeFunctionOperations(functionsList.getValue());
-        updateInterface(result);
         functionsList.getSelectionModel().select("Functions");
+        operationsFunction.clear();
+        nameFunction.clear();
+        updateInterface(result);
     }
 
     /**
@@ -234,6 +237,8 @@ public class PrimaryController implements Initializable {
                 String result = calculator.deleteFunctionOperations(functionsList.getValue());
                 functionsList.getItems().remove(functionsList.getValue());
                 functionsList.getSelectionModel().select("Functions");
+                operationsFunction.clear();
+                nameFunction.clear();
                 updateInterface(result);
             }
         }
@@ -251,12 +256,33 @@ public class PrimaryController implements Initializable {
                 new ExtensionFilter("Text Files", "*.txt")
         );
         File selectedFile = fileChooser.showSaveDialog(null);
-        String result = calculator.writeFunctionsToFile(selectedFile);
-        updateInterface(result);
+        if (selectedFile != null) {
+            String result = calculator.writeFunctionsToFile(selectedFile);
+            updateInterface(result);
+        }
     }
-    
+
+    /**
+     * This method allows to read the user-defined function from file.
+     *
+     * @param event represents the pressing of load function button
+     */
     @FXML
-    private void readFromFile(ActionEvent event) {
+    private void readFromFile(ActionEvent event) throws IOException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(
+                new ExtensionFilter("Text Files", "*.txt")
+        );
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            List<String> addedFunctions = calculator.readFunctionsFromFile(selectedFile);
+            if (addedFunctions != null) {
+                functionsList.getItems().addAll(addedFunctions);
+                updateInterface("Loaded");
+            } else {
+                updateInterface("Loaded Error");
+            }
+        }
     }
 
 }
