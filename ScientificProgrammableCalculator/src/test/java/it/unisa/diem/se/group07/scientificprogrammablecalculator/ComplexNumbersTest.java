@@ -18,9 +18,13 @@ public class ComplexNumbersTest {
 
     @Before
     public void setUp() {
+        //Below minimum
         numbers[0] = new ComplexNumbers(-Double.MAX_VALUE-Double.MIN_VALUE,-Double.MAX_VALUE-Double.MIN_VALUE);
+        //Minimum boundary
         numbers[1] = new ComplexNumbers(-Double.MAX_VALUE,-Double.MAX_VALUE);
+        //Above minimum
         numbers[2] = new ComplexNumbers(-Double.MAX_VALUE+Double.MIN_VALUE,-Double.MAX_VALUE+Double.MIN_VALUE);
+        //Nominal
         numbers[3] = new ComplexNumbers(7.15, 6.70);
         numbers[4] = new ComplexNumbers(13.73, -41.13);
         numbers[5] = new ComplexNumbers(-1.137, 3.375);
@@ -30,8 +34,11 @@ public class ComplexNumbersTest {
         numbers[9] = new ComplexNumbers(-3.15, 0);
         numbers[10] = new ComplexNumbers(0, -23.71);
         numbers[11] = new ComplexNumbers(0, 0);
+        //Below maximum
         numbers[12] = new ComplexNumbers(Double.MAX_VALUE-Double.MIN_VALUE,Double.MAX_VALUE-Double.MIN_VALUE);
+        //Maximum boundary
         numbers[13] = new ComplexNumbers(Double.MAX_VALUE,Double.MAX_VALUE);
+        //Above maximum
         numbers[14] = new ComplexNumbers(Double.MAX_VALUE+Double.MIN_VALUE,Double.MAX_VALUE+Double.MIN_VALUE);
         //the complex number constructor approximates the number to the eighth decimal place
         numbers[15] = new ComplexNumbers(0.00000001,0.00000001);
@@ -135,7 +142,6 @@ public class ComplexNumbersTest {
         assertEquals(0.0, numbers[16].arg());
     }
 
-    /*
     /**
      * Test of StringToComplex method, of class ComplexNumbers.
      */
@@ -253,9 +259,7 @@ public class ComplexNumbersTest {
         
         ComplexNumbers sum13 = numbers[13].sum(numbers[3]);
         assertEquals(Double.MAX_VALUE, sum13.getReal());
-        assertEquals(Double.MAX_VALUE, sum13.getImg());
-        
-        
+        assertEquals(Double.MAX_VALUE, sum13.getImg());    
     }
 
     /**
@@ -536,9 +540,7 @@ public class ComplexNumbersTest {
         
         ComplexNumbers sqrt16 =numbers[16].squareRoot();
         assertEquals(0.0, sqrt16.getReal());
-        assertEquals(0.0, sqrt16.getImg());
-        
-        
+        assertEquals(0.0, sqrt16.getImg());   
     }
     
     /**
@@ -564,9 +566,7 @@ public class ComplexNumbersTest {
         
         ComplexNumbers inverted5 =numbers[13].invertSign();
         assertEquals(-Double.MAX_VALUE, inverted5.getReal());
-        assertEquals(-Double.MAX_VALUE, inverted5.getImg());
-        
-        
+        assertEquals(-Double.MAX_VALUE, inverted5.getImg());  
     }
     
     /**
@@ -795,7 +795,7 @@ public class ComplexNumbersTest {
     }
     
     /**
-     * Test of sin method, of class ComplexNumbers.
+     * Test of cos method, of class ComplexNumbers.
      */
     @Test
     public void testCos() {
@@ -867,11 +867,10 @@ public class ComplexNumbersTest {
         ComplexNumbers cos16 = numbers[16].cos();
         assertEquals(1.0, cos16.getReal());
         assertEquals(0.0, cos16.getImg());
-
     }
     
     /**
-     * Test of sin method, of class ComplexNumbers.
+     * Test of tan method, of class ComplexNumbers.
      */
     @Test
     public void testTan() {

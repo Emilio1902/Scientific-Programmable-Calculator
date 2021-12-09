@@ -15,7 +15,7 @@ public class Variables {
     private HashMap<Character, ComplexNumbers> variablesCopy;
     
     /**
-     * Constructs the variables data structures and its eventual copy
+     * Constructs the variables data structures and its eventual copy.
      *
      */
     public Variables() {
@@ -24,44 +24,42 @@ public class Variables {
     }
     
     /**
-     * This method save a ComplexNumbers into a specified variable.
+     * This method saves a ComplexNumbers into a specified variable.
      *
      * @param key is the variable that will contain the ComplexNumbers.
-     * @param number is the ComplexNumbers to store
+     * @param number is the ComplexNumbers to store.
      * 
-     * @return true if the specified variable is an Alphabetic character, false otherwise
+     * @return true if the specified variable is an Alphabetic character, false otherwise.
      */
     public boolean setVariableValue(char key, ComplexNumbers number){
         if(!Character.isAlphabetic(key)){
             return false;
-        }else{
+        }
+        else{
             variables.put(Character.toLowerCase(key), number);
             return true;
         }
     }
     
     /**
-     * This method save a ComplexNumbers into a specified variable.
+     * This method saves a ComplexNumbers into a specified variable.
      *
      * @param key is the variable that contains the ComplexNumbers to return.
-     * 
-     * @return the ComplexNumbers contained into variable key if this exists, null otherwise
+     * @return the ComplexNumbers contained into variable key if this exists, null otherwise.
      */
     public ComplexNumbers getVariableValue(char key){
         return variables.get(key);
     }
     
     /**
-     * This method save a copy of the stored variables into another data structure.
-     *
+     * This method saves a copy of the stored variables into another data structure.
      */
     public void saveVariables(){
         variablesCopy = (HashMap<Character, ComplexNumbers>)variables.clone();
     }
     
     /**
-     * This method restore the copy of the stored variables into original data structure.
-     *
+     * This method restores the copy of the stored variables into original data structure.
      */
     public void restoreVariables(){
         variables = (HashMap<Character, ComplexNumbers>)variablesCopy.clone();

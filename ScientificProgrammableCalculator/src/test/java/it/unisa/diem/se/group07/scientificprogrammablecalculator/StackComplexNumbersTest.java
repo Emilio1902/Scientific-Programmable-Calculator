@@ -678,8 +678,6 @@ public class StackComplexNumbersTest {
     
     /**
      * Test of productLastTwoNumbers method, of class StackComplexNumbers.
-     * The result of the multiplication expects a maximum of 8 decimal digits rounded up, 
-     * for the implementation of the method in ComplexNumbers class.
      */
     @Test
     public void testProductLastTwoNumbers() {
@@ -852,8 +850,6 @@ public class StackComplexNumbersTest {
    
     /**
      * Test of ratioLastTwoNumbers method, of class StackComplexNumbers.
-     * The result of the division expects a maximum of 8 decimal digits rounded up, 
-     * for the implementation of the method in ComplexNumbers class.
      */
     @Test
     public void testRatioLastTwoNumbers() {
@@ -996,8 +992,6 @@ public class StackComplexNumbersTest {
     
     /**
      * Test of squareRootLastNumber method, of class StackComplexNumbers.
-     * The result of the square root expects a maximum of 8 decimal digits rounded up, 
-     * for the implementation of the method in ComplexNumbers class.
      */
     @Test
     public void testSquareRootLastNumber() {
@@ -1056,36 +1050,42 @@ public class StackComplexNumbersTest {
         assertEquals(0.0, num7.getImg());
 
         //test for stack with inserted boundary limits
+        //Below minimum
         stack.push(-Double.MAX_VALUE-Double.MIN_VALUE, -Double.MAX_VALUE-Double.MIN_VALUE);
         stack.squareRootLastNumber();
         ComplexNumbers num8 = stack.top();
         assertEquals(Double.NEGATIVE_INFINITY, num8.getReal());
         assertEquals(Double.POSITIVE_INFINITY, num8.getImg());
   
+        //Minimum boundary
         stack.push(-Double.MAX_VALUE, -Double.MAX_VALUE);
         stack.squareRootLastNumber();
         ComplexNumbers num9 = stack.top();
         assertEquals(Double.NEGATIVE_INFINITY, num9.getReal());
         assertEquals(Double.POSITIVE_INFINITY, num9.getImg());
         
+        //Above minimum
         stack.push(-Double.MAX_VALUE+Double.MIN_VALUE, -Double.MAX_VALUE+Double.MIN_VALUE);
         stack.squareRootLastNumber();
         ComplexNumbers num10 = stack.top();
         assertEquals(Double.NEGATIVE_INFINITY, num10.getReal());
         assertEquals(Double.POSITIVE_INFINITY, num10.getImg());
-              
+        
+        //Below maximum
         stack.push(Double.MAX_VALUE-Double.MIN_VALUE, Double.MAX_VALUE-Double.MIN_VALUE);
         stack.squareRootLastNumber();
         ComplexNumbers num11 = stack.top();
         assertEquals(Double.POSITIVE_INFINITY, num11.getReal());
         assertEquals(Double.POSITIVE_INFINITY, num11.getImg());
           
+        //Maximum boundary
         stack.push(Double.MAX_VALUE, Double.MAX_VALUE);
         stack.squareRootLastNumber();
         ComplexNumbers num12 = stack.top();
         assertEquals(Double.POSITIVE_INFINITY, num12.getReal());
         assertEquals(Double.POSITIVE_INFINITY, num12.getImg()); 
         
+        //Above maximum
         stack.push(Double.MAX_VALUE+Double.MIN_VALUE, Double.MAX_VALUE+Double.MIN_VALUE);
         stack.squareRootLastNumber();
         ComplexNumbers num13 = stack.top();
@@ -1172,12 +1172,14 @@ public class StackComplexNumbersTest {
         assertEquals(0.0, num8.getImg());
         
         //test for stack with inserted boundary limits
+        //Below minimum
         stack.push(-Double.MAX_VALUE-Double.MIN_VALUE, -Double.MAX_VALUE-Double.MIN_VALUE);
         stack.invertSignLastNumber();
         ComplexNumbers num9 = stack.top();
         assertEquals(Double.MAX_VALUE, num9.getReal());
         assertEquals(Double.MAX_VALUE, num9.getImg());
   
+        //Maximum boundary
         stack.push(Double.MAX_VALUE, Double.MAX_VALUE);
         stack.invertSignLastNumber();
         ComplexNumbers num10 = stack.top();
@@ -1299,8 +1301,6 @@ public class StackComplexNumbersTest {
     
     /**
      * Test of modLastNumber method, of class StackComplexNumbers.
-     * The result of the modul expects a maximum of 8 decimal digits rounded up, 
-     * for the implementation of the method in ComplexNumbers class.
      */
     @Test
     public void testModLastNumber() {
@@ -1356,31 +1356,37 @@ public class StackComplexNumbersTest {
         assertEquals(5.321, num8.getReal());
  
         //test for stack with inserted boundary limits
+        //Below minimum
         stack.push(-Double.MAX_VALUE-Double.MIN_VALUE, -Double.MAX_VALUE-Double.MIN_VALUE);
         stack.modLastNumber();
         ComplexNumbers num9 = stack.top();
         assertEquals(Double.POSITIVE_INFINITY, num9.getReal());
   
+        //Minimum boundary
         stack.push(-Double.MAX_VALUE, -Double.MAX_VALUE);
         stack.modLastNumber();
         ComplexNumbers num10 = stack.top();
         assertEquals(Double.POSITIVE_INFINITY, num10.getReal());
         
+        //Above minimum
         stack.push(-Double.MAX_VALUE+Double.MIN_VALUE, -Double.MAX_VALUE+Double.MIN_VALUE);
         stack.modLastNumber();
         ComplexNumbers num11 = stack.top();
         assertEquals(Double.POSITIVE_INFINITY, num11.getReal());
               
+        //Below maximum
         stack.push(Double.MAX_VALUE-Double.MIN_VALUE, Double.MAX_VALUE-Double.MIN_VALUE);
         stack.modLastNumber();
         ComplexNumbers num12 = stack.top();
         assertEquals(Double.POSITIVE_INFINITY, num12.getReal());
           
+        //Maximum boundary
         stack.push(Double.MAX_VALUE, Double.MAX_VALUE);
         stack.modLastNumber();
         ComplexNumbers num13 = stack.top();
         assertEquals(Double.POSITIVE_INFINITY, num13.getReal());
         
+        //Above maximum
         stack.push(Double.MAX_VALUE+Double.MIN_VALUE, Double.MAX_VALUE+Double.MIN_VALUE);
         stack.modLastNumber();
         ComplexNumbers num14 = stack.top();
@@ -1401,8 +1407,6 @@ public class StackComplexNumbersTest {
     
     /**
      * Test of argLastNumber method, of class StackComplexNumbers.
-     * The result of the argument expects a maximum of 8 decimal digits rounded up, 
-     * for the implementation of the method in ComplexNumbers class.
      */
     @Test
     public void testArgLastNumber() {
@@ -1458,31 +1462,37 @@ public class StackComplexNumbersTest {
         assertEquals(3.14159265, num8.getReal());
         
         //test for stack with inserted boundary limits
+        //Below minimum
         stack.push(-Double.MAX_VALUE-Double.MIN_VALUE, -Double.MAX_VALUE-Double.MIN_VALUE);
         stack.argLastNumber();
         ComplexNumbers num9 = stack.top();
         assertEquals(-2.35619449, num9.getReal()); 
   
+        //Minimum boundary
         stack.push(-Double.MAX_VALUE, -Double.MAX_VALUE);
         stack.argLastNumber();
         ComplexNumbers num10 = stack.top();
         assertEquals(-2.35619449, num10.getReal()); 
         
+        //Above minimum
         stack.push(-Double.MAX_VALUE+Double.MIN_VALUE, -Double.MAX_VALUE+Double.MIN_VALUE);
         stack.argLastNumber();
         ComplexNumbers num11 = stack.top();
         assertEquals(-2.35619449, num11.getReal()); 
               
+        //Below maximum
         stack.push(Double.MAX_VALUE-Double.MIN_VALUE, Double.MAX_VALUE-Double.MIN_VALUE);
         stack.argLastNumber();
         ComplexNumbers num12 = stack.top();
         assertEquals(0.78539816, num12.getReal()); 
           
+        //Maximum boundary
         stack.push(Double.MAX_VALUE, Double.MAX_VALUE);
         stack.argLastNumber();
         ComplexNumbers num13 = stack.top();
         assertEquals(0.78539816, num13.getReal());
         
+        //Above maximum
         stack.push(Double.MAX_VALUE+Double.MIN_VALUE, Double.MAX_VALUE+Double.MIN_VALUE);
         stack.argLastNumber();
         ComplexNumbers num14 = stack.top();
@@ -1503,8 +1513,6 @@ public class StackComplexNumbersTest {
     
     /**
      * Test of logLastNumber method, of class StackComplexNumbers.
-     * The result of the arguments expects a maximum of 8 decimal digits rounded up, 
-     * for the implementation of the method in ComplexNumbers class.
      */
     @Test
     public void testLogLastNumber() {
@@ -1575,36 +1583,42 @@ public class StackComplexNumbersTest {
         assertEquals(0.0, num9.getImg());
         
         //test for stack with inserted boundary limits
+        //Below minimum
         stack.push(-Double.MAX_VALUE-Double.MIN_VALUE, -Double.MAX_VALUE-Double.MIN_VALUE);
         stack.logLastNumber();
         ComplexNumbers num10 = stack.top();
         assertEquals(Double.POSITIVE_INFINITY, num10.getReal());
         assertEquals(-2.35619449, num10.getImg());
   
+        //Minimum boundary
         stack.push(-Double.MAX_VALUE, -Double.MAX_VALUE);
         stack.logLastNumber();
         ComplexNumbers num11 = stack.top();
         assertEquals(Double.POSITIVE_INFINITY, num11.getReal());
         assertEquals(-2.35619449, num11.getImg());
         
+        //Above minimum
         stack.push(-Double.MAX_VALUE+Double.MIN_VALUE, -Double.MAX_VALUE+Double.MIN_VALUE);
         stack.logLastNumber();
         ComplexNumbers num12 = stack.top();
         assertEquals(Double.POSITIVE_INFINITY, num12.getReal());
         assertEquals(-2.35619449, num12.getImg());
-              
+             
+        //Below maximum
         stack.push(Double.MAX_VALUE-Double.MIN_VALUE, Double.MAX_VALUE-Double.MIN_VALUE);
         stack.logLastNumber();
         ComplexNumbers num13 = stack.top();
         assertEquals(Double.POSITIVE_INFINITY, num13.getReal());
         assertEquals(0.78539816, num13.getImg());
           
+        //Maximum boundary
         stack.push(Double.MAX_VALUE, Double.MAX_VALUE);
         stack.logLastNumber();
         ComplexNumbers num14 = stack.top();
         assertEquals(Double.POSITIVE_INFINITY, num14.getReal());
         assertEquals(0.78539816, num14.getImg()); 
         
+        //Above maximum
         stack.push(Double.MAX_VALUE+Double.MIN_VALUE, Double.MAX_VALUE+Double.MIN_VALUE);
         stack.logLastNumber();
         ComplexNumbers num15 = stack.top();
@@ -1627,8 +1641,6 @@ public class StackComplexNumbersTest {
     
     /**
      * Test of expLastNumber method, of class StackComplexNumbers.
-     * The result of the arguments expects a maximum of 8 decimal digits rounded up, 
-     * for the implementation of the method in ComplexNumbers class.
      */
     @Test
     public void testExpLastNumber() {
@@ -1693,36 +1705,42 @@ public class StackComplexNumbersTest {
         assertEquals(0.0, num8.getImg());
         
         //test for stack with inserted boundary limits
+        //Below minimum
         stack.push(-Double.MAX_VALUE-Double.MIN_VALUE, -Double.MAX_VALUE-Double.MIN_VALUE);
         stack.expLastNumber();
         ComplexNumbers num9 = stack.top();
         assertEquals(0.0, num9.getReal()); 
         assertEquals(0.0, num9.getImg());  
   
+        //Minimum boundary
         stack.push(-Double.MAX_VALUE, -Double.MAX_VALUE);
         stack.expLastNumber();
         ComplexNumbers num10 = stack.top();
         assertEquals(0.0, num10.getReal());  
         assertEquals(0.0, num10.getImg());  
         
+        //Above minimum
         stack.push(-Double.MAX_VALUE+Double.MIN_VALUE, -Double.MAX_VALUE+Double.MIN_VALUE);
         stack.expLastNumber();
         ComplexNumbers num11 = stack.top();
         assertEquals(0.0, num11.getReal());  
         assertEquals(0.0, num11.getImg());  
               
+        //Below maximum
         stack.push(Double.MAX_VALUE-Double.MIN_VALUE, Double.MAX_VALUE-Double.MIN_VALUE);
         stack.expLastNumber();
         ComplexNumbers num12 = stack.top();
         assertEquals(Double.NEGATIVE_INFINITY, num12.getReal());  
         assertEquals(Double.POSITIVE_INFINITY, num12.getImg());
           
+        //Maximum boundary
         stack.push(Double.MAX_VALUE, Double.MAX_VALUE);
         stack.expLastNumber();
         ComplexNumbers num13 = stack.top();
         assertEquals(Double.NEGATIVE_INFINITY, num13.getReal());
         assertEquals(Double.POSITIVE_INFINITY, num13.getImg()); 
         
+        //Above maximum
         stack.push(Double.MAX_VALUE+Double.MIN_VALUE, Double.MAX_VALUE+Double.MIN_VALUE);
         stack.expLastNumber();
         ComplexNumbers num14 = stack.top();
@@ -1745,8 +1763,6 @@ public class StackComplexNumbersTest {
     
     /**
      * Test of sinLastNumber method, of class StackComplexNumbers.
-     * The result of the arguments expects a maximum of 8 decimal digits rounded up, 
-     * for the implementation of the method in ComplexNumbers class.
      */
     @Test
     public void testSinLastNumber() {
@@ -1811,36 +1827,42 @@ public class StackComplexNumbersTest {
         assertEquals(0.0, num8.getImg());
         
         //test for stack with inserted boundary limits
+        //Below minimum
         stack.push(-Double.MAX_VALUE-Double.MIN_VALUE, -Double.MAX_VALUE-Double.MIN_VALUE);
         stack.sinLastNumber();
         ComplexNumbers num9 = stack.top();
         assertEquals(Double.NEGATIVE_INFINITY, num9.getReal()); 
         assertEquals(Double.POSITIVE_INFINITY, num9.getImg());  
   
+        //Minimum boundary
         stack.push(-Double.MAX_VALUE, -Double.MAX_VALUE);
         stack.sinLastNumber();
         ComplexNumbers num10 = stack.top();
         assertEquals(Double.NEGATIVE_INFINITY, num10.getReal());  
         assertEquals(Double.POSITIVE_INFINITY, num10.getImg());  
         
+        //Above minimum
         stack.push(-Double.MAX_VALUE+Double.MIN_VALUE, -Double.MAX_VALUE+Double.MIN_VALUE);
         stack.sinLastNumber();
         ComplexNumbers num11 = stack.top();
         assertEquals(Double.NEGATIVE_INFINITY, num11.getReal());  
         assertEquals(Double.POSITIVE_INFINITY, num11.getImg());  
-              
+             
+        //Below maximum
         stack.push(Double.MAX_VALUE-Double.MIN_VALUE, Double.MAX_VALUE-Double.MIN_VALUE);
         stack.sinLastNumber();
         ComplexNumbers num12 = stack.top();
         assertEquals(Double.POSITIVE_INFINITY, num12.getReal());  
         assertEquals(Double.NEGATIVE_INFINITY, num12.getImg());
           
+        //Maximum boundary
         stack.push(Double.MAX_VALUE, Double.MAX_VALUE);
         stack.sinLastNumber();
         ComplexNumbers num13 = stack.top();
         assertEquals(Double.POSITIVE_INFINITY, num13.getReal());
         assertEquals(Double.NEGATIVE_INFINITY, num13.getImg()); 
         
+        //Above maximum
         stack.push(Double.MAX_VALUE+Double.MIN_VALUE, Double.MAX_VALUE+Double.MIN_VALUE);
         stack.sinLastNumber();
         ComplexNumbers num14 = stack.top();
@@ -1863,8 +1885,6 @@ public class StackComplexNumbersTest {
     
     /**
      * Test of cosLastNumber method, of class StackComplexNumbers.
-     * The result of the arguments expects a maximum of 8 decimal digits rounded up, 
-     * for the implementation of the method in ComplexNumbers class.
      */
     @Test
     public void testCosLastNumber() {
@@ -1929,36 +1949,42 @@ public class StackComplexNumbersTest {
         assertEquals(0.0, num8.getImg());
         
         //test for stack with inserted boundary limits
+        //Below minimum
         stack.push(-Double.MAX_VALUE-Double.MIN_VALUE, -Double.MAX_VALUE-Double.MIN_VALUE);
         stack.cosLastNumber();
         ComplexNumbers num9 = stack.top();
         assertEquals(Double.NEGATIVE_INFINITY, num9.getReal()); 
         assertEquals(Double.NEGATIVE_INFINITY, num9.getImg());  
   
+        //Minimum boundary
         stack.push(-Double.MAX_VALUE, -Double.MAX_VALUE);
         stack.cosLastNumber();
         ComplexNumbers num10 = stack.top();
         assertEquals(Double.NEGATIVE_INFINITY, num10.getReal());  
         assertEquals(Double.NEGATIVE_INFINITY, num10.getImg());  
         
+        //Above minimum
         stack.push(-Double.MAX_VALUE+Double.MIN_VALUE, -Double.MAX_VALUE+Double.MIN_VALUE);
         stack.cosLastNumber();
         ComplexNumbers num11 = stack.top();
         assertEquals(Double.NEGATIVE_INFINITY, num11.getReal());  
         assertEquals(Double.NEGATIVE_INFINITY, num11.getImg());  
               
+        //Below maximum
         stack.push(Double.MAX_VALUE-Double.MIN_VALUE, Double.MAX_VALUE-Double.MIN_VALUE);
         stack.cosLastNumber();
         ComplexNumbers num12 = stack.top();
         assertEquals(Double.NEGATIVE_INFINITY, num12.getReal());  
         assertEquals(Double.NEGATIVE_INFINITY, num12.getImg());
           
+        //Maximum boundary
         stack.push(Double.MAX_VALUE, Double.MAX_VALUE);
         stack.cosLastNumber();
         ComplexNumbers num13 = stack.top();
         assertEquals(Double.NEGATIVE_INFINITY, num13.getReal());
         assertEquals(Double.NEGATIVE_INFINITY, num13.getImg()); 
         
+        //Above maximum
         stack.push(Double.MAX_VALUE+Double.MIN_VALUE, Double.MAX_VALUE+Double.MIN_VALUE);
         stack.cosLastNumber();
         ComplexNumbers num14 = stack.top();
@@ -1981,8 +2007,6 @@ public class StackComplexNumbersTest {
     
     /**
      * Test of tanLastNumber method, of class StackComplexNumbers.
-     * The result of the arguments expects a maximum of 8 decimal digits rounded up, 
-     * for the implementation of the method in ComplexNumbers class.
      */
     @Test
     public void testTanLastNumber() {
@@ -2047,36 +2071,42 @@ public class StackComplexNumbersTest {
         assertEquals(0.0, num8.getImg());
         
         //test for stack with inserted boundary limits
+        //Below minimum
         stack.push(-Double.MAX_VALUE-Double.MIN_VALUE, -Double.MAX_VALUE-Double.MIN_VALUE);
         stack.tanLastNumber();
         ComplexNumbers num9 = stack.top();
         assertEquals(Double.NaN, num9.getReal()); 
         assertEquals(Double.NaN, num9.getImg());  
   
+        //Minimum boundary
         stack.push(-Double.MAX_VALUE, -Double.MAX_VALUE);
         stack.tanLastNumber();
         ComplexNumbers num10 = stack.top();
         assertEquals(Double.NaN, num10.getReal());  
         assertEquals(Double.NaN, num10.getImg());  
         
+        //Above minimum
         stack.push(-Double.MAX_VALUE+Double.MIN_VALUE, -Double.MAX_VALUE+Double.MIN_VALUE);
         stack.tanLastNumber();
         ComplexNumbers num11 = stack.top();
         assertEquals(Double.NaN, num11.getReal());  
         assertEquals(Double.NaN, num11.getImg());  
               
+        //Below maximum
         stack.push(Double.MAX_VALUE-Double.MIN_VALUE, Double.MAX_VALUE-Double.MIN_VALUE);
         stack.tanLastNumber();
         ComplexNumbers num12 = stack.top();
         assertEquals(Double.NaN, num12.getReal());  
         assertEquals(Double.NaN, num12.getImg());
           
+        //Maximum boundary
         stack.push(Double.MAX_VALUE, Double.MAX_VALUE);
         stack.tanLastNumber();
         ComplexNumbers num13 = stack.top();
         assertEquals(Double.NaN, num13.getReal());
         assertEquals(Double.NaN, num13.getImg()); 
         
+        //Above maximum
         stack.push(Double.MAX_VALUE+Double.MIN_VALUE, Double.MAX_VALUE+Double.MIN_VALUE);
         stack.tanLastNumber();
         ComplexNumbers num14 = stack.top();

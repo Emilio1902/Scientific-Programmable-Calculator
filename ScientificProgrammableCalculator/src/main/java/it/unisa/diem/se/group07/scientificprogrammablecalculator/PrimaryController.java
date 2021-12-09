@@ -17,7 +17,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -26,8 +25,6 @@ public class PrimaryController implements Initializable {
 
     @FXML
     private TextField display;
-
-    private Calculator calculator = new Calculator();
 
     @FXML
     private ListView<String> numbersList;
@@ -55,7 +52,15 @@ public class PrimaryController implements Initializable {
     
     @FXML
     private VBox functionVBox;
+    
+    private final Calculator calculator = new Calculator();
 
+    /**
+     * This method allows to set the ComboBox, the TextArea and the display.
+     *
+     * @param url
+     * @param rb 
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         variableOperations.getItems().removeAll(variableOperations.getItems());
@@ -63,7 +68,9 @@ public class PrimaryController implements Initializable {
         variableOperations.getSelectionModel().select("VarOp");
 
         variables.getItems().removeAll(variableOperations.getItems());
-        variables.getItems().addAll("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z");
+        variables.getItems().addAll("a", "b", "c", "d", "e", "f", "g", "h", "i",
+                "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v",
+                "w", "x", "y", "z");
         variables.getSelectionModel().select("Vars");
 
         functionsList.getItems().removeAll(functionsList.getItems());
@@ -71,20 +78,13 @@ public class PrimaryController implements Initializable {
 
         operationsFunction.setWrapText(true);
 
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                display.requestFocus();
-            }
-
-        });
-
+        Platform.runLater(() -> { display.requestFocus(); });
     }
 
     /**
-     * This method allows to visualize on display the key button pressed
+     * This method allows to visualize on display the key button pressed.
      *
-     * @param event represents the pressing of the button
+     * @param event represents the pressing of the button.
      */
     @FXML
     private void pressedButton(ActionEvent event) {
@@ -97,9 +97,9 @@ public class PrimaryController implements Initializable {
     }
 
     /**
-     * This method delete the last character of the string showed on display
+     * This method delete the last character of the string showed on display.
      *
-     * @param event represents the pressing of the DEL button
+     * @param event represents the pressing of the DEL button.
      */
     @FXML
     private void deleteNumber(ActionEvent event) {
@@ -111,9 +111,9 @@ public class PrimaryController implements Initializable {
     }
 
     /**
-     * This method delete the string showed on display
+     * This method delete the string showed on display.
      *
-     * @param event represents the pressing of the AC button
+     * @param event represents the pressing of the AC button.
      */
     @FXML
     private void clearDisplay(ActionEvent event) {
@@ -121,6 +121,7 @@ public class PrimaryController implements Initializable {
             display.setText("");
             display.setEditable(true);
             functionVBox.setDisable(false);
+            functionsList.getSelectionModel().select("Functions");
             acButton.setStyle("-fx-background-color: #ACACAC; -fx-background-radius: 30;");
             acButton.setDefaultButton(false);
             equalButton.setDefaultButton(true);
@@ -130,9 +131,9 @@ public class PrimaryController implements Initializable {
 
     /**
      * This method make operations on equals button written on display and shows
-     * on the memory list the last twelve numbers
+     * on the memory list the last twelve numbers.
      *
-     * @param event represents the pressing of the = button
+     * @param event represents the pressing of the = button.
      */
     @FXML
     private void makeOperations(ActionEvent event) {
@@ -142,9 +143,9 @@ public class PrimaryController implements Initializable {
     }
 
     /**
-     * This method write on display selected variable operation
+     * This method write on display selected variable operation.
      *
-     * @param event represents the pressing of variable buttons
+     * @param event represents the pressing of variable buttons.
      */
     @FXML
     private void setVariableOperations(ActionEvent event) {
@@ -158,9 +159,9 @@ public class PrimaryController implements Initializable {
     }
 
     /**
-     * This method make update the graphic interface
+     * This method updates the graphic interface with the new result.
      *
-     * @param result is the string managed for the controls
+     * @param result is the string managed for the controls.
      */
     private void updateInterface(String result) {
         if (result.compareTo("") != 0) {
@@ -177,10 +178,10 @@ public class PrimaryController implements Initializable {
     }
 
     /**
-     * This method takes the user-defined function and save it in the function
-     * list
+     * This method takes the user-defined function and saves it in the function
+     * list.
      *
-     * @param event represents the pressing of save function button
+     * @param event represents the pressing of save function button.
      */
     @FXML
     private void saveFunction(ActionEvent event) {
@@ -196,7 +197,8 @@ public class PrimaryController implements Initializable {
             if (!functionsList.getItems().contains(name)) {
                 functionsList.getItems().add(name);
 
-            } else {
+            } 
+            else {
                 result = "Modified";
             }
         }
@@ -206,11 +208,11 @@ public class PrimaryController implements Initializable {
     /**
      * This method allows to use the user-defined function.
      *
-     * @param event represents the pressing of use button
+     * @param event represents the pressing of use button.
      */
     @FXML
     private void useFunction(ActionEvent event) {
-        String result = calculator.executeFunctionOperations(functionsList.getValue());
+        String result = calculator.checkOperations(functionsList.getValue());
         operationsFunction.clear();
         nameFunction.clear();
         updateInterface(result);
@@ -219,7 +221,7 @@ public class PrimaryController implements Initializable {
     /**
      * This method allows to modify the user-defined function.
      *
-     * @param event represents the pressing of modify button
+     * @param event represents the pressing of modify button.
      */
     @FXML
     private void modifyFunction(ActionEvent event) {
@@ -232,7 +234,7 @@ public class PrimaryController implements Initializable {
     /**
      * This method allows to delete the user-defined function.
      *
-     * @param event represents the pressing of delete button
+     * @param event represents the pressing of delete button.
      */
     @FXML
     private void deleteFunction(ActionEvent event) {
@@ -242,7 +244,6 @@ public class PrimaryController implements Initializable {
             if (confirmDelete.getResult() == ButtonType.YES) {
                 String result = calculator.deleteFunctionOperations(functionsList.getValue());
                 functionsList.getItems().remove(functionsList.getValue());
-                functionsList.getSelectionModel().select("Functions");
                 operationsFunction.clear();
                 nameFunction.clear();
                 updateInterface(result);
@@ -253,7 +254,7 @@ public class PrimaryController implements Initializable {
     /**
      * This method allows to write the user-defined function to file.
      *
-     * @param event represents the pressing of save function button
+     * @param event represents the pressing of save function button.
      */
     @FXML
     private void writeToFile(ActionEvent event) throws IOException {
@@ -271,7 +272,7 @@ public class PrimaryController implements Initializable {
     /**
      * This method allows to read the user-defined function from file.
      *
-     * @param event represents the pressing of load function button
+     * @param event represents the pressing of load function button.
      */
     @FXML
     private void readFromFile(ActionEvent event) throws IOException {

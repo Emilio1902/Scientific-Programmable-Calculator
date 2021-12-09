@@ -26,12 +26,11 @@ import java.util.Set;
  * @author raffa
  */
 public class Functions {
-
-    private HashMap<String, String> functions;
-    private Map<String, String> basicOperations;
+    private final HashMap<String, String> functions;
+    private final Map<String, String> basicOperations;
 
     /**
-     * Constructs the functions data structures and the basicOperations
+     * Constructs the functions data structures and the basicOperations.
      *
      */
     public Functions() {
@@ -95,13 +94,14 @@ public class Functions {
      * Delete the specified function.
      *
      * @param name is the name of the function.
-     * @return true if the remove is successfull, false otherwise
+     * @return true if the remove is successfull, false otherwise.
      */
     public boolean deleteFunction(String name) {
         if (functions.containsKey(name)) {
             basicOperations.remove(name, null);
             return functions.remove(name, functions.get(name));
-        } else {
+        } 
+        else {
             return false;
         }
     }
@@ -111,7 +111,7 @@ public class Functions {
      *
      * @param name is the name of the function.
      * @return operations of specified function, null if the HashMap function
-     * not cointains key name
+     * not cointains key name.
      */
     public String[] getOperation(String name) {
         String operations = functions.get(name);
@@ -122,7 +122,7 @@ public class Functions {
      * Return the specified function.
      *
      * @return set of stored function, null if the HashMap function not
-     * cointains elements
+     * cointains elements.
      */
     public Set<String> getFunctions() {
         return functions.keySet();
@@ -132,7 +132,7 @@ public class Functions {
      * This method writes to file stored functions.
      *
      * @param file is File to save on.
-     * @return true if the writing is successfull, false otherwise
+     * @return true if the writing is successfull, false otherwise.
      */
     public boolean writeToFile(File file) throws IOException {
         Set entrySet = functions.entrySet();
@@ -153,10 +153,11 @@ public class Functions {
      * This method reads the functions from file and store them.
      *
      * @param file is the File to read.
-     * @return List<String> of insert functions if the reading is successfull, null otherwise
+     * @return List of String of insert functions if the reading is successfull, 
+     * null otherwise.
+     * @throws java.io.IOException
      */
     public List<String> readFromFile(File file) throws IOException {
-
         List<String> functionsName = new ArrayList<>();
         try (Scanner i = new Scanner(new BufferedReader(new FileReader(file.getPath())))) {
             i.useLocale(Locale.US);
@@ -178,5 +179,3 @@ public class Functions {
     }
 
 }
-
-

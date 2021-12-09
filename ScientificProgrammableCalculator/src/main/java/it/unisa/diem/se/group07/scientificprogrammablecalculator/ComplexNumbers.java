@@ -16,88 +16,40 @@ import org.apache.commons.math3.util.Precision;
  * @author raffa
  */
 public class ComplexNumbers {
-
-    private Double real, img;
-
+    private final Double real, img;
+    
     /**
-     * Constructs the complex number z = real + i*img
+     * Constructs the complex number z = real + i*img; it rounds up real and
+     * imaginary parts to eight decimal places.If the real or imaginary part is NaN, 
+     * it constructs the complex number z with real and imaginary parts NaN.
      *
-     * @param real Real part
-     * @param img Imaginary part
+     * @param real Real part.
+     * @param img Imaginary part.
      */
     public ComplexNumbers(double real, double img) {
-        if(Double.compare(real,Double.NaN)!=0 && Double.compare(img,Double.NaN)!=0){
+        if (Double.compare(real, Double.NaN) != 0 && Double.compare(img, Double.NaN) != 0) {
             this.real = Precision.round(real, 8);
             this.img = Precision.round(img, 8);
-        }
-        else{
+        } else {
             this.real = Double.NaN;
             this.img = Double.NaN;
         }
     }
-
+    
     /**
-     * Real part of this Complex number (the x-coordinate in rectangular
-     * coordinates).
-     *
-     * @return Re[z] where z is this Complex number.
-     */
-    public double getReal() {
-        return real;
-    }
-
-    /**
-     * Imaginary part of this Complex number (the y-coordinate in rectangular
-     * coordinates).
-     *
-     * @return Im[z] where z is this Complex number.
-     */
-    public double getImg() {
-        return img;
-    }
-
-    /**
-     * Modulus of this Complex number (the distance from the origin in polar
-     * coordinates).
-     *
-     * @return |z| where z is this Complex number.
-     */
-    public double mod() {
-        if (real != 0 || img != 0) {
-            return Math.sqrt((real * real) + (img * img));
-        } else {
-            return 0;
-        }
-    }
-
-    /**
-     * Argument of this Complex number (the angle in radians with the x-axis in
-     * polar coordinates).
-     *
-     * @return arg(z) where z is this Complex number.
-     */
-    public double arg() {
-        if(Math.abs(real) != Double.POSITIVE_INFINITY && Math.abs(img) != Double.POSITIVE_INFINITY)
-            return Math.atan2(img, real);
-        else
-            return 0.0;
-    }
-
-    /**
-     * Constructs the complex number z from the string number; if the number 
-     * format is incorrect, it constructs a ComplexNumbers z with 
+     * Constructs the complex number z from the string number; if the number
+     * format is incorrect, it constructs a ComplexNumbers z with
      * NEGATIVE_INFINITY real and imaginary parts.
      *
      * @param number is the string that represents the complex number z.
      */
     public ComplexNumbers(String number) {
-        String[] split = number.split("[+-]");
         if (number.equalsIgnoreCase("i")) {
             this.real = 0.0;
             this.img = 1.0;
         } else {
-            if (this.checkFormat(number, split)) {
-                Double[] res = this.getComplexNumber(split, number);
+            if (this.checkFormat(number)) {
+                Double[] res = this.getComplexNumber(number);
                 this.real = res[0];
                 this.img = res[1];
             } else {
@@ -108,31 +60,49 @@ public class ComplexNumbers {
     }
     
     /**
-     * This method checks if the String could be a complex number
-     * 
-     * @param number is the string that contains the complex number
-     * @param split is the string vector that contains the split of number on +
-     * and -
-     * 
-     * @return true if the format is correct, false otherwise
-    */
-    private boolean checkFormat(String number, String[] split) {
-        return ((number.endsWith("i") && ((number.length() - number.replace("i", "").length()) == 1)) 
-                || (!number.contains("i")&& ((split.length==2 && Character.isDigit(number.charAt(number.length()-1))
-                &&((number.startsWith("+"))||number.startsWith("-")))|| split.length==1)))
+     * Real part of this Complex number (the x-coordinate in rectangular
+     * coordinates).
+     *
+     * @return Re[z] where z is this Complex number.
+     */
+    public double getReal() {
+        return real;
+    }
+    
+    /**
+     * Imaginary part of this Complex number (the y-coordinate in rectangular
+     * coordinates).
+     *
+     * @return Im[z] where z is this Complex number.
+     */
+    public double getImg() {
+        return img;
+    }
+    
+    /**
+     * This method checks if the String could be a complex number.
+     *
+     * @param number is the string that contains the complex number.
+     *
+     * @return true if the format is correct, false otherwise.
+     */
+    private boolean checkFormat(String number) {
+        String[] split = number.split("[+-]");
+        return ((number.endsWith("i") && ((number.length() - number.replace("i", "").length()) == 1))
+                || (!number.contains("i") && ((split.length == 2 && Character.isDigit(number.charAt(number.length() - 1))
+                && ((number.startsWith("+")) || number.startsWith("-"))) || split.length == 1)))
                 && split.length <= 3;
     }
-
+    
     /**
      * Obtains the Complex number and performs all checks relating it.
      *
-     * @param split is the string vector that contains real and imaginary part
-     * of the number.
      * @param number is the string that represents the complex number z.
      * @return Complex number with Re[z] and Im[z] where z is this Complex
      * number.
      */
-    private Double[] getComplexNumber(String[] split, String number) {
+    private Double[] getComplexNumber(String number) {
+        String[] split = number.split("[+-]");
         boolean firstPositive = true;
         boolean secondPositive = true;
         if (number.charAt(0) == '-') {
@@ -179,15 +149,42 @@ public class ComplexNumbers {
                 }
                 realPart = Double.parseDouble((firstPositive ? "+" : "-") + split[0]);
             }
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             realPart = Double.NEGATIVE_INFINITY;
             imgPart = Double.NEGATIVE_INFINITY;
-        }
-        finally {
+        } finally {
             return new Double[]{realPart, imgPart};
         }
     }
-
+    
+    /**
+     * Modulus of this Complex number (the distance from the origin in polar
+     * coordinates).
+     *
+     * @return |z| where z is this Complex number.
+     */
+    public double mod() {
+        if (real != 0 || img != 0) {
+            return Math.sqrt((real * real) + (img * img));
+        } else {
+            return 0;
+        }
+    }
+    
+    /**
+     * Argument of this Complex number (the angle in radians with the x-axis in
+     * polar coordinates).
+     *
+     * @return arg(z) where z is this Complex number.
+     */
+    public double arg() {
+        if (Math.abs(real) != Double.POSITIVE_INFINITY && Math.abs(img) != Double.POSITIVE_INFINITY) {
+            return Math.atan2(img, real);
+        } else {
+            return 0.0;
+        }
+    }
+    
     /**
      * Addition of ComplexNumbers (doesn't change this Complex number).
      * <br>(x+i*y) + (s+i*t) = (x+s)+i*(y+t).
@@ -198,7 +195,7 @@ public class ComplexNumbers {
     public ComplexNumbers sum(ComplexNumbers w) {
         return new ComplexNumbers(real + w.getReal(), img + w.getImg());
     }
-
+    
     /**
      * Subtraction of ComplexNumbers (doesn't change this Complex number).
      * <br>(x+i*y) - (s+i*t) = (x-s)+i*(y-t).
@@ -209,7 +206,7 @@ public class ComplexNumbers {
     public ComplexNumbers difference(ComplexNumbers w) {
         return new ComplexNumbers(real - w.getReal(), img - w.getImg());
     }
-
+    
     /**
      * Complex multiplication (doesn't change this Complex number).
      *
@@ -221,14 +218,14 @@ public class ComplexNumbers {
         double imgPart = (real * w.getImg()) + (img * w.getReal());
         return new ComplexNumbers(realPart, imgPart);
     }
-
+    
     /**
      * Division of Complex numbers (doesn't change this Complex number).
      * <br>(x+i*y)/(s+i*t) = ((x*s + y*t)/(s^2+t^2))+ i*((y*s - x*t)/(s^2+t^2))
      *
      * @param w is the number to divide by
-     * @return new Complex number z/w where z is this Complex number or -infinity if
-     * the mod of w (s^2+t^2) is 0
+     * @return new Complex number z/w where z is this Complex number or
+     * -infinity if the mod of w (s^2+t^2) is 0
      */
     public ComplexNumbers ratio(ComplexNumbers w) {
         double distance = w.mod();
@@ -241,7 +238,7 @@ public class ComplexNumbers {
             return new ComplexNumbers(Double.NEGATIVE_INFINITY, 0.0);
         }
     }
-
+    
     /**
      * Complex square root (doesn't change this complex number). Computes the
      * principal branch of the square root, which is the value with 0<= arg <pi.
@@ -258,7 +255,7 @@ public class ComplexNumbers {
         double imgPart = r * Math.sin(theta);
         return new ComplexNumbers(realPart, imgPart);
     }
-
+    
     /**
      * Invert sign of this complex number. This produces a new Complex number
      * and doesn't change this Complex number.
@@ -277,101 +274,114 @@ public class ComplexNumbers {
         }
         return new ComplexNumbers(realPart, imgPart);
     }
-
+    
     /**
-     *  Complex exponential (doesn't change this Complex number).
-     *  @return exp(z) where z is this Complex number.
-    */
+     * Complex exponential (doesn't change this Complex number).
+     *
+     * @return exp(z) where z is this Complex number.
+     */
     public ComplexNumbers exp() {
-        double realPart = Math.exp(real)*Math.cos(img);
-        double imgPart = Math.exp(real)*Math.sin(img);
-        if(Math.abs(realPart)==0)
-            realPart =0.0;
-        if(Math.abs(imgPart)==0)
-            imgPart =0.0;
+        double realPart = Math.exp(real) * Math.cos(img);
+        double imgPart = Math.exp(real) * Math.sin(img);
+        if (Math.abs(realPart) == 0) {
+            realPart = 0.0;
+        }
+        if (Math.abs(imgPart) == 0) {
+            imgPart = 0.0;
+        }
         return new ComplexNumbers(realPart, imgPart);
     }
     
     /**
-     *  Principal branch of the Complex logarithm of this Complex number.
-     *  (doesn't change this Complex number).
-     *  The principal branch is the branch with -pi < arg <= pi.
-     *  @return log(z) where z is this Complex number.
-    */
+     * Principal branch of the Complex logarithm of this Complex number.
+     * (doesn't change this Complex number). The principal branch is the branch
+     * with -pi < arg <= pi.
+     *
+     * @return log(z) where z is this Complex number.
+     */
     public ComplexNumbers log() {
-        return new ComplexNumbers(Math.log(this.mod()),this.arg());
+        return new ComplexNumbers(Math.log(this.mod()), this.arg());
     }
-
+    
     /**
      * Real cosh function (used to compute complex trig functions).
-     * 
+     *
      * @param theta is the angle.
-     * 
+     *
      * @return cosh(theta) where theta is the angle.
-    */ 
+     */
     private double cosh(double theta) {
-        return (Math.exp(theta)+Math.exp(-theta))/2;
+        return (Math.exp(theta) + Math.exp(-theta)) / 2;
     }
     
     /**
      * Real sinh function (used to compute complex trig functions)
-     * 
-     * @param theta is the angle
-     * 
-     * @return sinh(theta) where theta is the angle
-     */ 
+     *
+     * @param theta is the angle.
+     *
+     * @return sinh(theta) where theta is the angle.
+     */
     private double sinh(double theta) {
-        return (Math.exp(theta)-Math.exp(-theta))/2;
+        return (Math.exp(theta) - Math.exp(-theta)) / 2;
     }
     
     /**
      * Sine of this Complex number (doesn't change this Complex number).
      * <br>sin(z) = (exp(i*z)-exp(-i*z))/(2*i).
+     *
      * @return sin(z) where z is this Complex number.
-    */
+     */
     public ComplexNumbers sin() {
-        double realPart = cosh(img)*Math.sin(real);
-        double imgPart = sinh(img)*Math.cos(real);
-        if(Math.abs(Precision.round(realPart,8))==0)
+        double realPart = cosh(img) * Math.sin(real);
+        double imgPart = sinh(img) * Math.cos(real);
+        if (Math.abs(Precision.round(realPart, 8)) == 0) {
             realPart = 0.0;
-        if(Math.abs(Precision.round(imgPart,8))==0)
+        }
+        if (Math.abs(Precision.round(imgPart, 8)) == 0) {
             imgPart = 0.0;
-        return new ComplexNumbers(realPart,imgPart);
-    }
-    
-     /**
-     *  Cosine of this Complex number (doesn't change this Complex number).
-     *  <br>cos(z) = (exp(i*z)+exp(-i*z))/ 2.
-     *  @return cos(z) where z is this Complex number.
-    */
-    public ComplexNumbers cos() {
-        double realPart = cosh(img)*Math.cos(real);
-        double imgPart = -sinh(img)*Math.sin(real);
-        if(Math.abs(Precision.round(realPart,8))==0)
-            realPart = 0.0;
-        if(Math.abs(Precision.round(imgPart,8))==0)
-            imgPart = 0.0;
-        return new ComplexNumbers(realPart,imgPart);
-    }
-    
-    /**
-        Tangent of this Complex number (doesn't change this Complex number).
-        <br>tan(z) = sin(z)/cos(z).
-        @return tan(z) where z is this Complex number.
-    */
-    public ComplexNumbers tan() {
-        ComplexNumbers result = (this.sin()).ratio(this.cos());
-        double realPart = result.getReal();
-        double imgPart = result.getImg();
-        if(Math.abs(realPart)==0)
-            realPart = 0.0;
-        if(Math.abs(imgPart)==0)
-            imgPart = 0.0;
+        }
         return new ComplexNumbers(realPart, imgPart);
     }
     
     /**
-     * Parse from ComplexNumbers to string
+     * Cosine of this Complex number (doesn't change this Complex number).
+     * <br>cos(z) = (exp(i*z)+exp(-i*z))/ 2.
+     *
+     * @return cos(z) where z is this Complex number.
+     */
+    public ComplexNumbers cos() {
+        double realPart = cosh(img) * Math.cos(real);
+        double imgPart = -sinh(img) * Math.sin(real);
+        if (Math.abs(Precision.round(realPart, 8)) == 0) {
+            realPart = 0.0;
+        }
+        if (Math.abs(Precision.round(imgPart, 8)) == 0) {
+            imgPart = 0.0;
+        }
+        return new ComplexNumbers(realPart, imgPart);
+    }
+    
+    /**
+     * Tangent of this Complex number (doesn't change this Complex number).
+     * <br>tan(z) = sin(z)/cos(z).
+     *
+     * @return tan(z) where z is this Complex number.
+     */
+    public ComplexNumbers tan() {
+        ComplexNumbers result = (this.sin()).ratio(this.cos());
+        double realPart = result.getReal();
+        double imgPart = result.getImg();
+        if (Math.abs(realPart) == 0) {
+            realPart = 0.0;
+        }
+        if (Math.abs(imgPart) == 0) {
+            imgPart = 0.0;
+        }
+        return new ComplexNumbers(realPart, imgPart);
+    }
+    
+    /**
+     * Parse from ComplexNumbers to string.
      *
      * @return Re[z]+Img[z]i string where z is this Complex number.
      */
@@ -379,5 +389,4 @@ public class ComplexNumbers {
     public String toString() {
         return real + (img < 0 ? "" : "+") + img + "i";
     }
-
 }

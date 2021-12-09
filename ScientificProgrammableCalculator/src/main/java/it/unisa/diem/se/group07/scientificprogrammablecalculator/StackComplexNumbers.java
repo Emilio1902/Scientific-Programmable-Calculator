@@ -21,7 +21,7 @@ public class StackComplexNumbers{
 
     /**
      * Constructs the memory that contains the stored complex numbers in a stack
-     * data structure
+     * data structure.
      */
     public StackComplexNumbers() {
         array = new ComplexNumbers[capacity];
@@ -29,33 +29,35 @@ public class StackComplexNumbers{
     }
 
     /**
-     * This method check if the stack is empty
+     * This method checks if the stack is empty.
      *
-     * @return boolean that specifies if the stack is empty
+     * @return boolean that specifies if the stack is empty.
      */
     public boolean isEmpty() {
         if (top == -1) {
             return true;
-        } else {
+        } 
+        else {
             return false;
         }
     }
 
     /**
-     * This method check if the stack is full
+     * This method checks if the stack is full.
      *
-     * @return boolean that specifies if the stack is full
+     * @return boolean that specifies if the stack is full.
      */
     public boolean isFull() {
         if (capacity == top + 1) {
             return true;
-        } else {
+        } 
+        else {
             return false;
         }
     }
 
     /**
-     * This method doubles the size of the array
+     * This method doubles the size of the array.
      */
     private void expandArray() {
         int i = 0;
@@ -69,7 +71,7 @@ public class StackComplexNumbers{
     }
 
     /**
-     * This method reduces the size of the array
+     * This method reduces the size of the array.
      */
     private void reduceSize() {
         int curr_length = top + 1;
@@ -83,10 +85,10 @@ public class StackComplexNumbers{
 
     /**
      * This method puts the complex number on the stack; expands the stack if it
-     * is full and then inserts the number
+     * is full and then inserts the number.
      *
-     * @param real Real part
-     * @param img Imaginary part
+     * @param real Real part.
+     * @param img Imaginary part.
      */
     public void push(double real, double img) {
         if (isFull()) {
@@ -96,23 +98,24 @@ public class StackComplexNumbers{
     }
 
     /**
-     * This method deletes the last element inserted on the stack
+     * This method deletes the last element inserted on the stack.
      *
-     * @return last element in the stack that is deleted
+     * @return last element in the stack that is deleted, null if the stack is empty.
      */
     public ComplexNumbers pop() {
         if (isEmpty()) {
             return null;
-        } else {
+        } 
+        else {
             reduceSize();
             return array[top--];
         }
     }
 
     /**
-     * This method returns the last item inserted on the stack
+     * This method returns the last item inserted on the stack.
      *
-     * @return last item inserted on the stack
+     * @return last item inserted on the stack, null if the stack is empty.
      */
     public ComplexNumbers top() {
         if (isEmpty()) {
@@ -123,11 +126,11 @@ public class StackComplexNumbers{
     }
 
     /**
-     * This method creates a complex number
+     * This method creates a complex number.
      *
-     * @param real Real part
-     * @param img Imaginary part
-     * @return a complex number
+     * @param real Real part.
+     * @param img Imaginary part.
+     * @return a complex number.
      */
     private ComplexNumbers createComplex(double real, double img) {
         return new ComplexNumbers(real, img);
@@ -152,16 +155,17 @@ public class StackComplexNumbers{
     }
 
     /**
-     * Last twelve numbers pushed in the stack
+     * This method returns the last twelve numbers pushed into the stack.
      *
-     * @return An array that contains the last 12 ComplexNumbers.
+     * @return an array that contains the last 12 ComplexNumbers.
      */
     public String[] getLastTwelve() {
         if (this.isEmpty()) {
             String[] s = {};
             return s;
 
-        } else {
+        } 
+        else {
             int n = 12;
             if (top + 1 < 12) {
                 n = top + 1;
@@ -177,15 +181,16 @@ public class StackComplexNumbers{
     }
 
     /**
-     * This method sum the last two stored complex numbers and save the result
-     * in the stack
+     * This method sums the last two stored complex numbers and saves the result
+     * into the stack.
      *
-     * @return false if stack has at most one element, true otherwise
+     * @return false if stack has at most one element, true otherwise.
      */
     public boolean sumLastTwoNumbers() {
         if (top <= 0) {
             return false;
-        } else {
+        } 
+        else {
             ComplexNumbers num1 = this.pop();
             ComplexNumbers num2 = this.pop();
             ComplexNumbers res = num2.sum(num1);
@@ -196,14 +201,15 @@ public class StackComplexNumbers{
 
     /**
      * This method makes the difference of the last two stored complex numbers
-     * and save the result in the stack
+     * and saves the result into the stack.
      *
-     * @return false if stack has at most one element, true otherwise
+     * @return false if stack has at most one element, true otherwise.
      */
     public boolean differenceLastTwoNumbers() {
         if (top <= 0) {
             return false;
-        } else {
+        } 
+        else {
             ComplexNumbers num1 = this.pop();
             ComplexNumbers num2 = this.pop();
             ComplexNumbers res = num2.difference(num1);
@@ -213,15 +219,16 @@ public class StackComplexNumbers{
     }
 
     /**
-     * This method multiplies the last two stored complex numbers and save the
-     * result in the stack
+     * This method multiplies the last two stored complex numbers and saves the
+     * result into the stack.
      *
      * @return false if stack has at most one element, true otherwise
      */
     public boolean productLastTwoNumbers() {
         if (top <= 0) {
             return false;
-        } else {
+        } 
+        else {
             ComplexNumbers num1 = this.pop();
             ComplexNumbers num2 = this.pop();
             ComplexNumbers res = num2.product(num1);
@@ -231,15 +238,16 @@ public class StackComplexNumbers{
     }
 
     /**
-     * This method divides the last two stored complex numbers and save the
-     * result in the stack
+     * This method divides the last two stored complex numbers and saves the
+     * result into the stack.
      *
-     * @return false if stack has at most one element, true otherwise
+     * @return false if stack has at most one element, true otherwise.
      */
     public boolean ratioLastTwoNumbers() {
         if (top <= 0) {
             return false;
-        } else {
+        } 
+        else {
             ComplexNumbers num1 = this.pop();
             ComplexNumbers num2 = this.pop();
             ComplexNumbers res = num2.ratio(num1);
@@ -249,17 +257,17 @@ public class StackComplexNumbers{
         }
     }
 
-
-/**
- * This method takes the square root of the last stored complex number and save
- * the result in the stack
- *
- * @return false if stack has zero element, true otherwise
- */
-public boolean squareRootLastNumber(){
+    /**
+     * This method takes the square root of the last stored complex number and saves
+     * the result into the stack.
+     *
+     * @return false if stack has zero element, true otherwise.
+     */
+    public boolean squareRootLastNumber(){
         if (top == -1) {
             return false;
-        } else {
+        } 
+        else {
             ComplexNumbers num1 = this.pop();
             ComplexNumbers res = num1.squareRoot();
             this.push(res.getReal(), res.getImg());
@@ -269,15 +277,16 @@ public boolean squareRootLastNumber(){
     
     
     /**
-     * This method inverted the sign (real and imaginary part) 
-     * of the last stored complex number and save the result in the stack
-     *  @return false if stack has zero element, true otherwise
-    */
-    
+     * This method inverts the sign (real and imaginary part) 
+     * of the last stored complex number and saves the result into the stack
+     * 
+     * @return false if stack has zero element, true otherwise.
+     */
     public boolean invertSignLastNumber(){
         if (top == -1) {
             return false;
-        } else {
+        } 
+        else {
             ComplexNumbers num1 = this.pop();
             ComplexNumbers res = num1.invertSign();
             this.push(res.getReal(), res.getImg());
@@ -287,29 +296,30 @@ public boolean squareRootLastNumber(){
     
     
     /**
-     * This method drop the last stored complex number 
+     * This method drops from the stack the last stored complex number.
      * 
-     * @return false if stack is empty, true otherwise
-    */
+     * @return false if stack is empty, true otherwise.
+     */
     public boolean dropLastNumber(){
         if(top < 0){
             return false;
-        } else{
+        } 
+        else{
             this.pop();
             return true;
         }
     }
     
     /**
-     * This method swap the last two stored complex numbers 
+     * This method swaps the last two stored complex numbers. 
      * 
-     * @return false if stack has at most one element, true otherwise
-    */
-    
+     * @return false if stack has at most one element, true otherwise.
+     */
     public boolean swapLastTwoNumbers(){
         if(top <= 0){
             return false;
-        } else{
+        } 
+        else{
             ComplexNumbers n1 = this.pop();
             ComplexNumbers n2 = this.pop();
             this.push(n1.getReal(), n1.getImg());
@@ -319,7 +329,7 @@ public boolean squareRootLastNumber(){
     }
     
     /**
-     * This method deletes all stored complex numbers
+     * This method deletes all stored complex numbers.
      */
     public void clear(){
         Arrays.fill(array, null);
@@ -327,13 +337,15 @@ public boolean squareRootLastNumber(){
     }
     
     /**
-     * This method copies the last stored complex number and places it in memory
-     *  @return false if stack has zero element, true otherwise
+     * This method copies the last stored complex number and places it in memory.
+     * 
+     * @return false if stack has zero element, true otherwise.
      */
     public boolean dupLastNumber(){
         if (top == -1) {
             return false;
-        } else {
+        } 
+        else {
             ComplexNumbers n = this.top();
             this.push(n.getReal(), n.getImg());
             return true;
@@ -341,14 +353,15 @@ public boolean squareRootLastNumber(){
     }
     
     /**
-     * This method copies the second last stored complex number 
-     * and places it in memory
-     *  @return false if stack has at most one element, true otherwise
+     * This method copies the second last stored complex number and places it in memory.
+     * 
+     * @return false if stack has at most one element, true otherwise.
      */
     public boolean dupSecondLastNumber(){
         if (top <= 0) {
             return false;
-        } else {
+        } 
+        else {
             ComplexNumbers n = this.pop();
             ComplexNumbers n1 = this.top();
             this.push(n.getReal(), n.getImg());
@@ -359,13 +372,15 @@ public boolean squareRootLastNumber(){
     
     /**
      * This method makes the modulus of the last stored complex number 
-     * and save the result in the stack
-     *  @return false if stack has zero element, true otherwise
-    */
+     * and saves the result into the stack.
+     * 
+     * @return false if stack has zero element, true otherwise.
+     */
     public boolean modLastNumber(){
         if (top == -1) {
             return false;
-        } else {
+        } 
+        else {
             ComplexNumbers num1 = this.pop();
             double res = num1.mod();
             this.push(res, 0.0);
@@ -375,13 +390,15 @@ public boolean squareRootLastNumber(){
     
     /**
      * This method makes the arguments of the last stored complex number 
-     * and save the result in the stack
-     *  @return false if stack has zero element, true otherwise
-    */
+     * and saves the result into the stack.
+     * 
+     * @return false if stack has zero element, true otherwise.
+     */
     public boolean argLastNumber(){
         if (top == -1) {
             return false;
-        } else {
+        } 
+        else {
             ComplexNumbers num1 = this.pop();
             double res = num1.arg();
             this.push(res, 0.0);
@@ -390,14 +407,16 @@ public boolean squareRootLastNumber(){
     }
     
     /**
-     * This method takes the logarithm of the last stored complex number 
-     * and save the result in the stack
-     *  @return false if stack has zero element, true otherwise
-    */
+     * This method makes the logarithm of the last stored complex number 
+     * and saves the result into the stack.
+     * 
+     * @return false if stack has zero element, true otherwise.
+     */
     public boolean logLastNumber(){
         if (top == -1) {
             return false;
-        } else {
+        } 
+        else {
             ComplexNumbers num1 = this.pop();
             ComplexNumbers res = num1.log();
             this.push(res.getReal(), res.getImg());
@@ -407,13 +426,15 @@ public boolean squareRootLastNumber(){
     
     /**
      * This method makes the exponent of the last stored complex number 
-     * and save the result in the stack
-     *  @return false if stack has zero element, true otherwise
-    */
+     * and saves the result into the stack.
+     * 
+     * @return false if stack has zero element, true otherwise.
+     */
     public boolean expLastNumber(){
         if (top == -1) {
             return false;
-        } else {
+        } 
+        else {
             ComplexNumbers num1 = this.pop();
             ComplexNumbers res = num1.exp();
             this.push(res.getReal(), res.getImg());
@@ -423,13 +444,15 @@ public boolean squareRootLastNumber(){
     
     /**
      * This method makes the sine of the last stored complex number 
-     * and save the result in the stack
-     *  @return false if stack has zero element, true otherwise
-    */
+     * and saves the result into the stack.
+     * 
+     * @return false if stack has zero element, true otherwise.
+     */
     public boolean sinLastNumber(){
         if (top == -1) {
             return false;
-        } else {
+        }
+        else {
             ComplexNumbers num1 = this.pop();
             ComplexNumbers res = num1.sin();
             this.push(res.getReal(), res.getImg());
@@ -437,15 +460,17 @@ public boolean squareRootLastNumber(){
         }
     }
     
-     /**
+    /**
      * This method makes the cosine of the last stored complex number 
-     * and save the result in the stack
-     *  @return false if stack has zero element, true otherwise
-    */
+     * and saves the result into the stack.
+     * 
+     * @return false if stack has zero element, true otherwise.
+     */
     public boolean cosLastNumber(){
         if (top == -1) {
             return false;
-        } else {
+        } 
+        else {
             ComplexNumbers num1 = this.pop();
             ComplexNumbers res = num1.cos();
             this.push(res.getReal(), res.getImg());
@@ -455,13 +480,15 @@ public boolean squareRootLastNumber(){
     
     /**
      * This method makes the tangent of the last stored complex number 
-     * and save the result in the stack
-     *  @return false if stack has zero element, true otherwise
-    */
+     * and saves the result into the stack.
+     * 
+     * @return false if stack has zero element, true otherwise
+     */
     public boolean tanLastNumber(){
         if (top == -1) {
             return false;
-        } else {
+        } 
+        else {
             ComplexNumbers num1 = this.pop();
             ComplexNumbers res = num1.tan();
             this.push(res.getReal(), res.getImg());
