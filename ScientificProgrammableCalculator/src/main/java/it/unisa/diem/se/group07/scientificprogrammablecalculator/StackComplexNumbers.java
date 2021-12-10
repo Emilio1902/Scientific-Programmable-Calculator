@@ -12,12 +12,13 @@ import java.util.Arrays;
  *
  * @author DELL
  */
-public class StackComplexNumbers{
+public class StackComplexNumbers {
 
     private ComplexNumbers[] array;
     private ComplexNumbers[] arrayBackup;
     private static int capacity = 20;
     private int top, topBackup;
+    public EventManager events;
 
     /**
      * Constructs the memory that contains the stored complex numbers in a stack
@@ -26,6 +27,7 @@ public class StackComplexNumbers{
     public StackComplexNumbers() {
         array = new ComplexNumbers[capacity];
         top = -1;
+        this.events = new EventManager("Update");
     }
 
     /**
@@ -95,6 +97,7 @@ public class StackComplexNumbers{
             expandArray();
         }
         array[++top] = createComplex(real, img);
+        events.notify("Update", this.getLastTwelve());
     }
 
     /**
@@ -108,6 +111,7 @@ public class StackComplexNumbers{
         } 
         else {
             reduceSize();
+            events.notify("Update", this.getLastTwelve());
             return array[top--];
         }
     }
@@ -195,6 +199,7 @@ public class StackComplexNumbers{
             ComplexNumbers num2 = this.pop();
             ComplexNumbers res = num2.sum(num1);
             this.push(res.getReal(), res.getImg());
+            events.notify("Update", this.getLastTwelve());
             return true;
         }
     }
@@ -214,6 +219,7 @@ public class StackComplexNumbers{
             ComplexNumbers num2 = this.pop();
             ComplexNumbers res = num2.difference(num1);
             this.push(res.getReal(), res.getImg());
+            events.notify("Update", this.getLastTwelve());
             return true;
         }
     }
@@ -233,6 +239,7 @@ public class StackComplexNumbers{
             ComplexNumbers num2 = this.pop();
             ComplexNumbers res = num2.product(num1);
             this.push(res.getReal(), res.getImg());
+            events.notify("Update", this.getLastTwelve());
             return true;
         }
     }
@@ -253,6 +260,7 @@ public class StackComplexNumbers{
             ComplexNumbers res = num2.ratio(num1);
 
             this.push(res.getReal(), res.getImg());
+            events.notify("Update", this.getLastTwelve());
             return true;
         }
     }
@@ -271,6 +279,7 @@ public class StackComplexNumbers{
             ComplexNumbers num1 = this.pop();
             ComplexNumbers res = num1.squareRoot();
             this.push(res.getReal(), res.getImg());
+            events.notify("Update", this.getLastTwelve());
             return true;
         }
     }
@@ -290,6 +299,7 @@ public class StackComplexNumbers{
             ComplexNumbers num1 = this.pop();
             ComplexNumbers res = num1.invertSign();
             this.push(res.getReal(), res.getImg());
+            events.notify("Update", this.getLastTwelve());
             return true;
         }
     }
@@ -306,6 +316,7 @@ public class StackComplexNumbers{
         } 
         else{
             this.pop();
+            events.notify("Update", this.getLastTwelve());
             return true;
         }
     }
@@ -324,6 +335,7 @@ public class StackComplexNumbers{
             ComplexNumbers n2 = this.pop();
             this.push(n1.getReal(), n1.getImg());
             this.push(n2.getReal(), n2.getImg());
+            events.notify("Update", this.getLastTwelve());
             return true;
         }
     }
@@ -334,6 +346,7 @@ public class StackComplexNumbers{
     public void clear(){
         Arrays.fill(array, null);
         top = -1;
+        events.notify("Update", this.getLastTwelve());
     }
     
     /**
@@ -348,6 +361,7 @@ public class StackComplexNumbers{
         else {
             ComplexNumbers n = this.top();
             this.push(n.getReal(), n.getImg());
+            events.notify("Update", this.getLastTwelve());
             return true;
         }
     }
@@ -366,6 +380,7 @@ public class StackComplexNumbers{
             ComplexNumbers n1 = this.top();
             this.push(n.getReal(), n.getImg());
             this.push(n1.getReal(), n1.getImg());
+            events.notify("Update", this.getLastTwelve());
             return true;
         }
     }
@@ -384,6 +399,7 @@ public class StackComplexNumbers{
             ComplexNumbers num1 = this.pop();
             double res = num1.mod();
             this.push(res, 0.0);
+            events.notify("Update", this.getLastTwelve());
             return true;
         }
     }
@@ -402,6 +418,7 @@ public class StackComplexNumbers{
             ComplexNumbers num1 = this.pop();
             double res = num1.arg();
             this.push(res, 0.0);
+            events.notify("Update", this.getLastTwelve());
             return true;
         }
     }
@@ -420,6 +437,7 @@ public class StackComplexNumbers{
             ComplexNumbers num1 = this.pop();
             ComplexNumbers res = num1.log();
             this.push(res.getReal(), res.getImg());
+            events.notify("Update", this.getLastTwelve());
             return true;
         }
     }
@@ -438,6 +456,7 @@ public class StackComplexNumbers{
             ComplexNumbers num1 = this.pop();
             ComplexNumbers res = num1.exp();
             this.push(res.getReal(), res.getImg());
+            events.notify("Update", this.getLastTwelve());
             return true;
         }
     }
@@ -456,6 +475,7 @@ public class StackComplexNumbers{
             ComplexNumbers num1 = this.pop();
             ComplexNumbers res = num1.sin();
             this.push(res.getReal(), res.getImg());
+            events.notify("Update", this.getLastTwelve());
             return true;
         }
     }
@@ -474,6 +494,7 @@ public class StackComplexNumbers{
             ComplexNumbers num1 = this.pop();
             ComplexNumbers res = num1.cos();
             this.push(res.getReal(), res.getImg());
+            events.notify("Update", this.getLastTwelve());
             return true;
         }
     }
@@ -492,8 +513,8 @@ public class StackComplexNumbers{
             ComplexNumbers num1 = this.pop();
             ComplexNumbers res = num1.tan();
             this.push(res.getReal(), res.getImg());
+            events.notify("Update", this.getLastTwelve());
             return true;
         }
     }
-    
 }

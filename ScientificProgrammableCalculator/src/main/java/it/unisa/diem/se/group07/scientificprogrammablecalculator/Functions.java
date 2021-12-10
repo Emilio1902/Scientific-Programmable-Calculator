@@ -17,7 +17,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -27,7 +26,7 @@ import java.util.Set;
  */
 public class Functions {
     private final HashMap<String, String> functions;
-    private final Map<String, String> basicOperations;
+    private final HashMap<String, String> basicOperations;
 
     /**
      * Constructs the functions data structures and the basicOperations.
@@ -171,7 +170,7 @@ public class Functions {
                 functions.put(name, operation);
                 functionsName.add(name);    
             }
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             System.out.println("Error on reading of file");
             functionsName = null;
         }

@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -53,7 +54,11 @@ public class PrimaryController implements Initializable {
     @FXML
     private VBox functionVBox;
     
-    private final Calculator calculator = new Calculator();
+    private StackComplexNumbers memory = new StackComplexNumbers();
+    
+    private MemoryListener observerArray = new MemoryListener();
+    
+    private final Calculator calculator = new Calculator(memory);
 
     /**
      * This method allows to set the ComboBox, the TextArea and the display.
@@ -74,11 +79,13 @@ public class PrimaryController implements Initializable {
         variables.getSelectionModel().select("Vars");
 
         functionsList.getItems().removeAll(functionsList.getItems());
-        functionsList.getSelectionModel().select("Functions");
 
         operationsFunction.setWrapText(true);
 
         Platform.runLater(() -> { display.requestFocus(); });
+        
+        memory.events.subscribe("Update", observerArray);
+        numbersList.setItems(observerArray.list);
     }
 
     /**
@@ -121,7 +128,6 @@ public class PrimaryController implements Initializable {
             display.setText("");
             display.setEditable(true);
             functionVBox.setDisable(false);
-            functionsList.getSelectionModel().select("Functions");
             acButton.setStyle("-fx-background-color: #ACACAC; -fx-background-radius: 30;");
             acButton.setDefaultButton(false);
             equalButton.setDefaultButton(true);
@@ -173,8 +179,6 @@ public class PrimaryController implements Initializable {
         }
         display.requestFocus();
         display.setText(result);
-        numbersList.getItems().clear();
-        numbersList.getItems().addAll(calculator.lastTwelveNumbers());
     }
 
     /**
@@ -212,10 +216,13 @@ public class PrimaryController implements Initializable {
      */
     @FXML
     private void useFunction(ActionEvent event) {
-        String result = calculator.checkOperations(functionsList.getValue());
-        operationsFunction.clear();
-        nameFunction.clear();
-        updateInterface(result);
+        String function = functionsList.getValue();
+        if(function.compareTo("") != 0) {
+            String result = calculator.checkOperations(function);
+            operationsFunction.clear();
+            nameFunction.clear();
+            updateInterface(result);
+        }
     }
 
     /**
@@ -225,9 +232,10 @@ public class PrimaryController implements Initializable {
      */
     @FXML
     private void modifyFunction(ActionEvent event) {
-        if (functionsList.getValue().compareTo("Functions") != 0) {
-            nameFunction.setText(functionsList.getValue());
-            operationsFunction.setText(calculator.getFunctionOperations(functionsList.getValue()));
+        String function = functionsList.getValue();
+        if (function.compareTo("") != 0) {
+            nameFunction.setText(function);
+            operationsFunction.setText(calculator.getFunctionOperations(function));
         }
     }
 
@@ -238,12 +246,13 @@ public class PrimaryController implements Initializable {
      */
     @FXML
     private void deleteFunction(ActionEvent event) {
-        if (functionsList.getValue().compareTo("Functions") != 0) {
-            Alert confirmDelete = new Alert(AlertType.NONE, "Delete " + functionsList.getValue() + " ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+        String function = functionsList.getValue();
+        if (function.compareTo("") != 0) {
+            Alert confirmDelete = new Alert(AlertType.NONE, "Delete " + function + " ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
             confirmDelete.showAndWait();
             if (confirmDelete.getResult() == ButtonType.YES) {
-                String result = calculator.deleteFunctionOperations(functionsList.getValue());
-                functionsList.getItems().remove(functionsList.getValue());
+                String result = calculator.deleteFunctionOperations(function);
+                functionsList.getItems().remove(function);
                 operationsFunction.clear();
                 nameFunction.clear();
                 updateInterface(result);

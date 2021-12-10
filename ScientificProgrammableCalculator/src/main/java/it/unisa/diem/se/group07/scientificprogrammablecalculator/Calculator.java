@@ -24,9 +24,10 @@ public class Calculator {
     
     /**
      * Constructs the stack memory of the calculator.
+     * @param memory
      */
-    public Calculator() {
-        memory = new StackComplexNumbers();
+    public Calculator(StackComplexNumbers memory) {
+        this.memory = memory;
         variables = new Variables();
         functions = new Functions();
     }
@@ -272,15 +273,6 @@ public class Calculator {
      */
     public String saveFunctionOperations(String name, String operations) {
         return functions.saveFunction(name, operations) == true ? "Saved" : "Format Error";
-    }
-    
-    /**
-     * Returns the last twelve numbers in the stack memory.
-     *
-     * @return the last twelve numbers in the stack memory.
-     */
-    public String[] lastTwelveNumbers() {
-        return memory.getLastTwelve();
     }
     
     /**
