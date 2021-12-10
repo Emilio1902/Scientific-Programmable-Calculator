@@ -19,6 +19,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("primary"));
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.setTitle("Scientific Programmable Calculator");
         stage.getIcons().add(new Image("file:calculator.jpg"));
         stage.show();     

@@ -6,7 +6,6 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -54,9 +53,9 @@ public class PrimaryController implements Initializable {
     @FXML
     private VBox functionVBox;
     
-    private StackComplexNumbers memory = new StackComplexNumbers();
+    private final StackComplexNumbers memory = new StackComplexNumbers();
     
-    private MemoryListener observerArray = new MemoryListener();
+    private final MemoryListener listenerArray = new MemoryListener();
     
     private final Calculator calculator = new Calculator(memory);
 
@@ -84,8 +83,8 @@ public class PrimaryController implements Initializable {
 
         Platform.runLater(() -> { display.requestFocus(); });
         
-        memory.events.subscribe("Update", observerArray);
-        numbersList.setItems(observerArray.list);
+        memory.events.subscribe("Update", listenerArray);
+        numbersList.setItems(listenerArray.list);
     }
 
     /**
@@ -217,7 +216,7 @@ public class PrimaryController implements Initializable {
     @FXML
     private void useFunction(ActionEvent event) {
         String function = functionsList.getValue();
-        if(function.compareTo("") != 0) {
+        if(function != null) {
             String result = calculator.checkOperations(function);
             operationsFunction.clear();
             nameFunction.clear();
@@ -233,7 +232,7 @@ public class PrimaryController implements Initializable {
     @FXML
     private void modifyFunction(ActionEvent event) {
         String function = functionsList.getValue();
-        if (function.compareTo("") != 0) {
+        if (function != null) {
             nameFunction.setText(function);
             operationsFunction.setText(calculator.getFunctionOperations(function));
         }
@@ -247,7 +246,7 @@ public class PrimaryController implements Initializable {
     @FXML
     private void deleteFunction(ActionEvent event) {
         String function = functionsList.getValue();
-        if (function.compareTo("") != 0) {
+        if (function != null) {
             Alert confirmDelete = new Alert(AlertType.NONE, "Delete " + function + " ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
             confirmDelete.showAndWait();
             if (confirmDelete.getResult() == ButtonType.YES) {
