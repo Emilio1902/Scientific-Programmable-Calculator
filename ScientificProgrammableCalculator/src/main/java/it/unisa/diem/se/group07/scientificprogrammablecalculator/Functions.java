@@ -70,7 +70,7 @@ public class Functions {
      * @return true if the format is correct, false otherwise
      */
     public boolean saveFunction(String name, String operations) {
-        if(basicOperations.containsKey(name))
+        if(basicOperations.containsKey(name) || !name.matches("[a-zA-Z]+"))
             return false;
         String[] splitOp = operations.split(" ");
         for (int i = 0; i < splitOp.length; i++) {
