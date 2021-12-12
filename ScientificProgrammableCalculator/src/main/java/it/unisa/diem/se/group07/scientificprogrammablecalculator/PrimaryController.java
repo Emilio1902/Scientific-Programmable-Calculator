@@ -315,6 +315,7 @@ public class PrimaryController implements Initializable {
     private void showInfo(ActionEvent event) {
         Alert info = new Alert(AlertType.NONE, "• Function name can't be equal to numbers.\n"
                 + "• Function name can't be equal to basic operations.\n"
+                + "• Function name can't contain blank space.\n"
                 + "• Changing the function name during the modify, will declare a new function.\n"
                 + "• Reading or writing empty file will generate an error.\n"
                 + "• Write the function operations separated by blank space:\n"

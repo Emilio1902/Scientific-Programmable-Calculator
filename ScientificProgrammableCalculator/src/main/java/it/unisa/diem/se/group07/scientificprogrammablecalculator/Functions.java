@@ -73,7 +73,8 @@ public class Functions {
         ComplexNumbers checkName = new ComplexNumbers(name);
         if(basicOperations.containsKey(name) || (Double.compare(checkName.getReal(), Double.NEGATIVE_INFINITY)!=0 
                 && Double.compare(checkName.getImg(), Double.NEGATIVE_INFINITY)!=0)||
-                (Character.toString(name.charAt(0)).matches("[<>+-]+") && name.substring(1).matches("[a-z]")))
+                (Character.toString(name.charAt(0)).matches("[<>+-]+") && name.substring(1).matches("[a-z]"))||
+                name.split(" ").length>1)
             return false;
         String[] splitOp = operations.split(" ");
         for (int i = 0; i < splitOp.length; i++) {
