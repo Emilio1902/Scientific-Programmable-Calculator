@@ -100,6 +100,9 @@ public class PrimaryController implements Initializable {
             display.requestFocus();
             display.positionCaret(display.getText().length());
         }
+        else {
+            acButton.requestFocus();
+        }
     }
 
     /**
@@ -199,7 +202,6 @@ public class PrimaryController implements Initializable {
         if (result.compareTo("Saved") == 0) {
             if (!functionsList.getItems().contains(name)) {
                 functionsList.getItems().add(name);
-
             } 
             else {
                 result = "Modified";
@@ -292,12 +294,35 @@ public class PrimaryController implements Initializable {
         if (selectedFile != null) {
             List<String> addedFunctions = calculator.readFunctionsFromFile(selectedFile);
             if (addedFunctions != null) {
-                functionsList.getItems().addAll(addedFunctions);
+                for(String elem : addedFunctions){
+                    if(!functionsList.getItems().contains(elem)){
+                        functionsList.getItems().add(elem);
+                    }
+                }
                 updateInterface("Loaded");
             } else {
                 updateInterface("Loaded Error");
             }
         }
+    }
+
+    /**
+     * This method allows to show the necessary info about the function.
+     *
+     * @param event represents the pressing of info button.
+     */    
+    @FXML
+    private void showInfo(ActionEvent event) {
+        Alert info = new Alert(AlertType.NONE, "• Function name can't contain numbers.\n"
+                + "• Function name can't be equal to basic operations.\n"
+                + "• Changing the function name during the modify, will declare a new function.\n"
+                + "• Reading or writing empty file will generate an error.\n"
+                + "• Write the function operations separated by blank space:\n"
+                + "     Ex → save >b >a + - / dup...", ButtonType.OK);
+        info.getDialogPane().setMinHeight(150);
+        info.getDialogPane().setMinWidth(500);
+        info.setTitle("Function info");
+        info.showAndWait();
     }
 
 }

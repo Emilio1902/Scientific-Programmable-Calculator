@@ -70,10 +70,15 @@ public class Functions {
      * @return true if the format is correct, false otherwise
      */
     public boolean saveFunction(String name, String operations) {
-        if(basicOperations.containsKey(name) || !name.matches("[a-zA-Z]+"))
+        ComplexNumbers checkName = new ComplexNumbers(name);
+        if(basicOperations.containsKey(name) || (Double.compare(checkName.getReal(), Double.NEGATIVE_INFINITY)!=0 
+                && Double.compare(checkName.getImg(), Double.NEGATIVE_INFINITY)!=0))
             return false;
         String[] splitOp = operations.split(" ");
         for (int i = 0; i < splitOp.length; i++) {
+            if(splitOp[i].compareTo(name)==0) {
+                return false;
+            }
             if (!basicOperations.containsKey(splitOp[i]) && !functions.containsKey(splitOp[i])) {
                 String start = splitOp[i].substring(0, 1);
                 if (!(start.matches("[<>+-]+") && splitOp[i].length() == 2 && Character.isAlphabetic(splitOp[i].charAt(1)))) {
@@ -131,8 +136,12 @@ public class Functions {
      *
      * @param file is File to save on.
      * @return true if the writing is successfull, false otherwise.
+     * @throws java.io.IOException
      */
     public boolean writeToFile(File file) throws IOException {
+        if(functions.isEmpty()){
+            return false;
+        }
         Set entrySet = functions.entrySet();
         Iterator it = entrySet.iterator();
         try (PrintWriter o = new PrintWriter(new BufferedWriter(new FileWriter(file.getPath())))) {
@@ -172,6 +181,9 @@ public class Functions {
         } catch (Exception e) {
             System.out.println("Error on reading of file");
             functionsName = null;
+        }
+        if (functionsName.isEmpty()){
+            return null;
         }
         return functionsName;
     }

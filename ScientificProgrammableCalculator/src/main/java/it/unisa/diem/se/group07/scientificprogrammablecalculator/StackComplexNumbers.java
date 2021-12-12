@@ -111,8 +111,9 @@ public class StackComplexNumbers {
         } 
         else {
             reduceSize();
+            ComplexNumbers popElement = array[top--];
             events.notify("Update", this.getLastTwelve());
-            return array[top--];
+            return popElement;
         }
     }
 
@@ -155,6 +156,7 @@ public class StackComplexNumbers {
         if(arrayBackup != null){
             array = arrayBackup.clone();
             top = topBackup;
+            events.notify("Update", this.getLastTwelve());
         }
     }
 

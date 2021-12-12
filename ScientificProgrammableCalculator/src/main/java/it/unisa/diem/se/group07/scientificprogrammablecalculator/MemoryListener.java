@@ -4,6 +4,7 @@
  */
 package it.unisa.diem.se.group07.scientificprogrammablecalculator;
 
+import java.util.Arrays;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
