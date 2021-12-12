@@ -313,12 +313,12 @@ public class PrimaryController implements Initializable {
      */    
     @FXML
     private void showInfo(ActionEvent event) {
-        Alert info = new Alert(AlertType.NONE, "• Function name can't contain numbers.\n"
+        Alert info = new Alert(AlertType.NONE, "• Function name can't be equal to numbers.\n"
                 + "• Function name can't be equal to basic operations.\n"
                 + "• Changing the function name during the modify, will declare a new function.\n"
                 + "• Reading or writing empty file will generate an error.\n"
                 + "• Write the function operations separated by blank space:\n"
-                + "     Ex → save >b >a + - / dup...", ButtonType.OK);
+                + "     Ex → save >b >a + - / dup", ButtonType.OK);
         info.getDialogPane().setMinHeight(150);
         info.getDialogPane().setMinWidth(500);
         info.setTitle("Function info");
